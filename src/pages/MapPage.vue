@@ -4,6 +4,7 @@
       class="interactive-step"
       v-for="(image, index) in images"
       :key="index"
+      @click="showGameStepModal(index + 1)"
       :class="[
         openSteps.includes(index + 1) ? 'open' : '',
         `step-${index + 1}`,
@@ -16,6 +17,20 @@
       />
       <img :src="image.replace" class="replace-image" alt="" />
     </div>
+    <transition name="fade" mode="out-in">
+      <div class="modal-template" v-if="showModal" @click="closeModal">
+        <div class="modal-template__content">
+          <div class="modal-template__title">Подготовка</div>
+          <div class="modal-template__text">
+            В 2017 году наша компания отметила Юбилей. И специально для вас мы
+            собрали коллекцию важных событий нашей истории.
+          </div>
+          <button type="button" class="modal-template__btn">
+            <span>Поехали!</span>
+          </button>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -24,6 +39,7 @@ import { ref, onMounted } from "vue";
 
 const images = ref([]);
 const openSteps = ref([]);
+const showModal = ref(false);
 
 const loadImages = () => {
   const imageCount = 10;
@@ -35,6 +51,22 @@ const loadImages = () => {
       close: new URL(`../assets/img/steps-close/${i}.svg`, import.meta.url)
         .href,
     });
+  }
+};
+
+const showGameStepModal = (ind) => {
+  if (!openSteps.value.includes(ind)) return;
+  console.log(ind);
+  showModal.value = true;
+};
+
+const closeModal = (e) => {
+  const target = e.target;
+  if (
+    target.closest(".modal-template") &&
+    !target.closest(".modal-template__content")
+  ) {
+    showModal.value = false;
   }
 };
 
