@@ -1,5 +1,13 @@
 <template>
   <div class="interactive-map">
+    <div class="app-logo">
+      <img src="@/assets/img/logo.svg" alt="" />
+    </div>
+    <div class="user-btn">
+      <span>Дарья Т.</span>
+      <a href="#" class="user-btn__exit"></a>
+    </div>
+
     <div
       class="interactive-step"
       v-for="(image, index) in images"
@@ -8,6 +16,7 @@
       :class="[
         openSteps.includes(index + 1) ? 'open' : '',
         `step-${index + 1}`,
+        modalData.selectedStep == index + 1 ? 'modal-open' : '',
       ]"
     >
       <img
@@ -18,8 +27,16 @@
       <img :src="image.replace" class="replace-image" alt="" />
     </div>
     <transition name="fade" mode="out-in">
-      <div class="modal-template" v-if="showModal" @click="closeModal">
+      <div
+        class="modal-template"
+        v-if="modalData.showModal"
+        @click="closeModal"
+      >
         <div class="modal-template__content">
+          <div class="modal-step">{{ modalData.selectedStep }}</div>
+          <div class="modal-img">
+            <div class="modal-img__man"></div>
+          </div>
           <div class="modal-template__title">Подготовка</div>
           <div class="modal-template__text">
             В 2017 году наша компания отметила Юбилей. И специально для вас мы
@@ -39,7 +56,10 @@ import { ref, onMounted } from "vue";
 
 const images = ref([]);
 const openSteps = ref([]);
-const showModal = ref(false);
+const modalData = ref({
+  showModal: false,
+  selectedStep: "",
+});
 
 const loadImages = () => {
   const imageCount = 10;
@@ -57,7 +77,8 @@ const loadImages = () => {
 const showGameStepModal = (ind) => {
   if (!openSteps.value.includes(ind)) return;
   console.log(ind);
-  showModal.value = true;
+  modalData.value.showModal = true;
+  modalData.value.selectedStep = ind;
 };
 
 const closeModal = (e) => {
@@ -66,7 +87,8 @@ const closeModal = (e) => {
     target.closest(".modal-template") &&
     !target.closest(".modal-template__content")
   ) {
-    showModal.value = false;
+    modalData.value.showModal = false;
+    modalData.value.selectedStep = "";
   }
 };
 
@@ -129,7 +151,8 @@ onMounted(() => {
     transform: translate(-50%, -50%) scale(0);
   }
 
-  &.open:hover {
+  &.open:hover,
+  &.modal-open {
     .base-image {
       opacity: 0;
       transform: translate(-50%, -50%) scale(0);
