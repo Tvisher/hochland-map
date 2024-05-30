@@ -7,7 +7,25 @@
       <span>Дарья Т.</span>
       <a href="#" class="user-btn__exit"></a>
     </div>
+    <div class="menu-btns">
+      <a href="javascript:void(0)" class="menu-btn">
+        <div class="menu-btn__ball">
+          <div class="menu-btn__image">
+            <img src="@/assets/img/database.svg" alt="" />
+          </div>
+        </div>
+        <div class="menu-btn__text">База знаний</div>
+      </a>
 
+      <a href="javascript:void(0)" class="menu-btn">
+        <div class="menu-btn__ball">
+          <div class="menu-btn__image">
+            <img src="@/assets/img/message.svg" alt="" />
+          </div>
+        </div>
+        <div class="menu-btn__text">Написать письмо</div>
+      </a>
+    </div>
     <div
       class="interactive-step"
       v-for="(image, index) in images"
@@ -29,7 +47,7 @@
     <transition name="fade" mode="out-in">
       <div
         class="modal-template"
-        v-if="modalData.showModal"
+        v-show="modalData.showModal"
         @click="closeModal"
       >
         <div class="modal-template__content">
@@ -88,7 +106,9 @@ const closeModal = (e) => {
     !target.closest(".modal-template__content")
   ) {
     modalData.value.showModal = false;
-    modalData.value.selectedStep = "";
+    setTimeout(() => {
+      modalData.value.selectedStep = "";
+    }, 600);
   }
 };
 

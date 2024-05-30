@@ -83,6 +83,7 @@
   align-items: center;
   justify-content: center;
   .modal-template__content {
+    min-height: compute(235);
     position: relative;
     background-color: #fff;
     max-width: compute(280);
@@ -170,6 +171,7 @@
 }
 
 .user-btn {
+  z-index: 6;
   position: absolute;
   right: compute(45);
   top: compute(30);
@@ -262,4 +264,101 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M16.1897 31.6317C24.5345 31.6317 31.2993 24.6773 31.2993 16.0986C31.2993 7.51986 24.5345 0.56543 16.1897 0.56543C7.84488 0.56543 1.08008 7.51986 1.08008 16.0986C1.08008 24.6773 7.84488 31.6317 16.1897 31.6317Z' fill='white'/%3e%3cpath d='M25.1983 3.55237C28.3946 5.94208 30.816 9.52666 31.6877 13.7087C32.5594 17.8907 31.5908 22.4709 28.9757 25.8564C26.3606 29.2418 22.4863 31.2332 18.4184 31.8306C14.4473 32.4281 10.2824 31.4324 6.7956 29.0427C3.40563 26.7525 0.887375 22.8692 0.209381 18.5877C-0.468614 14.3061 0.49995 9.72581 3.11507 6.24081C5.63334 2.75581 9.60445 0.366084 13.7693 0.0673694C18.0309 -0.330916 22.002 1.06308 25.1983 3.55237ZM25.1014 3.65195C21.9052 1.26223 17.7404 0.465643 14.0598 1.36179C10.3793 2.25793 7.08618 4.34893 4.95534 7.43565C2.8245 10.5224 1.75909 14.4057 2.24337 18.1894C2.72765 21.9731 4.66478 25.5577 7.57047 28.0469C10.4762 30.5362 14.5441 31.7311 18.4184 31.0341C22.2926 30.3371 25.5857 27.9473 27.7166 24.7611C29.8474 21.5748 30.816 17.7911 30.5254 13.9078C30.138 10.0245 28.2977 6.04166 25.1014 3.65195Z' fill='black'/%3e%3c/svg%3e ");
+}
+
+.menu-btns {
+  position: absolute;
+  right: compute(35);
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: compute(35);
+}
+
+.menu-btn__ball {
+  border-radius: 50%;
+  border: 3px solid #000;
+  background: #0bbaef;
+  box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.25);
+  width: compute(150);
+  height: compute(150);
+}
+
+.menu-btn__text {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  width: fit-content;
+  white-space: nowrap;
+  background-color: #fff;
+  transform: translateX(-50%);
+  border-radius: 40px;
+  border: 3px solid #000;
+  background: #fff;
+  padding: compute(5) compute(15);
+  color: #000;
+  font-family: "Open Sans";
+  font-size: compute(16);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  gap: compute(15);
+  &::after {
+    content: "";
+    display: block;
+    width: compute(15);
+    height: compute(18);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='14' height='18' viewBox='0 0 14 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cmask id='mask0_2022_1407' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='14' height='18'%3e%3crect width='14' height='18' fill='%23D9D9D9'/%3e%3c/mask%3e%3cg mask='url(%23mask0_2022_1407)'%3e%3cpath d='M12.0376 11.0966C13.3208 9.95335 13.3208 8.04665 12.0376 6.90341L6.32329 1.8125C5.10731 0.729166 3.17841 0.729166 1.96242 1.8125C0.679193 2.95574 0.679192 4.86244 1.96242 6.00568L5.32339 9L1.96242 11.9943C0.679192 13.1376 0.679192 15.0443 1.96242 16.1875C3.17841 17.2708 5.10731 17.2708 6.32329 16.1875L12.0376 11.0966Z' fill='%230ABBEF' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/g%3e%3c/svg%3e ");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
+.menu-btn__image {
+  will-change: transform;
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+  img {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.menu-btn {
+  &:hover {
+    .menu-btn__image {
+      transform: scale(1.1);
+    }
+    .menu-btn__text::after {
+      transform: translateX(30%);
+    }
+  }
+  position: relative;
+  &:nth-of-type(1) {
+    margin-top: compute(100);
+
+    .menu-btn__image {
+      top: -5%;
+      left: 3%;
+      width: compute(148);
+      height: compute(133);
+    }
+  }
+
+  &:nth-of-type(2) {
+    .menu-btn__image {
+      top: 15%;
+      left: 8%;
+      width: compute(130);
+      height: compute(93);
+    }
+  }
 }
