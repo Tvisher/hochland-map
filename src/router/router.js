@@ -9,10 +9,11 @@ const routes = [
         component: MapPage,
     },
     {
-        path: '/step',
+        path: '/step/:id',
         name: 'StepPage',
         component: StepPage,
     },
+
 ]
 
 const router = createRouter({

@@ -44,7 +44,7 @@
       />
       <img :src="image.replace" class="replace-image" alt="" />
     </div>
-    <transition name="fade" mode="out-in">
+    <transition name="fade">
       <div
         class="modal-template"
         v-show="modalData.showModal"
@@ -60,9 +60,12 @@
             В 2017 году наша компания отметила Юбилей. И специально для вас мы
             собрали коллекцию важных событий нашей истории.
           </div>
-          <button type="button" class="modal-template__btn">
+          <router-link
+            :to="`/step/${modalData.selectedStep}`"
+            class="modal-template__btn"
+          >
             <span>Поехали!</span>
-          </button>
+          </router-link>
         </div>
       </div>
     </transition>
