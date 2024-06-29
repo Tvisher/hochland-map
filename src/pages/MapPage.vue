@@ -32,13 +32,13 @@
       :key="index"
       @click="showGameStepModal(index + 1)"
       :class="[
-        openSteps.includes(index + 1) ? 'open' : '',
+        gameData.openSteps.includes(index + 1) ? 'open' : '',
         `step-${index + 1}`,
         modalData.selectedStep == index + 1 ? 'modal-open' : '',
       ]"
     >
       <img
-        :src="openSteps.includes(index + 1) ? image.base : image.close"
+        :src="gameData.openSteps.includes(index + 1) ? image.base : image.close"
         class="base-image"
         alt=""
       />
@@ -74,9 +74,13 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
+import { useGameStore } from "@/stores/GameStore.js";
+const store = useGameStore();
+const { gameData } = storeToRefs(store);
 
 const images = ref([]);
-const openSteps = ref([]);
+// const openSteps = ref([]);
 const modalData = ref({
   showModal: false,
   selectedStep: "",
@@ -96,7 +100,7 @@ const loadImages = () => {
 };
 
 const showGameStepModal = (ind) => {
-  if (!openSteps.value.includes(ind)) return;
+  if (!gameData.value.openSteps.includes(ind)) return;
   console.log(ind);
   modalData.value.showModal = true;
   modalData.value.selectedStep = ind;
@@ -117,11 +121,6 @@ const closeModal = (e) => {
 
 onMounted(() => {
   loadImages();
-  for (let index = 1; index < 11; index++) {
-    setTimeout(() => {
-      openSteps.value.push(index);
-    }, 1500 * index);
-  }
 });
 </script>
 

@@ -1,127 +1,136 @@
 <template>
   <div class="step-wrapper" :class="[isInteractive ? '' : 'no-interactive']">
-    <div class="step-wrapper__content">
-      <transition name="fade">
+    <div class="step-wrapper__block">
+      <div class="step-wrapper__content">
+        <transition name="fade">
+          <div
+            class="interactive-item"
+            :class="[moduleStep == 1 ? 'pulse' : '']"
+            data-item="1"
+            @click="showMessage"
+            v-if="moduleStep < 2"
+          >
+            <img src="@/assets/img/modules/module-1/object-6.svg" alt="" />
+          </div>
+        </transition>
+
+        <div class="interactive-item" data-item="2">
+          <img src="@/assets/img/modules/module-1/object-1.svg" alt="" />
+        </div>
+
+        <div class="interactive-item" data-item="3">
+          <img src="@/assets/img/modules/module-1/object-2.svg" alt="" />
+        </div>
+
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
-          data-item="1"
-          @click="showMessage"
-          v-if="moduleStep < 2"
+          data-item="4"
+          :class="[moduleStep == 2 ? 'pulse' : '']"
+          @click="showSecondStepModal"
         >
-          <img src="@/assets/img/modules/module-1/object-6.svg" alt="" />
+          <img src="@/assets/img/modules/module-1/object-3.svg" alt="" />
         </div>
-      </transition>
 
-      <div class="interactive-item" data-item="2">
-        <img src="@/assets/img/modules/module-1/object-1.svg" alt="" />
-      </div>
-
-      <div class="interactive-item" data-item="3">
-        <img src="@/assets/img/modules/module-1/object-2.svg" alt="" />
-      </div>
-
-      <div
-        class="interactive-item"
-        data-item="4"
-        :class="[moduleStep == 2 ? 'pulse' : '']"
-        @click="showSecondStepModal"
-      >
-        <img src="@/assets/img/modules/module-1/object-3.svg" alt="" />
-      </div>
-
-      <div
-        class="interactive-item"
-        data-item="5"
-        :class="[moduleStep == 3 ? 'pulse' : '']"
-        @click="showVideoModal"
-      >
-        <img src="@/assets/img/modules/module-1/object-4.svg" alt="" />
-      </div>
-
-      <div class="interactive-item" data-item="6">
-        <img src="@/assets/img/modules/module-1/object-5.svg" alt="" />
-      </div>
-
-      <transition name="fade-scale" mode="out-in">
-        <div class="man-modal" v-if="showMessageModal">
-          <div class="man-modal__close" @click="closeModalAndNextStep"></div>
-          Дорогой друг, я так ждал тебя. Сегодня мы отправляемся в путешествие к
-          сыроварне «Хохланда». И я хочу рассказать тебе об этой компании... до
-          встречи!
+        <div
+          class="interactive-item"
+          data-item="5"
+          :class="[moduleStep == 3 ? 'pulse' : '']"
+          @click="showVideoModal"
+        >
+          <img src="@/assets/img/modules/module-1/object-4.svg" alt="" />
         </div>
-      </transition>
 
-      <div
-        class="arrow-template"
-        :class="[moduleStep == 1 ? 'show' : '']"
-        data-item="1"
-        v-if="moduleStep < 2"
-      ></div>
-      <div
-        class="arrow-template"
-        :class="[moduleStep == 2 ? 'show' : '']"
-        data-item="2"
-        v-if="moduleStep == 2"
-      ></div>
+        <div class="interactive-item" data-item="6">
+          <img src="@/assets/img/modules/module-1/object-5.svg" alt="" />
+        </div>
 
-      <div
-        class="arrow-template"
-        :class="[moduleStep == 3 ? 'show' : '']"
-        data-item="3"
-        v-if="moduleStep == 3"
-      ></div>
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" v-if="showMessageModal">
+            <div class="man-modal__close" @click="closeModalAndNextStep"></div>
+            Дорогой друг, я так ждал тебя. Сегодня мы отправляемся в путешествие
+            к сыроварне «Хохланда». И я хочу рассказать тебе об этой компании...
+            до встречи!
+          </div>
+        </transition>
 
-      <transition name="fade" mode="out-in">
-        <div class="modal-template tabs-modal" v-if="isShowSecondStepModal">
-          <div class="modal-content">
-            <div
-              class="man-modal__close"
-              @click="isShowSecondStepModal = false"
-            ></div>
-            <div class="tabs-modal__inner">
-              <div class="tabs-head">
+        <div
+          class="arrow-template"
+          :class="[moduleStep == 1 ? 'show' : '']"
+          data-item="1"
+          v-if="moduleStep < 2"
+        ></div>
+        <div
+          class="arrow-template"
+          :class="[moduleStep == 2 ? 'show' : '']"
+          data-item="2"
+          v-if="moduleStep == 2"
+        ></div>
+
+        <div
+          class="arrow-template"
+          :class="[moduleStep == 3 ? 'show' : '']"
+          data-item="3"
+          v-if="moduleStep == 3"
+        ></div>
+
+        <transition name="fade" mode="out-in">
+          <div class="modal-template tabs-modal" v-if="isShowSecondStepModal">
+            <div class="modal-content">
+              <div
+                class="man-modal__close"
+                @click="isShowSecondStepModal = false"
+              ></div>
+              <div class="tabs-modal__inner">
+                <div class="tabs-head">
+                  <div
+                    class="tabs-btn"
+                    :class="[activeTab == index ? 'current' : '']"
+                    v-for="(tabItem, index) in tabsList"
+                    @click="showCurrentTab(index)"
+                  >
+                    {{ tabItem.tabName }}
+                  </div>
+                </div>
+                <div class="tabs-content">
+                  {{ tabsList[activeTab].tabContent }}
+                </div>
                 <div
-                  class="tabs-btn"
-                  :class="[activeTab == index ? 'current' : '']"
-                  v-for="(tabItem, index) in tabsList"
-                  @click="showCurrentTab(index)"
+                  class="modal-btn"
+                  :class="[!isShowAlTabs ? 'pointer-none' : '']"
+                  @click="setNextStep(3)"
                 >
-                  {{ tabItem.tabName }}
+                  Прочитано
                 </div>
               </div>
-              <div class="tabs-content">
-                {{ tabsList[activeTab].tabContent }}
-              </div>
-              <div
-                class="modal-btn"
-                :class="[!isShowAlTabs ? 'pointer-none' : '']"
-                @click="setNextStep(3)"
-              >
-                Прочитано
-              </div>
             </div>
           </div>
-        </div>
-      </transition>
+        </transition>
 
-      <transition name="fade" mode="out-in">
-        <div class="modal-template video-modal" v-if="isShowVideoModal">
-          <div class="modal-content">
-            <div
-              class="man-modal__close"
-              @click="isShowVideoModal = false"
-            ></div>
-            <div class="video-block">
-              <vue-plyr>
-                <video crossorigin playsinline poster="@/assets/img/poster.png">
-                  <source src="@/assets/files/video-ex.mp4" type="video/mp4" />
-                </video>
-              </vue-plyr>
+        <transition name="fade" mode="out-in">
+          <div class="modal-template video-modal" v-if="isShowVideoModal">
+            <div class="modal-content">
+              <div
+                class="man-modal__close"
+                @click="isShowVideoModal = false"
+              ></div>
+              <div class="video-block" @click="setNextStep(4)">
+                <vue-plyr ref="plyr">
+                  <video
+                    crossorigin
+                    playsinline
+                    poster="@/assets/img/poster.png"
+                  >
+                    <source
+                      src="@/assets/files/video-ex.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+                </vue-plyr>
+              </div>
             </div>
           </div>
-        </div>
-      </transition>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -181,8 +190,15 @@ const showSecondStepModal = () => {
 
 const setNextStep = (step) => {
   if (step == 3) {
+    if (moduleStep.value < 3) {
+      moduleStep.value = 3;
+    }
     isShowSecondStepModal.value = false;
-    moduleStep.value = 3;
+  }
+  if (step == 4) {
+    if (moduleStep.value < 4) {
+      moduleStep.value = 4;
+    }
   }
 };
 
