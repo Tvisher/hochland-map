@@ -40,7 +40,11 @@
           <img src="@/assets/img/modules/module-1/object-4.svg" alt="" />
         </div>
 
-        <div class="interactive-item" data-item="6">
+        <div
+          class="interactive-item"
+          :class="[moduleStep == 4 ? 'pulse' : '']"
+          data-item="6"
+        >
           <img src="@/assets/img/modules/module-1/object-5.svg" alt="" />
         </div>
 
@@ -52,12 +56,17 @@
             до встречи!
           </div>
         </transition>
-
         <div
+          class="arrow-template"
+          v-for="step in 5"
+          :class="[moduleStep == step ? 'show' : '']"
+          :data-item="step"
+        ></div>
+        <!-- <div
           class="arrow-template"
           :class="[moduleStep == 1 ? 'show' : '']"
           data-item="1"
-          v-if="moduleStep < 2"
+          v-if="moduleStep < 1"
         ></div>
         <div
           class="arrow-template"
@@ -72,6 +81,13 @@
           data-item="3"
           v-if="moduleStep == 3"
         ></div>
+
+        <div
+          class="arrow-template"
+          :class="[moduleStep == 4 ? 'show' : '']"
+          data-item="4"
+          v-if="moduleStep == 4"
+        ></div> -->
 
         <transition name="fade" mode="out-in">
           <div class="modal-template tabs-modal" v-if="isShowSecondStepModal">
@@ -106,15 +122,15 @@
           </div>
         </transition>
 
-        <transition name="fade" mode="out-in">
+        <transition name="fade" mode="in-out">
           <div class="modal-template video-modal" v-if="isShowVideoModal">
             <div class="modal-content">
               <div
                 class="man-modal__close"
                 @click="isShowVideoModal = false"
               ></div>
-              <div class="video-block" @click="setNextStep(4)">
-                <vue-plyr ref="plyr">
+              <div class="video-block">
+                <vue-plyr @play="setNextStep(4)">
                   <video
                     crossorigin
                     playsinline
@@ -130,12 +146,16 @@
             </div>
           </div>
         </transition>
+
+        <Wardrobe />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import Wardrobe from "@/components/Wardrobe.vue";
+
 import { ref, onMounted, computed } from "vue";
 const moduleStep = ref(0);
 const isInteractive = ref(false);
@@ -173,6 +193,10 @@ const showMessage = () => {
     showMessageModal.value = true;
     moduleStep.value = 0;
   }
+};
+
+const playerPlayed = () => {
+  console.log("play");
 };
 
 const showVideoModal = () => {

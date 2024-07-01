@@ -42,7 +42,7 @@
         class="base-image"
         alt=""
       />
-      <img :src="image.replace" class="replace-image" alt="" />
+      <img preload :src="image.replace" class="replace-image" alt="" />
     </div>
     <transition name="fade">
       <div
@@ -80,7 +80,6 @@ const store = useGameStore();
 const { gameData } = storeToRefs(store);
 
 const images = ref([]);
-// const openSteps = ref([]);
 const modalData = ref({
   showModal: false,
   selectedStep: "",
