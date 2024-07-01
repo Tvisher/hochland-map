@@ -1,7 +1,10 @@
 <template>
   <div class="wardrobe__content">
     <div class="wardrobe__nav">
-      <div class="wardrobe__nav_btn wardrobe__close"></div>
+      <div
+        class="wardrobe__nav_btn wardrobe__close"
+        @click="emit('closeWardrobe', false)"
+      ></div>
       <div
         class="wardrobe__nav_btn man-select"
         :class="[gender == 'man' ? 'selected' : '']"
@@ -14,7 +17,7 @@
       ></div>
     </div>
 
-    <transition name="fade" mode="out-in">
+    <transition name="fast-fade" mode="out-in">
       <div class="wardrobe__model" :key="currentStepData.personImagePath">
         <img
           :src="currentStepData.personImagePath"
@@ -32,7 +35,7 @@
         @click="selectedStyleId = option.id"
       >
         <div class="variant__name">{{ option.name }}</div>
-        <transition name="fade" mode="out-in">
+        <transition name="fast-fade" mode="out-in">
           <div
             class="variant__ico"
             :style="{ backgroundImage: `url(${option.btnIcoPath[gender]})` }"
@@ -41,12 +44,30 @@
         </transition>
       </div>
     </div>
+    <transition name="fast-fade" mode="out-in">
+      <div class="wardrobe__message" :key="currentStepData.message">
+        <div
+          class="message__ico"
+          :class="[currentStepData.status ? 'correct' : 'incorrect']"
+        ></div>
+        <div class="message__text">
+          {{ currentStepData.message }}
+        </div>
+      </div>
+    </transition>
+    <div
+      class="complite-btn"
+      :class="[currentStepData.status ? 'active' : '']"
+      @click="emit('closeWardrobe', true)"
+    >
+      Пора выходить!
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
-
+const emit = defineEmits(["closeWardrobe"]);
 const gender = ref("man");
 const selectedStyleId = ref(0);
 
@@ -97,7 +118,7 @@ const styleList = [
         import.meta.url
       ).href,
     },
-    message: "somemessage",
+    message: "Деловой стиль",
     status: true,
   },
   {
@@ -121,8 +142,8 @@ const styleList = [
         import.meta.url
       ).href,
     },
-    message: "somemessage",
-    status: false,
+    message: "Выходной стиль",
+    status: true,
   },
   {
     id: 3,
@@ -145,7 +166,7 @@ const styleList = [
         import.meta.url
       ).href,
     },
-    message: "somemessage",
+    message: "Офисный стиль",
     status: true,
   },
 ];

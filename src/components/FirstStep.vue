@@ -18,7 +18,11 @@
           <img src="@/assets/img/modules/module-1/object-1.svg" alt="" />
         </div>
 
-        <div class="interactive-item" data-item="3">
+        <div
+          class="interactive-item"
+          data-item="3"
+          :class="[moduleStep == 5 ? 'pulse' : '']"
+        >
           <img src="@/assets/img/modules/module-1/object-2.svg" alt="" />
         </div>
 
@@ -44,6 +48,7 @@
           class="interactive-item"
           :class="[moduleStep == 4 ? 'pulse' : '']"
           data-item="6"
+          @click="showWardrobe = moduleStep >= 4 ? true : false"
         >
           <img src="@/assets/img/modules/module-1/object-5.svg" alt="" />
         </div>
@@ -62,32 +67,6 @@
           :class="[moduleStep == step ? 'show' : '']"
           :data-item="step"
         ></div>
-        <!-- <div
-          class="arrow-template"
-          :class="[moduleStep == 1 ? 'show' : '']"
-          data-item="1"
-          v-if="moduleStep < 1"
-        ></div>
-        <div
-          class="arrow-template"
-          :class="[moduleStep == 2 ? 'show' : '']"
-          data-item="2"
-          v-if="moduleStep == 2"
-        ></div>
-
-        <div
-          class="arrow-template"
-          :class="[moduleStep == 3 ? 'show' : '']"
-          data-item="3"
-          v-if="moduleStep == 3"
-        ></div>
-
-        <div
-          class="arrow-template"
-          :class="[moduleStep == 4 ? 'show' : '']"
-          data-item="4"
-          v-if="moduleStep == 4"
-        ></div> -->
 
         <transition name="fade" mode="out-in">
           <div class="modal-template tabs-modal" v-if="isShowSecondStepModal">
@@ -97,6 +76,17 @@
                 @click="isShowSecondStepModal = false"
               ></div>
               <div class="tabs-modal__inner">
+                <div
+                  class="mute-btn"
+                  @click="isMute = !isMute"
+                  :class="[isMute ? 'mute' : '']"
+                >
+                  <vue-plyr>
+                    <audio :autoplay="!isMute" loop>
+                      <source src="@/assets/files/audio.mp3" type="audio/mp3" />
+                    </audio>
+                  </vue-plyr>
+                </div>
                 <div class="tabs-head">
                   <div
                     class="tabs-btn"
@@ -146,8 +136,12 @@
             </div>
           </div>
         </transition>
-
-        <Wardrobe />
+        <transition name="fade" mode="in-out">
+          <Wardrobe
+            v-if="showWardrobe"
+            @closeWardrobe="closeWardrobe($event)"
+          />
+        </transition>
       </div>
     </div>
   </div>
@@ -162,10 +156,11 @@ const isInteractive = ref(false);
 const showMessageModal = ref(false);
 const isShowSecondStepModal = ref(false);
 const isShowVideoModal = ref(false);
-
+const showWardrobe = ref(false);
 const activeTab = ref(0);
 const featuredTabs = ref([0]);
 
+const isMute = ref(false);
 const isShowAlTabs = computed(() => {
   return featuredTabs.value.length == tabsList.length;
 });
@@ -231,6 +226,13 @@ const showCurrentTab = (ind) => {
   if (!featuredTabs.value.includes(ind)) {
     featuredTabs.value.push(ind);
   }
+};
+
+const closeWardrobe = (isComplite) => {
+  if (isComplite) {
+    moduleStep.value = 5;
+  }
+  showWardrobe.value = false;
 };
 
 onMounted(() => {
