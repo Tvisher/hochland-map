@@ -138,7 +138,7 @@
         </transition>
         <transition name="fade" mode="in-out">
           <Wardrobe
-            v-if="showWardrobe"
+            v-show="showWardrobe"
             @closeWardrobe="closeWardrobe($event)"
           />
         </transition>
@@ -188,10 +188,6 @@ const showMessage = () => {
     showMessageModal.value = true;
     moduleStep.value = 0;
   }
-};
-
-const playerPlayed = () => {
-  console.log("play");
 };
 
 const showVideoModal = () => {
