@@ -152,6 +152,7 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     filter: grayscale(100);
+    transition: filter 0.3s ease-in-out;
   }
 
   &.open {

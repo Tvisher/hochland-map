@@ -144,7 +144,7 @@
           />
         </transition>
         <transition name="fade" mode="out-in">
-          <QuizModal v-if="showQuiz" />
+          <QuizModal v-if="showQuiz" @modalClose="showQuiz = false" />
         </transition>
       </div>
     </div>

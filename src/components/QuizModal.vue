@@ -1,69 +1,74 @@
 <template>
   <div class="modal-template video-modal quiz-modal">
     <div class="modal-content">
-      <div class="man-modal__close"></div>
-      <div class="quiz-modal__inner" v-if="!showEndScreen">
-        <div class="quiz-modal__counter">
-          Вопрос {{ currentQuestionIndex + 1 }} из {{ questionsList.length }}
-        </div>
-        <div class="quiz-modal__title">
-          {{ currentQuestion.title }}
-        </div>
-        <div
-          class="quiz-modal__options"
-          :class="[hasCurrentAnswer ? 'pointer-none-small' : '']"
-        >
-          <label
-            class="quiz-modal__option"
-            v-for="option in currentQuestion.options"
-            :class="[
-              checkedOption == option.id ? 'checked' : '',
-              checkedOption == option.id && isCorrectAnswer && validateIsOn
-                ? 'current'
-                : '',
-              checkedOption == option.id && !isCorrectAnswer && validateIsOn
-                ? 'error'
-                : '',
-            ]"
+      <div class="man-modal__close" @click="emit('modalClose')"></div>
+      <transition name="fade" mode="out-in">
+        <div class="quiz-modal__inner" v-if="!showEndScreen">
+          <div class="quiz-modal__counter">
+            Вопрос {{ currentQuestionIndex + 1 }} из {{ questionsList.length }}
+          </div>
+          <div class="quiz-modal__title">
+            {{ currentQuestion.title }}
+          </div>
+          <div
+            class="quiz-modal__options"
+            :class="[hasCurrentAnswer ? 'pointer-none-small' : '']"
           >
-            <input
-              type="radio"
-              class="quiz-option"
-              name="quiz-option"
-              :value="option.id"
-              v-model="checkedOption"
-              @input="validateIsOn = false"
-            />
-            <div class="option__ico"></div>
-            <div class="option__content">
-              <div class="option__title">
-                {{ option.title }}
+            <label
+              class="quiz-modal__option"
+              v-for="option in currentQuestion.options"
+              :class="[
+                checkedOption == option.id ? 'checked' : '',
+                checkedOption == option.id && isCorrectAnswer && validateIsOn
+                  ? 'current'
+                  : '',
+                checkedOption == option.id && !isCorrectAnswer && validateIsOn
+                  ? 'error'
+                  : '',
+              ]"
+            >
+              <input
+                type="radio"
+                class="quiz-option"
+                name="quiz-option"
+                :value="option.id"
+                v-model="checkedOption"
+                @input="validateIsOn = false"
+              />
+              <div class="option__ico"></div>
+              <div class="option__content">
+                <div class="option__title">
+                  {{ option.title }}
+                </div>
+                <div
+                  class="option__message"
+                  v-if="checkedOption == option.id && validateIsOn"
+                >
+                  {{
+                    isCorrectAnswer ? "Вы ответили правильно!" : option.error
+                  }}
+                </div>
               </div>
-              <div
-                class="option__message"
-                v-if="checkedOption == option.id && validateIsOn"
-              >
-                {{ isCorrectAnswer ? "Вы ответили правильно!" : option.error }}
-              </div>
-            </div>
-          </label>
+            </label>
+          </div>
+          <div class="submit-btn" @click="validateAnswer">{{ buttonText }}</div>
         </div>
-        <div class="submit-btn" @click="validateAnswer">{{ buttonText }}</div>
-      </div>
-      <div class="quiz-modal__result" v-else>
-        <div class="result__image">
-          <img src="@/assets/img/modules/module-1/modal-result.png" alt="" />
+        <div class="quiz-modal__result" v-else>
+          <div class="result__image">
+            <img src="@/assets/img/modules/module-1/modal-result.png" alt="" />
+          </div>
+          <div class="result__text">Вы ответили правильно на все вопросы!</div>
+          <div class="result__btn" @click="compliteModule">
+            Перейти на следующий этап
+          </div>
         </div>
-        <div class="result__text">Вы ответили правильно на все вопросы!</div>
-        <div class="result__btn" @click="compliteModule">
-          Перейти на следующий этап
-        </div>
-      </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script setup>
+const emit = defineEmits(["modalClose"]);
 import { useRouter } from "vue-router";
 const router = useRouter();
 import { useGameStore } from "@/stores/GameStore.js";
