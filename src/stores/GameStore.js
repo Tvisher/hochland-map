@@ -8,9 +8,12 @@ export const useGameStore = defineStore("GameStore", () => {
     })
 
 
-
+    const compliteStep = (step) => {
+        gameData.value.openSteps.push(step);
+    }
     return {
-        gameData
+        gameData,
+        compliteStep
     }
 })
 

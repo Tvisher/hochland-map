@@ -22,6 +22,7 @@
           class="interactive-item"
           data-item="3"
           :class="[moduleStep == 5 ? 'pulse' : '']"
+          @click="setShowQuiz"
         >
           <img src="@/assets/img/modules/module-1/object-2.svg" alt="" />
         </div>
@@ -136,11 +137,14 @@
             </div>
           </div>
         </transition>
-        <transition name="fade" mode="in-out">
+        <transition name="fade" mode="out-in">
           <Wardrobe
             v-show="showWardrobe"
             @closeWardrobe="closeWardrobe($event)"
           />
+        </transition>
+        <transition name="fade" mode="out-in">
+          <QuizModal v-if="showQuiz" />
         </transition>
       </div>
     </div>
@@ -149,6 +153,7 @@
 
 <script setup>
 import Wardrobe from "@/components/Wardrobe.vue";
+import QuizModal from "@/components/QuizModal.vue";
 
 import { ref, onMounted, computed } from "vue";
 const moduleStep = ref(0);
@@ -159,6 +164,7 @@ const isShowVideoModal = ref(false);
 const showWardrobe = ref(false);
 const activeTab = ref(0);
 const featuredTabs = ref([0]);
+const showQuiz = ref(false);
 
 const isMute = ref(false);
 const isShowAlTabs = computed(() => {
@@ -187,6 +193,12 @@ const showMessage = () => {
   if (moduleStep.value == 1) {
     showMessageModal.value = true;
     moduleStep.value = 0;
+  }
+};
+
+const setShowQuiz = () => {
+  if (moduleStep.value == 5) {
+    showQuiz.value = true;
   }
 };
 

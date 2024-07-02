@@ -35,6 +35,7 @@
         gameData.openSteps.includes(index + 1) ? 'open' : '',
         `step-${index + 1}`,
         modalData.selectedStep == index + 1 ? 'modal-open' : '',
+        index == gameData.openSteps.length - 1 ? 'last-bounce' : '',
       ]"
     >
       <img
@@ -157,8 +158,9 @@ onMounted(() => {
     img {
       filter: grayscale(0);
     }
-
-    animation: bounce 1.6s ease forwards;
+    &.last-bounce {
+      animation: bounce 1.6s ease forwards;
+    }
   }
 
   .base-image,
