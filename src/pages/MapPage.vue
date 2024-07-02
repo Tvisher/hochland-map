@@ -101,7 +101,7 @@ const loadImages = () => {
 
 const showGameStepModal = (ind) => {
   if (!gameData.value.openSteps.includes(ind)) return;
-  console.log(ind);
+  // console.log(ind);
   modalData.value.showModal = true;
   modalData.value.selectedStep = ind;
 };

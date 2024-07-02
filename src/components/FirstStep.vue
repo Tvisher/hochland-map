@@ -1,8 +1,8 @@
 <template>
-  <transition name="fade">
+  <transition name="fade" mode="out-in">
     <div
       class="step-wrapper"
-      v-if="stepLoad"
+      v-show="stepLoad"
       :class="[isInteractive ? '' : 'no-interactive']"
     >
       <div class="step-wrapper__block">
@@ -148,12 +148,14 @@
               </div>
             </div>
           </transition>
+
           <transition name="fade" mode="out-in">
             <Wardrobe
               v-show="showWardrobe"
               @closeWardrobe="closeWardrobe($event)"
             />
           </transition>
+
           <transition name="fade" mode="out-in">
             <QuizModal v-if="showQuiz" @modalClose="showQuiz = false" />
           </transition>
@@ -257,17 +259,11 @@ const closeWardrobe = (isComplite) => {
 };
 
 onMounted(() => {
-  window.addEventListener(
-    "load",
-    (e) => {
-      setTimeout(() => {
-        stepLoad.value = true;
-        moduleStep.value = 1;
-        isInteractive.value = true;
-      }, 800);
-    },
-    { once: true }
-  );
+  setTimeout(() => {
+    stepLoad.value = true;
+    moduleStep.value = 1;
+    isInteractive.value = true;
+  }, 800);
 });
 </script>
 
