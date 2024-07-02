@@ -1,154 +1,166 @@
 <template>
-  <div class="step-wrapper" :class="[isInteractive ? '' : 'no-interactive']">
-    <div class="step-wrapper__block">
-      <div class="step-wrapper__content">
-        <transition name="fade">
+  <transition name="fade">
+    <div
+      class="step-wrapper"
+      v-if="stepLoad"
+      :class="[isInteractive ? '' : 'no-interactive']"
+    >
+      <div class="step-wrapper__block">
+        <div class="step-wrapper__content">
+          <transition name="fade">
+            <div
+              class="interactive-item"
+              :class="[moduleStep == 1 ? 'pulse' : '']"
+              data-item="1"
+              @click="showMessage"
+              v-if="moduleStep < 2"
+            >
+              <img src="@/assets/img/modules/module-1/object-6.svg" alt="" />
+            </div>
+          </transition>
+
+          <div class="interactive-item" data-item="2">
+            <img src="@/assets/img/modules/module-1/object-1.svg" alt="" />
+          </div>
+
           <div
             class="interactive-item"
-            :class="[moduleStep == 1 ? 'pulse' : '']"
-            data-item="1"
-            @click="showMessage"
-            v-if="moduleStep < 2"
+            data-item="3"
+            :class="[moduleStep == 5 ? 'pulse' : '']"
+            @click="setShowQuiz"
           >
-            <img src="@/assets/img/modules/module-1/object-6.svg" alt="" />
+            <img src="@/assets/img/modules/module-1/object-2.svg" alt="" />
           </div>
-        </transition>
 
-        <div class="interactive-item" data-item="2">
-          <img src="@/assets/img/modules/module-1/object-1.svg" alt="" />
-        </div>
-
-        <div
-          class="interactive-item"
-          data-item="3"
-          :class="[moduleStep == 5 ? 'pulse' : '']"
-          @click="setShowQuiz"
-        >
-          <img src="@/assets/img/modules/module-1/object-2.svg" alt="" />
-        </div>
-
-        <div
-          class="interactive-item"
-          data-item="4"
-          :class="[moduleStep == 2 ? 'pulse' : '']"
-          @click="showSecondStepModal"
-        >
-          <img src="@/assets/img/modules/module-1/object-3.svg" alt="" />
-        </div>
-
-        <div
-          class="interactive-item"
-          data-item="5"
-          :class="[moduleStep == 3 ? 'pulse' : '']"
-          @click="showVideoModal"
-        >
-          <img src="@/assets/img/modules/module-1/object-4.svg" alt="" />
-        </div>
-
-        <div
-          class="interactive-item"
-          :class="[moduleStep == 4 ? 'pulse' : '']"
-          data-item="6"
-          @click="showWardrobe = moduleStep >= 4 ? true : false"
-        >
-          <img src="@/assets/img/modules/module-1/object-5.svg" alt="" />
-        </div>
-
-        <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" v-if="showMessageModal">
-            <div class="man-modal__close" @click="closeModalAndNextStep"></div>
-            Дорогой друг, я так ждал тебя. Сегодня мы отправляемся в путешествие
-            к сыроварне «Хохланда». И я хочу рассказать тебе об этой компании...
-            до встречи!
+          <div
+            class="interactive-item"
+            data-item="4"
+            :class="[moduleStep == 2 ? 'pulse' : '']"
+            @click="showSecondStepModal"
+          >
+            <img src="@/assets/img/modules/module-1/object-3.svg" alt="" />
           </div>
-        </transition>
-        <div
-          class="arrow-template"
-          v-for="step in 5"
-          :class="[moduleStep == step ? 'show' : '']"
-          :data-item="step"
-        ></div>
 
-        <transition name="fade" mode="out-in">
-          <div class="modal-template tabs-modal" v-if="isShowSecondStepModal">
-            <div class="modal-content">
+          <div
+            class="interactive-item"
+            data-item="5"
+            :class="[moduleStep == 3 ? 'pulse' : '']"
+            @click="showVideoModal"
+          >
+            <img src="@/assets/img/modules/module-1/object-4.svg" alt="" />
+          </div>
+
+          <div
+            class="interactive-item"
+            :class="[moduleStep == 4 ? 'pulse' : '']"
+            data-item="6"
+            @click="showWardrobe = moduleStep >= 4 ? true : false"
+          >
+            <img src="@/assets/img/modules/module-1/object-5.svg" alt="" />
+          </div>
+
+          <transition name="fade-scale" mode="out-in">
+            <div class="man-modal" v-if="showMessageModal">
               <div
                 class="man-modal__close"
-                @click="isShowSecondStepModal = false"
+                @click="closeModalAndNextStep"
               ></div>
-              <div class="tabs-modal__inner">
+              Дорогой друг, я так ждал тебя. Сегодня мы отправляемся в
+              путешествие к сыроварне «Хохланда». И я хочу рассказать тебе об
+              этой компании... до встречи!
+            </div>
+          </transition>
+          <div
+            class="arrow-template"
+            v-for="step in 5"
+            :class="[moduleStep == step ? 'show' : '']"
+            :data-item="step"
+          ></div>
+
+          <transition name="fade" mode="out-in">
+            <div class="modal-template tabs-modal" v-if="isShowSecondStepModal">
+              <div class="modal-content">
                 <div
-                  class="mute-btn"
-                  @click="isMute = !isMute"
-                  :class="[isMute ? 'mute' : '']"
-                >
-                  <vue-plyr>
-                    <audio :autoplay="!isMute" loop>
-                      <source src="@/assets/files/audio.mp3" type="audio/mp3" />
-                    </audio>
-                  </vue-plyr>
-                </div>
-                <div class="tabs-head">
+                  class="man-modal__close"
+                  @click="isShowSecondStepModal = false"
+                ></div>
+                <div class="tabs-modal__inner">
                   <div
-                    class="tabs-btn"
-                    :class="[activeTab == index ? 'current' : '']"
-                    v-for="(tabItem, index) in tabsList"
-                    @click="showCurrentTab(index)"
+                    class="mute-btn"
+                    @click="isMute = !isMute"
+                    :class="[isMute ? 'mute' : '']"
                   >
-                    {{ tabItem.tabName }}
+                    <vue-plyr>
+                      <audio :autoplay="!isMute" loop>
+                        <source
+                          src="@/assets/files/audio.mp3"
+                          type="audio/mp3"
+                        />
+                      </audio>
+                    </vue-plyr>
+                  </div>
+                  <div class="tabs-head">
+                    <div
+                      class="tabs-btn"
+                      :class="[activeTab == index ? 'current' : '']"
+                      v-for="(tabItem, index) in tabsList"
+                      @click="showCurrentTab(index)"
+                    >
+                      {{ tabItem.tabName }}
+                    </div>
+                  </div>
+                  <div class="tabs-content">
+                    {{ tabsList[activeTab].tabContent }}
+                  </div>
+                  <div
+                    class="modal-btn"
+                    :class="[!isShowAlTabs ? 'pointer-none' : '']"
+                    @click="setNextStep(3)"
+                  >
+                    Прочитано
                   </div>
                 </div>
-                <div class="tabs-content">
-                  {{ tabsList[activeTab].tabContent }}
-                </div>
-                <div
-                  class="modal-btn"
-                  :class="[!isShowAlTabs ? 'pointer-none' : '']"
-                  @click="setNextStep(3)"
-                >
-                  Прочитано
-                </div>
               </div>
             </div>
-          </div>
-        </transition>
+          </transition>
 
-        <transition name="fade" mode="in-out">
-          <div class="modal-template video-modal" v-if="isShowVideoModal">
-            <div class="modal-content">
-              <div
-                class="man-modal__close"
-                @click="isShowVideoModal = false"
-              ></div>
-              <div class="video-block">
-                <vue-plyr @play="setNextStep(4)">
-                  <video
-                    crossorigin
-                    playsinline
-                    poster="@/assets/img/poster.png"
-                  >
-                    <source
-                      src="@/assets/files/video-ex.mp4"
-                      type="video/mp4"
-                    />
-                  </video>
-                </vue-plyr>
+          <transition name="fade" mode="in-out">
+            <div class="modal-template video-modal" v-if="isShowVideoModal">
+              <div class="modal-content">
+                <div
+                  class="man-modal__close"
+                  @click="isShowVideoModal = false"
+                ></div>
+                <div class="video-block">
+                  <vue-plyr @play="setNextStep(4)">
+                    <video
+                      crossorigin
+                      playsinline
+                      poster="@/assets/img/poster.png"
+                    >
+                      <source
+                        src="@/assets/files/video-ex.mp4"
+                        type="video/mp4"
+                      />
+                    </video>
+                  </vue-plyr>
+                </div>
               </div>
             </div>
-          </div>
-        </transition>
-        <transition name="fade" mode="out-in">
-          <Wardrobe
-            v-show="showWardrobe"
-            @closeWardrobe="closeWardrobe($event)"
-          />
-        </transition>
-        <transition name="fade" mode="out-in">
-          <QuizModal v-if="showQuiz" @modalClose="showQuiz = false" />
-        </transition>
+          </transition>
+          <transition name="fade" mode="out-in">
+            <Wardrobe
+              v-show="showWardrobe"
+              @closeWardrobe="closeWardrobe($event)"
+            />
+          </transition>
+          <transition name="fade" mode="out-in">
+            <QuizModal v-if="showQuiz" @modalClose="showQuiz = false" />
+          </transition>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script setup>
@@ -156,6 +168,7 @@ import Wardrobe from "@/components/Wardrobe.vue";
 import QuizModal from "@/components/QuizModal.vue";
 
 import { ref, onMounted, computed } from "vue";
+const stepLoad = ref(false);
 const moduleStep = ref(0);
 const isInteractive = ref(false);
 const showMessageModal = ref(false);
@@ -244,10 +257,17 @@ const closeWardrobe = (isComplite) => {
 };
 
 onMounted(() => {
-  setTimeout(() => {
-    moduleStep.value = 1;
-    isInteractive.value = true;
-  }, 800);
+  window.addEventListener(
+    "load",
+    (e) => {
+      setTimeout(() => {
+        stepLoad.value = true;
+        moduleStep.value = 1;
+        isInteractive.value = true;
+      }, 800);
+    },
+    { once: true }
+  );
 });
 </script>
 
