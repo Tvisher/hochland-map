@@ -46,12 +46,14 @@
   @return #{$number}vw;
 }
 
-$sizeIndex: 19.2;
-$size: "vw";
-
 @function fromWidth($pxVal) {
-  $number: #{math.div($pxVal, $sizeIndex)};
-  @return clamp(#{0}px, #{$number}#{$size}, #{$pxVal}px);
+  $number: #{math.div($pxVal, 19.2)};
+  @return clamp(#{0}px, #{$number}vw, #{$pxVal}px);
+}
+
+@function fromHeight($pxVal) {
+  $number: #{math.div($pxVal, 10.82)};
+  @return clamp(#{0}px, #{$number}vh, #{$pxVal}px);
 }
 
 @keyframes bounce {
@@ -161,6 +163,16 @@ $size: "vw";
       background-position: center;
     }
   }
+}
+
+.slow-fade-enter-active,
+.slow-fade-leave-active {
+  transition: opacity 1s ease-in-out;
+}
+
+.slow-fade-enter-from,
+.slow-fade-leave-to {
+  opacity: 0;
 }
 
 .fade-enter-active,
@@ -1034,8 +1046,4 @@ $size: "vw";
   background-position: center right fromWidth(40);
 }
 
-// @media (max-height: 1082px) and (max-width: 1920px) {
-//   .step-wrapper__block {
-//     max-width: 177vh;
-//   }
-// }
+@import "media.scss";

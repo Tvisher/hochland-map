@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade" mode="out-in">
+  <transition name="slow-fade" mode="out-in">
     <div
       class="step-wrapper"
       v-show="stepLoad"
@@ -19,8 +19,12 @@
             </div>
           </transition>
 
-          <div class="interactive-item" data-item="2">
-            <img src="@/assets/img/modules/module-1/object-1.svg" alt="" />
+          <div
+            class="interactive-item"
+            :class="[personVisual.isSelected ? 'reverse' : '']"
+            data-item="2"
+          >
+            <img :src="personVisual.path" alt="" />
           </div>
 
           <div
@@ -124,7 +128,7 @@
             </div>
           </transition>
 
-          <transition name="fade" mode="in-out">
+          <transition name="fade" mode="out-in">
             <div class="modal-template video-modal" v-if="isShowVideoModal">
               <div class="modal-content">
                 <div
@@ -153,6 +157,7 @@
             <Wardrobe
               v-show="showWardrobe"
               @closeWardrobe="closeWardrobe($event)"
+              @selectNewVisual="($event) => (personVisual = $event)"
             />
           </transition>
 
@@ -180,6 +185,11 @@ const showWardrobe = ref(false);
 const activeTab = ref(0);
 const featuredTabs = ref([0]);
 const showQuiz = ref(false);
+
+const personVisual = ref({
+  path: new URL(`../assets/img/modules/module-1/object-1.svg`, import.meta.url),
+  isSelected: false,
+});
 
 const isMute = ref(false);
 const isShowAlTabs = computed(() => {
@@ -260,10 +270,10 @@ const closeWardrobe = (isComplite) => {
 
 onMounted(() => {
   setTimeout(() => {
-    stepLoad.value = true;
     moduleStep.value = 1;
+    stepLoad.value = true;
     isInteractive.value = true;
-  }, 800);
+  }, 500);
 });
 </script>
 
@@ -347,6 +357,11 @@ onMounted(() => {
     height: 88%;
     top: 9%;
     z-index: 2;
+
+    &.reverse {
+      left: 27%;
+      transform: scaleX(-1);
+    }
   }
 
   &[data-item="3"] {

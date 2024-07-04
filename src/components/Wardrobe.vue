@@ -66,8 +66,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-const emit = defineEmits(["closeWardrobe"]);
+import { ref, computed, watch } from "vue";
+const emit = defineEmits(["closeWardrobe", "selectNewVisual"]);
 const gender = ref("man");
 const selectedStyleId = ref(0);
 
@@ -178,6 +178,13 @@ const currentStepData = computed(() => {
   currentItem.personImagePath = currentItem.personImagePath[gender.value];
   currentItem.btnIcoPath = currentItem.btnIcoPath[gender.value];
   return currentItem;
+});
+
+watch(currentStepData, () => {
+  emit("selectNewVisual", {
+    path: currentStepData.value.personImagePath,
+    isSelected: true,
+  });
 });
 </script>
 
