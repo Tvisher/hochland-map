@@ -162,7 +162,24 @@
           </transition>
 
           <transition name="fade" mode="out-in">
-            <QuizModal v-if="showQuiz" @modalClose="showQuiz = false" />
+            <QuizModal
+              v-if="showQuiz"
+              @modalClose="showQuiz = false"
+              :questionsList="questionsList"
+            >
+              <div class="result__image">
+                <img
+                  src="@/assets/img/modules/module-1/modal-result.png"
+                  alt=""
+                />
+              </div>
+              <div class="result__text">
+                Вы ответили правильно на все вопросы!
+              </div>
+              <div class="result__btn" @click="compliteModule">
+                Перейти на следующий этап
+              </div>
+            </QuizModal>
           </transition>
         </div>
       </div>
@@ -173,8 +190,14 @@
 <script setup>
 import Wardrobe from "@/components/Wardrobe.vue";
 import QuizModal from "@/components/QuizModal.vue";
-
 import { ref, onMounted, computed } from "vue";
+
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+import { useGameStore } from "@/stores/GameStore.js";
+const store = useGameStore();
+
 const stepLoad = ref(false);
 const moduleStep = ref(0);
 const isInteractive = ref(false);
@@ -211,6 +234,75 @@ const tabsList = [
     tabName: "Лист 1",
     tabContent:
       "Ты уже определился с корпоративной  предварительно согласовав с непным руководителем и прикрепив письмо о согласовании к заявке? Если нет, то пора сделать.",
+  },
+];
+
+const questionsList = [
+  {
+    id: 0,
+    title: "В чем заключается ключевая роль корпоративной этики?",
+    options: [
+      {
+        id: 0,
+        title: "Это неотъемлемая часть любого бизнеса",
+        error: "Вы ответили не правильно! Описание  администратором",
+        correctAnswer: false,
+      },
+      {
+        id: 1,
+        title: "Это эффективный инструмент менеджмента",
+        error:
+          "Вы ответили не правильно! Описание ответа создается администратором",
+        correctAnswer: false,
+      },
+
+      {
+        id: 2,
+        title: "Это ключевой элемент, объединяющий людей",
+        error: "Вы ответили не правильно! Описание ответа ",
+        correctAnswer: true,
+      },
+
+      {
+        id: 3,
+        title: "Это способ повысить эффективность команды",
+        error: "Вы ответили не правильно!",
+        correctAnswer: false,
+      },
+    ],
+  },
+  {
+    id: 1,
+    title: "Второй вопрос",
+    options: [
+      {
+        id: 0,
+        title: "Это неотъемлемая часть любого бизнеса",
+        error: "Вы ответили не правильно! Описание  администратором",
+        correctAnswer: false,
+      },
+      {
+        id: 1,
+        title: "Это эффективный инструмент менеджмента",
+        error:
+          "Вы ответили не правильно! Описание ответа создается администратором",
+        correctAnswer: false,
+      },
+
+      {
+        id: 2,
+        title: "Это ключевой элемент, объединяющий людей",
+        error: "Вы ответили не правильно! Описание ответа ",
+        correctAnswer: true,
+      },
+
+      {
+        id: 3,
+        title: "Это способ повысить эффективность команды",
+        error: "Вы ответили не правильно!",
+        correctAnswer: false,
+      },
+    ],
   },
 ];
 
@@ -266,6 +358,11 @@ const closeWardrobe = (isComplite) => {
     moduleStep.value = 5;
   }
   showWardrobe.value = false;
+};
+
+const compliteModule = () => {
+  store.openNewStep(2);
+  router.push("/");
 };
 
 onMounted(() => {

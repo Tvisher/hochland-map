@@ -54,13 +54,7 @@
           <div class="submit-btn" @click="validateAnswer">{{ buttonText }}</div>
         </div>
         <div class="quiz-modal__result" v-else>
-          <div class="result__image">
-            <img src="@/assets/img/modules/module-1/modal-result.png" alt="" />
-          </div>
-          <div class="result__text">Вы ответили правильно на все вопросы!</div>
-          <div class="result__btn" @click="compliteModule">
-            Перейти на следующий этап
-          </div>
+          <slot></slot>
         </div>
       </transition>
     </div>
@@ -69,15 +63,16 @@
 
 <script setup>
 const emit = defineEmits(["modalClose"]);
-import { useRouter } from "vue-router";
-const router = useRouter();
-import { useGameStore } from "@/stores/GameStore.js";
-const store = useGameStore();
+const props = defineProps({
+  questionsList: Array,
+});
+
 import { ref, computed } from "vue";
 const currentQuestionIndex = ref(0);
 const hasCurrentAnswer = ref(false);
 const checkedOption = ref(null);
 const validateIsOn = ref(false);
+const questionsList = props.questionsList;
 
 const buttonText = ref("Ответить");
 const showEndScreen = ref(false);
@@ -86,17 +81,12 @@ const currentQuestion = computed(
 );
 
 const isCorrectAnswer = computed(() => {
-  if (validateIsOn.value) {
+  if (validateIsOn.value && checkedOption.value) {
     return questionsList[currentQuestionIndex.value].options[
       checkedOption.value
     ].correctAnswer;
   }
 });
-
-const compliteModule = () => {
-  store.compliteStep(2);
-  router.push("/");
-};
 
 const validateAnswer = () => {
   if (
@@ -124,75 +114,6 @@ const validateAnswer = () => {
     buttonText.value = "Далее";
   }
 };
-
-const questionsList = [
-  {
-    id: 0,
-    title: "В чем заключается ключевая роль корпоративной этики?",
-    options: [
-      {
-        id: 0,
-        title: "Это неотъемлемая часть любого бизнеса",
-        error: "Вы ответили не правильно! Описание  администратором",
-        correctAnswer: false,
-      },
-      {
-        id: 1,
-        title: "Это эффективный инструмент менеджмента",
-        error:
-          "Вы ответили не правильно! Описание ответа создается администратором",
-        correctAnswer: false,
-      },
-
-      {
-        id: 2,
-        title: "Это ключевой элемент, объединяющий людей",
-        error: "Вы ответили не правильно! Описание ответа ",
-        correctAnswer: true,
-      },
-
-      {
-        id: 3,
-        title: "Это способ повысить эффективность команды",
-        error: "Вы ответили не правильно!",
-        correctAnswer: false,
-      },
-    ],
-  },
-  {
-    id: 1,
-    title: "Второй вопрос",
-    options: [
-      {
-        id: 0,
-        title: "Это неотъемлемая часть любого бизнеса",
-        error: "Вы ответили не правильно! Описание  администратором",
-        correctAnswer: false,
-      },
-      {
-        id: 1,
-        title: "Это эффективный инструмент менеджмента",
-        error:
-          "Вы ответили не правильно! Описание ответа создается администратором",
-        correctAnswer: false,
-      },
-
-      {
-        id: 2,
-        title: "Это ключевой элемент, объединяющий людей",
-        error: "Вы ответили не правильно! Описание ответа ",
-        correctAnswer: true,
-      },
-
-      {
-        id: 3,
-        title: "Это способ повысить эффективность команды",
-        error: "Вы ответили не правильно!",
-        correctAnswer: false,
-      },
-    ],
-  },
-];
 </script>
 
 <style lang="scss"></style>
