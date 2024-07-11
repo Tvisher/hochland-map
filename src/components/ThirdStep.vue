@@ -12,7 +12,7 @@
             class="interactive-item"
             data-item="1"
             :class="[moduleStep == 1 ? 'pulse' : '']"
-            @click="openStep(2)"
+            @click="openStep(1)"
           >
             <img src="@/assets/img/modules/module-3/object-1.svg" alt="" />
           </div>
@@ -42,7 +42,7 @@
             :data-item="step"
           ></div> -->
 
-          <transition name="fade" mode="out-in">
+          <transition name="fade" mode="in-out">
             <div class="modal-template slider-modal" v-if="showSliderModal">
               <div class="modal-content">
                 <div class="man-modal__close" @click="compliteStep(1)"></div>
@@ -203,18 +203,18 @@ const stepLoad = ref(false);
 const moduleStep = ref(null);
 const isInteractive = ref(false);
 
-const showSliderModal = ref(true);
+const showSliderModal = ref(false);
 
 const openStep = (step) => {
   const currentStep = moduleStep.value;
   if (step == 1 && currentStep >= 1) {
-    showFileModal.value = true;
+    showSliderModal.value = true;
   }
 };
 
 const compliteStep = (step) => {
   if (step == 1) {
-    showFileModal.value = false;
+    showSliderModal.value = false;
     if (moduleStep.value < 2) {
       moduleStep.value = 2;
     }
