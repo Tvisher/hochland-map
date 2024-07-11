@@ -60,7 +60,7 @@
           ></div>
 
           <transition name="fade" mode="out-in">
-            <div class="modal-template file-modal" v-if="showFileModal">
+            <div class="modal-template file-modal" v-show="showFileModal">
               <div class="modal-content">
                 <div class="man-modal__close" @click="compliteStep(1)"></div>
                 <div class="file-modal__inner">
@@ -112,7 +112,7 @@
           </transition>
 
           <transition name="fade" mode="out-in">
-            <div class="modal-template wi-fi-modal" v-if="showWiFiModal">
+            <div class="modal-template wi-fi-modal" v-show="showWiFiModal">
               <div class="modal-content">
                 <div class="man-modal__close" @click="compliteStep(2)"></div>
                 <div class="tabs-modal__inner">
@@ -131,7 +131,7 @@
           </transition>
 
           <transition name="fade" mode="out-in">
-            <div class="modal-template phone-modal" v-if="showPhoneModal">
+            <div class="modal-template phone-modal" v-show="showPhoneModal">
               <div class="modal-content">
                 <div class="man-modal__close" @click="compliteStep(3)"></div>
                 <div class="tabs-modal__inner">
@@ -164,7 +164,7 @@
             </div>
           </transition>
           <transition name="fade" mode="out-in">
-            <div class="modal-template hummer-modal" v-if="showHummerModal">
+            <div class="modal-template hummer-modal" v-show="showHummerModal">
               <div class="modal-content">
                 <div class="man-modal__close" @click="compliteStep(4)"></div>
                 <div class="tabs-modal__inner">

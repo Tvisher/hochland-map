@@ -43,7 +43,7 @@
           ></div> -->
 
           <transition name="fade" mode="in-out">
-            <div class="modal-template slider-modal" v-if="showSliderModal">
+            <div class="modal-template slider-modal" v-show="showSliderModal">
               <div class="modal-content">
                 <div class="man-modal__close" @click="compliteStep(1)"></div>
                 <div class="tabs-modal__inner">
