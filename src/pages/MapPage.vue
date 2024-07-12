@@ -48,7 +48,7 @@
     <transition name="fade" mode="out-in">
       <div
         class="modal-template"
-        v-if="modalData.showModal"
+        v-show="modalData.showModal"
         @click="closeModal"
       >
         <div class="modal-template__content">
@@ -100,10 +100,9 @@ const loadImages = () => {
 };
 
 const showGameStepModal = (ind) => {
-  console.log(ind);
   if (!gameData.value.openSteps.includes(ind)) return;
-  modalData.value.showModal = true;
   modalData.value.selectedStep = ind;
+  setTimeout(() => (modalData.value.showModal = true), 200);
 };
 
 const closeModal = (e) => {
