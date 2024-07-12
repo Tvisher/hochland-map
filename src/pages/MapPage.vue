@@ -45,10 +45,10 @@
       />
       <img preload :src="image.replace" class="replace-image" alt="" />
     </div>
-    <transition name="fade">
+    <transition name="fade" mode="out-in">
       <div
         class="modal-template"
-        v-show="modalData.showModal"
+        v-if="modalData.showModal"
         @click="closeModal"
       >
         <div class="modal-template__content">
@@ -100,8 +100,8 @@ const loadImages = () => {
 };
 
 const showGameStepModal = (ind) => {
+  console.log(ind);
   if (!gameData.value.openSteps.includes(ind)) return;
-  // console.log(ind);
   modalData.value.showModal = true;
   modalData.value.selectedStep = ind;
 };
@@ -113,9 +113,9 @@ const closeModal = (e) => {
     !target.closest(".modal-template__content")
   ) {
     modalData.value.showModal = false;
-    setTimeout(() => {
-      modalData.value.selectedStep = "";
-    }, 600);
+    // setTimeout(() => {
+    modalData.value.selectedStep = "";
+    // }, 600);
   }
 };
 

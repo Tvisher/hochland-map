@@ -1,211 +1,204 @@
 <template>
-  <transition name="slow-fade" mode="out-in">
-    <div
-      class="step-wrapper"
-      v-show="stepLoad"
-      :class="[isInteractive ? '' : 'no-interactive']"
-    >
-      <div class="step-wrapper__block">
-        <div class="step-wrapper__content">
-          <div
-            class="interactive-item"
-            data-item="1"
-            :class="[moduleStep == 4 ? 'pulse' : '']"
-            @click="openStep(4)"
-          >
-            <img src="@/assets/img/modules/module-2/object-1.svg" alt="" />
-          </div>
+  <div
+    class="step-wrapper"
+    :class="{ 'no-interactive': !isInteractive, 'step-load': stepLoad }"
+  >
+    <div class="step-wrapper__block">
+      <div class="step-wrapper__content">
+        <div
+          class="interactive-item"
+          data-item="1"
+          :class="[moduleStep == 4 ? 'pulse' : '']"
+          @click="openStep(4)"
+        >
+          <img src="@/assets/img/modules/module-2/object-1.svg" alt="" />
+        </div>
 
-          <div
-            class="interactive-item"
-            data-item="2"
-            :class="[moduleStep == 3 ? 'pulse' : '']"
-            @click="openStep(3)"
-          >
-            <img src="@/assets/img/modules/module-2/object-2.svg" alt="" />
-          </div>
+        <div
+          class="interactive-item"
+          data-item="2"
+          :class="[moduleStep == 3 ? 'pulse' : '']"
+          @click="openStep(3)"
+        >
+          <img src="@/assets/img/modules/module-2/object-2.svg" alt="" />
+        </div>
 
-          <div
-            class="interactive-item"
-            data-item="3"
-            :class="[moduleStep == 2 ? 'pulse' : '']"
-            @click="openStep(2)"
-          >
-            <img src="@/assets/img/modules/module-2/object-3.svg" alt="" />
-          </div>
+        <div
+          class="interactive-item"
+          data-item="3"
+          :class="[moduleStep == 2 ? 'pulse' : '']"
+          @click="openStep(2)"
+        >
+          <img src="@/assets/img/modules/module-2/object-3.svg" alt="" />
+        </div>
 
-          <div
-            class="interactive-item"
-            data-item="4"
-            :class="[moduleStep == 1 ? 'pulse' : '']"
-            @click="openStep(1)"
-          >
-            <img src="@/assets/img/modules/module-2/object-4.svg" alt="" />
-          </div>
+        <div
+          class="interactive-item"
+          data-item="4"
+          :class="[moduleStep == 1 ? 'pulse' : '']"
+          @click="openStep(1)"
+        >
+          <img src="@/assets/img/modules/module-2/object-4.svg" alt="" />
+        </div>
 
-          <div
-            class="interactive-item"
-            data-item="5"
-            :class="[moduleStep == 5 ? 'pulse' : '']"
-            @click="openStep(5)"
-          >
-            <img src="@/assets/img/modules/module-2/object-5.svg" alt="" />
-          </div>
+        <div
+          class="interactive-item"
+          data-item="5"
+          :class="[moduleStep == 5 ? 'pulse' : '']"
+          @click="openStep(5)"
+        >
+          <img src="@/assets/img/modules/module-2/object-5.svg" alt="" />
+        </div>
 
-          <div
-            class="arrow-template"
-            v-for="step in 5"
-            :class="[moduleStep == step ? 'show' : '']"
-            :data-item="step"
-          ></div>
+        <div
+          class="arrow-template"
+          v-for="step in 5"
+          :class="[moduleStep == step ? 'show' : '']"
+          :data-item="step"
+        ></div>
 
-          <transition name="fade" mode="out-in">
-            <div class="modal-template file-modal" v-show="showFileModal">
-              <div class="modal-content">
-                <div class="man-modal__close" @click="compliteStep(1)"></div>
-                <div class="file-modal__inner">
-                  <div class="file-modal__title">
-                    Нажмите кнопку для того чтобы скачать инструкцию
+        <transition name="fade" mode="out-in">
+          <div class="modal-template file-modal" v-show="showFileModal">
+            <div class="modal-content">
+              <div class="man-modal__close" @click="compliteStep(1)"></div>
+              <div class="file-modal__inner">
+                <div class="file-modal__title">
+                  Нажмите кнопку для того чтобы скачать инструкцию
+                </div>
+                <div class="file-modal__img">
+                  <img
+                    src="@/assets/img/modules/module-2/file-modal-image.svg"
+                    alt=""
+                  />
+                </div>
+                <a
+                  href="../assets/img/modules/module-2/modal-card-image.png"
+                  download
+                  class="file-modal__btn"
+                >
+                  <span>Скачать PDF</span>
+                  <div class="ico">
+                    <svg
+                      width="61"
+                      height="60"
+                      viewBox="0 0 61 60"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M30.8725 59.0779C46.5703 59.0779 59.2958 46.1716 59.2958 30.2509C59.2958 14.3301 46.5703 1.42383 30.8725 1.42383C15.1748 1.42383 2.44922 14.3301 2.44922 30.2509C2.44922 46.1716 15.1748 59.0779 30.8725 59.0779Z"
+                        fill="#23C2F1"
+                      />
+                      <path
+                        d="M52.0694 10.8692C54.5584 13.7193 56.646 16.9766 58.0912 20.4782C59.5365 24.0612 60.4197 27.8885 60.5 31.8787C60.5 35.8689 59.7774 39.8591 58.1715 43.5235C56.5657 47.188 54.0767 50.4453 51.1059 53.0511C48.0548 55.6569 44.5219 57.5299 40.8285 58.6699C37.1351 59.81 33.2811 60.2172 29.4271 59.8914C21.7993 59.4028 14.4125 56.1455 8.95266 50.5267C6.22274 47.758 3.97457 44.4193 2.52931 40.6734C1.08406 36.9275 0.361436 32.9373 0.52202 28.8657C0.682604 20.8039 4.29574 12.7421 10.2373 7.3676C13.2081 4.68034 16.741 2.5631 20.5147 1.34162C24.2884 0.120131 28.303 -0.287031 32.2373 0.201562C36.0913 0.690156 39.865 1.99307 43.157 3.78458C46.5292 5.65753 49.5 8.01906 51.9891 10.8692H52.0694ZM51.7482 11.1949C49.2591 8.42622 46.1278 6.22755 42.7555 4.8432C39.3833 3.45885 35.6898 2.88883 32.157 2.97026C28.6241 3.05169 25.0913 3.86602 21.8796 5.16893C18.668 6.47185 15.6972 8.34479 13.1278 10.7063C10.5585 13.0679 8.5512 15.918 6.94536 19.0124C5.41982 22.1883 4.53661 25.6084 4.21544 29.11C3.73369 36.1132 5.98186 43.4421 10.4782 49.0609C12.7264 51.8296 15.6169 54.2726 18.9088 55.9012C22.1205 57.5299 25.8139 58.5071 29.4271 58.5885C33.0402 58.6699 36.7336 57.9371 40.0256 56.5527C43.3176 55.0869 46.2884 53.0511 48.7774 50.5267C53.7555 45.5593 57.0474 38.9633 57.9307 31.7159C58.3321 28.1328 58.1715 24.387 57.0475 20.8039C56.0037 17.2209 54.1569 13.8822 51.6679 11.1135L51.7482 11.1949Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M34 18.8571C34 16.9003 32.3264 15.5 30.5 15.5C28.6736 15.5 27 16.9003 27 18.8571V22.3227C25.7166 21.7395 24.1398 21.9468 23.0651 22.9448C21.645 24.2635 21.645 26.4508 23.0651 27.7695L28.0651 32.4124C29.4217 33.6721 31.5783 33.6721 32.9349 32.4124L37.9349 27.7695C39.355 26.4508 39.355 24.2635 37.9349 22.9448C36.8602 21.9468 35.2834 21.7395 34 22.3227V18.8571ZM23 35.5714C23 33.6146 21.3264 32.2143 19.5 32.2143C17.6736 32.2143 16 33.6146 16 35.5714V39.2857C16 40.706 16.6086 42.0435 17.6509 43.0113C18.6894 43.9756 20.0757 44.5 21.5 44.5H39.5C40.9243 44.5 42.3106 43.9756 43.3491 43.0113C44.3914 42.0435 45 40.706 45 39.2857V35.5714C45 33.6146 43.3264 32.2143 41.5 32.2143C39.6736 32.2143 38 33.6146 38 35.5714V37.7857H23V35.5714Z"
+                        fill="white"
+                        stroke="black"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
                   </div>
-                  <div class="file-modal__img">
+                </a>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <transition name="fade" mode="out-in">
+          <div class="modal-template wi-fi-modal" v-show="showWiFiModal">
+            <div class="modal-content">
+              <div class="man-modal__close" @click="compliteStep(2)"></div>
+              <div class="tabs-modal__inner">
+                <div class="tabs-content">
+                  Ты уже определился с корпоративной связью и подал заявку в
+                  ServiceDesk, предварительно согласовав с непосредственным
+                  руководителем и прикрепив письмо о согласовании к заявке? Если
+                  нет, то пора сделать.
+                </div>
+                <div class="modal-btn" @click="compliteStep(2)">Прочитано</div>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <transition name="fade" mode="out-in">
+          <div class="modal-template phone-modal" v-show="showPhoneModal">
+            <div class="modal-content">
+              <div class="man-modal__close" @click="compliteStep(3)"></div>
+              <div class="tabs-modal__inner">
+                <div class="tabs-content">
+                  Ты уже определился с корпоративной связью и подал заявку в
+                  ServiceDesk, предварительно согласовав с непосредственным
+                  руководителем и прикрепив письмо о согласовании к заявке? Если
+                  нет, то пора сделать.
+                </div>
+                <div class="phone-modal__card">
+                  <div class="card__img">
                     <img
-                      src="@/assets/img/modules/module-2/file-modal-image.svg"
+                      src="@/assets/img/modules/module-2/modal-card-image.png"
                       alt=""
                     />
                   </div>
-                  <a
-                    href="../assets/img/modules/module-2/modal-card-image.png"
-                    download
-                    class="file-modal__btn"
-                  >
-                    <span>Скачать PDF</span>
-                    <div class="ico">
-                      <svg
-                        width="61"
-                        height="60"
-                        viewBox="0 0 61 60"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M30.8725 59.0779C46.5703 59.0779 59.2958 46.1716 59.2958 30.2509C59.2958 14.3301 46.5703 1.42383 30.8725 1.42383C15.1748 1.42383 2.44922 14.3301 2.44922 30.2509C2.44922 46.1716 15.1748 59.0779 30.8725 59.0779Z"
-                          fill="#23C2F1"
-                        />
-                        <path
-                          d="M52.0694 10.8692C54.5584 13.7193 56.646 16.9766 58.0912 20.4782C59.5365 24.0612 60.4197 27.8885 60.5 31.8787C60.5 35.8689 59.7774 39.8591 58.1715 43.5235C56.5657 47.188 54.0767 50.4453 51.1059 53.0511C48.0548 55.6569 44.5219 57.5299 40.8285 58.6699C37.1351 59.81 33.2811 60.2172 29.4271 59.8914C21.7993 59.4028 14.4125 56.1455 8.95266 50.5267C6.22274 47.758 3.97457 44.4193 2.52931 40.6734C1.08406 36.9275 0.361436 32.9373 0.52202 28.8657C0.682604 20.8039 4.29574 12.7421 10.2373 7.3676C13.2081 4.68034 16.741 2.5631 20.5147 1.34162C24.2884 0.120131 28.303 -0.287031 32.2373 0.201562C36.0913 0.690156 39.865 1.99307 43.157 3.78458C46.5292 5.65753 49.5 8.01906 51.9891 10.8692H52.0694ZM51.7482 11.1949C49.2591 8.42622 46.1278 6.22755 42.7555 4.8432C39.3833 3.45885 35.6898 2.88883 32.157 2.97026C28.6241 3.05169 25.0913 3.86602 21.8796 5.16893C18.668 6.47185 15.6972 8.34479 13.1278 10.7063C10.5585 13.0679 8.5512 15.918 6.94536 19.0124C5.41982 22.1883 4.53661 25.6084 4.21544 29.11C3.73369 36.1132 5.98186 43.4421 10.4782 49.0609C12.7264 51.8296 15.6169 54.2726 18.9088 55.9012C22.1205 57.5299 25.8139 58.5071 29.4271 58.5885C33.0402 58.6699 36.7336 57.9371 40.0256 56.5527C43.3176 55.0869 46.2884 53.0511 48.7774 50.5267C53.7555 45.5593 57.0474 38.9633 57.9307 31.7159C58.3321 28.1328 58.1715 24.387 57.0475 20.8039C56.0037 17.2209 54.1569 13.8822 51.6679 11.1135L51.7482 11.1949Z"
-                          fill="black"
-                        />
-                        <path
-                          d="M34 18.8571C34 16.9003 32.3264 15.5 30.5 15.5C28.6736 15.5 27 16.9003 27 18.8571V22.3227C25.7166 21.7395 24.1398 21.9468 23.0651 22.9448C21.645 24.2635 21.645 26.4508 23.0651 27.7695L28.0651 32.4124C29.4217 33.6721 31.5783 33.6721 32.9349 32.4124L37.9349 27.7695C39.355 26.4508 39.355 24.2635 37.9349 22.9448C36.8602 21.9468 35.2834 21.7395 34 22.3227V18.8571ZM23 35.5714C23 33.6146 21.3264 32.2143 19.5 32.2143C17.6736 32.2143 16 33.6146 16 35.5714V39.2857C16 40.706 16.6086 42.0435 17.6509 43.0113C18.6894 43.9756 20.0757 44.5 21.5 44.5H39.5C40.9243 44.5 42.3106 43.9756 43.3491 43.0113C44.3914 42.0435 45 40.706 45 39.2857V35.5714C45 33.6146 43.3264 32.2143 41.5 32.2143C39.6736 32.2143 38 33.6146 38 35.5714V37.7857H23V35.5714Z"
-                          fill="white"
-                          stroke="black"
-                          stroke-width="3"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  </a>
+                  <div class="card__content">
+                    <div class="card__name">Дарья Москалева</div>
+                    <div class="card__position">Cтарший бренд менеджер</div>
+                    <a href="tel:+79880000000" class="card__link"
+                      >+7 (988) 0000-000</a
+                    >
+                    <a href="mailto:mailadress@mail.com" class="card__link"
+                      >mailadress@mail.com</a
+                    >
+                  </div>
                 </div>
               </div>
             </div>
-          </transition>
+          </div>
+        </transition>
+        <transition name="fade" mode="out-in">
+          <div class="modal-template hummer-modal" v-show="showHummerModal">
+            <div class="modal-content">
+              <div class="man-modal__close" @click="compliteStep(4)"></div>
+              <div class="tabs-modal__inner">
+                <div class="tabs-content">
+                  Ты уже определился с корпоративной связью и подал заявку в
+                  ServiceDesk, предварительно согласовав с непосредственным
+                  руководителем и прикрепив письмо о согласовании к заявке? Если
+                  нет, то пора сделать.
+                </div>
+                <div class="modal-btn" @click="compliteStep(4)">Прочитано</div>
+              </div>
+            </div>
+          </div>
+        </transition>
 
-          <transition name="fade" mode="out-in">
-            <div class="modal-template wi-fi-modal" v-show="showWiFiModal">
-              <div class="modal-content">
-                <div class="man-modal__close" @click="compliteStep(2)"></div>
-                <div class="tabs-modal__inner">
-                  <div class="tabs-content">
-                    Ты уже определился с корпоративной связью и подал заявку в
-                    ServiceDesk, предварительно согласовав с непосредственным
-                    руководителем и прикрепив письмо о согласовании к заявке?
-                    Если нет, то пора сделать.
-                  </div>
-                  <div class="modal-btn" @click="compliteStep(2)">
-                    Прочитано
-                  </div>
-                </div>
-              </div>
+        <transition name="fade" mode="out-in">
+          <QuizModal
+            v-if="showQuiz"
+            @modalClose="showQuiz = false"
+            :questionsList="questionsList"
+          >
+            <div class="result__image">
+              <img
+                src="@/assets/img/modules/module-1/modal-result.png"
+                alt=""
+              />
             </div>
-          </transition>
-
-          <transition name="fade" mode="out-in">
-            <div class="modal-template phone-modal" v-show="showPhoneModal">
-              <div class="modal-content">
-                <div class="man-modal__close" @click="compliteStep(3)"></div>
-                <div class="tabs-modal__inner">
-                  <div class="tabs-content">
-                    Ты уже определился с корпоративной связью и подал заявку в
-                    ServiceDesk, предварительно согласовав с непосредственным
-                    руководителем и прикрепив письмо о согласовании к заявке?
-                    Если нет, то пора сделать.
-                  </div>
-                  <div class="phone-modal__card">
-                    <div class="card__img">
-                      <img
-                        src="@/assets/img/modules/module-2/modal-card-image.png"
-                        alt=""
-                      />
-                    </div>
-                    <div class="card__content">
-                      <div class="card__name">Дарья Москалева</div>
-                      <div class="card__position">Cтарший бренд менеджер</div>
-                      <a href="tel:+79880000000" class="card__link"
-                        >+7 (988) 0000-000</a
-                      >
-                      <a href="mailto:mailadress@mail.com" class="card__link"
-                        >mailadress@mail.com</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="result__text">
+              Вы ответили правильно на все вопросы!
             </div>
-          </transition>
-          <transition name="fade" mode="out-in">
-            <div class="modal-template hummer-modal" v-show="showHummerModal">
-              <div class="modal-content">
-                <div class="man-modal__close" @click="compliteStep(4)"></div>
-                <div class="tabs-modal__inner">
-                  <div class="tabs-content">
-                    Ты уже определился с корпоративной связью и подал заявку в
-                    ServiceDesk, предварительно согласовав с непосредственным
-                    руководителем и прикрепив письмо о согласовании к заявке?
-                    Если нет, то пора сделать.
-                  </div>
-                  <div class="modal-btn" @click="compliteStep(4)">
-                    Прочитано
-                  </div>
-                </div>
-              </div>
+            <div class="result__btn" @click="compliteModule">
+              Перейти на следующий этап
             </div>
-          </transition>
-
-          <transition name="fade" mode="out-in">
-            <QuizModal
-              v-if="showQuiz"
-              @modalClose="showQuiz = false"
-              :questionsList="questionsList"
-            >
-              <div class="result__image">
-                <img
-                  src="@/assets/img/modules/module-1/modal-result.png"
-                  alt=""
-                />
-              </div>
-              <div class="result__text">
-                Вы ответили правильно на все вопросы!
-              </div>
-              <div class="result__btn" @click="compliteModule">
-                Перейти на следующий этап
-              </div>
-            </QuizModal>
-          </transition>
-        </div>
+          </QuizModal>
+        </transition>
       </div>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script setup>
