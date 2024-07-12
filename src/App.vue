@@ -6,8 +6,6 @@
   </router-view>
 </template>
 
-<script setup>
-console.log("pageLoad");
-</script>
+<script setup></script>
 
 <style scoped></style>

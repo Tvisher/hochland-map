@@ -112,9 +112,7 @@ const closeModal = (e) => {
     !target.closest(".modal-template__content")
   ) {
     modalData.value.showModal = false;
-    // setTimeout(() => {
-    modalData.value.selectedStep = "";
-    // }, 600);
+    setTimeout(() => (modalData.value.selectedStep = ""), 200);
   }
 };
 
