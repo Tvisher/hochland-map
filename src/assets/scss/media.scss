@@ -1,0 +1,500 @@
+@media (max-height: 1024px) and (min-width: 920px) {
+  .step-wrapper__block {
+    max-width: 177vh;
+  }
+
+  .man-modal__close,
+  .wardrobe__close {
+    width: fromHeight(80);
+    height: fromHeight(80);
+  }
+
+  .man-modal {
+    top: fromHeight(85);
+    border-radius: fromHeight(40);
+    border: fromHeight(5) solid #000;
+    box-shadow: fromHeight(10) fromHeight(10) 0px 0px #000;
+    max-width: 29%;
+    width: 100%;
+    padding: fromHeight(40) fromHeight(50);
+    font-size: fromHeight(32);
+
+    &::before {
+      top: fromHeight(120);
+      width: fromHeight(100);
+      height: fromHeight(49);
+    }
+  }
+
+  .tabs-modal,
+  .video-modal,
+  .file-modal,
+  .wi-fi-modal,
+  .phone-modal,
+  .hummer-modal,
+  .slider-modal,
+  .album-modal {
+    .modal-content {
+      padding: fromHeight(60) fromHeight(90) fromHeight(60) fromHeight(40);
+      border-radius: fromHeight(40);
+      border: fromHeight(5) solid #000;
+      box-shadow: fromHeight(10) fromHeight(10) 0px 0px #000;
+      background-size: fromHeight(280) fromHeight(280);
+    }
+
+    .tabs-content {
+      font-size: fromHeight(32);
+      margin-bottom: fromHeight(60);
+    }
+
+    .tabs-modal__inner {
+      padding-left: fromHeight(300);
+    }
+
+    .tabs-head {
+      gap: fromHeight(15);
+      margin-bottom: fromHeight(60);
+
+      .tabs-btn {
+        font-size: fromHeight(32);
+        padding: fromHeight(24) fromHeight(32);
+        border-radius: fromHeight(20);
+        border: fromHeight(4) solid #000;
+      }
+    }
+
+    .modal-btn {
+      padding: fromHeight(32) fromHeight(97) fromHeight(32) fromHeight(40);
+      font-size: fromHeight(32);
+      border-radius: fromHeight(20);
+      border: fromHeight(4) solid #000;
+      box-shadow: fromHeight(8) fromHeight(8) 0px 0px rgba(0, 0, 0, 0.25);
+      background-position: center right fromHeight(30);
+      background-size: fromHeight(39) fromHeight(34);
+    }
+  }
+
+  .video-modal {
+    .modal-content {
+      background-size: fromHeight(180) fromHeight(180);
+      background-position: top fromHeight(60) left fromHeight(40);
+    }
+
+    .video-block {
+      margin-left: fromHeight(300);
+      height: fromHeight(420);
+      border-radius: fromHeight(20);
+
+      .plyr__control--overlaid {
+        height: fromHeight(100);
+        width: fromHeight(100);
+      }
+    }
+  }
+
+  .video-modal .modal-btn {
+    margin-left: fromHeight(300);
+    margin-top: fromHeight(30);
+
+  }
+
+  .wardrobe__nav_btn {
+    background-size: fromHeight(66);
+
+  }
+
+  .wardrobe__variant {
+    border-radius: fromHeight(44);
+    font-size: fromHeight(36);
+    padding: fromHeight(70) fromHeight(32);
+    padding-right: fromHeight(160);
+  }
+
+  .wardrobe__variants {
+    gap: fromHeight(32);
+    padding-right: fromHeight(72);
+    padding-top: fromHeight(160);
+  }
+
+  .variant__ico {
+    right: fromHeight(20);
+    width: fromHeight(140);
+  }
+
+  .wardrobe__message {
+    padding: fromHeight(32);
+    border-radius: fromHeight(32);
+    bottom: fromHeight(51);
+    left: fromHeight(71);
+    box-shadow: fromHeight(5) fromHeight(5) 0px 0px #000;
+    gap: fromHeight(32);
+    max-width: fromHeight(636);
+  }
+
+  .message__ico {
+    width: fromHeight(80);
+    height: fromHeight(80);
+  }
+
+  .message__text {
+    font-size: fromHeight(26);
+  }
+
+  .complite-btn {
+    padding: fromHeight(46) fromHeight(40);
+    border-radius: fromHeight(30);
+    padding-right: fromHeight(220);
+    bottom: fromHeight(46);
+    right: fromHeight(72);
+    font-size: fromHeight(36);
+    background-size: fromHeight(80) fromHeight(80);
+    background-position: center right fromHeight(30);
+
+    &:hover {
+      background-position: center right fromHeight(20);
+    }
+  }
+
+  .mute-btn {
+    width: fromHeight(100);
+    height: fromHeight(100);
+    left: fromHeight(60);
+    bottom: fromHeight(60);
+  }
+
+  .quiz-modal {
+    padding-bottom: fromHeight(50);
+
+    .modal-content {
+      margin-top: fromHeight(50) !important;
+    }
+  }
+
+  .quiz-modal__inner {
+    padding-left: fromHeight(300);
+  }
+
+  .quiz-modal__counter {
+    font-size: fromHeight(26);
+    margin-bottom: fromHeight(20);
+  }
+
+  .quiz-modal__title {
+    font-size: fromHeight(32);
+    margin-bottom: fromHeight(60);
+  }
+
+  .quiz-modal__option {
+    padding: fromHeight(20);
+    border-radius: fromHeight(20);
+    margin-bottom: fromHeight(30);
+
+    &.checked {
+      box-shadow: fromHeight(8) fromHeight(8) 0px 0px #23c2f1;
+    }
+
+    &.error {
+      box-shadow: fromHeight(8) fromHeight(8) 0px 0px #df5763;
+    }
+
+    &.current {
+      box-shadow: fromHeight(8) fromHeight(8) 0px 0px #76b82a;
+    }
+  }
+
+  .option__message {
+    font-size: fromHeight(20);
+    margin-top: fromHeight(15);
+  }
+
+  .option__title {
+    font-size: fromHeight(26);
+  }
+
+  .option__ico {
+    width: fromHeight(40);
+    height: fromHeight(40);
+    margin-right: fromHeight(30);
+  }
+
+  .submit-btn {
+    border-radius: fromHeight(20);
+    font-size: fromHeight(32);
+    padding: fromHeight(32) fromHeight(40);
+    padding-right: fromHeight(97);
+    background-size: fromHeight(33) fromHeight(28);
+    background-position: center right fromHeight(40);
+  }
+
+  .quiz-modal__result {
+    padding-top: fromHeight(510);
+    margin-left: fromHeight(300);
+    border-radius: fromHeight(20);
+    box-shadow: fromHeight(8) fromHeight(8) 0px 0px #000;
+  }
+
+  .result__image {
+    height: fromHeight(550);
+  }
+
+  .result__text {
+    font-size: fromHeight(32);
+    margin-bottom: fromHeight(60);
+  }
+
+  .result__btn {
+    border-radius: fromHeight(20);
+    padding: fromHeight(32) fromHeight(40);
+    padding-right: fromHeight(125);
+    margin-right: fromHeight(80);
+    margin-left: fromHeight(60);
+    margin-bottom: fromHeight(60);
+    font-size: fromHeight(28);
+    background-size: fromHeight(60);
+    background-position: center right fromHeight(40);
+  }
+
+
+
+  .file-modal {
+    .modal-content {
+      background-size: fromHeight(180) fromHeight(180);
+      background-position: top fromHeight(20) left fromHeight(40);
+    }
+  }
+
+  .file-modal__inner {
+    border-radius: fromHeight(20);
+    border: fromHeight(4) solid #000;
+    margin-left: fromHeight(300);
+    padding: fromHeight(32) fromHeight(48);
+    padding-bottom: fromHeight(48);
+  }
+
+  .file-modal__title {
+    font-size: fromHeight(32);
+    margin-bottom: fromHeight(32);
+  }
+
+  .file-modal__img {
+    margin-bottom: fromHeight(50);
+    padding: 0 fromHeight(70);
+  }
+
+  .file-modal__btn {
+    gap: fromHeight(24);
+    font-size: fromHeight(32);
+    padding: fromHeight(22) fromHeight(40);
+    border-radius: fromHeight(20);
+    border: fromHeight(4) solid #000;
+    box-shadow: fromHeight(8) fromHeight(8) 0px 0px rgba(0, 0, 0, 0.25);
+
+    .ico {
+      width: fromHeight(60);
+      height: fromHeight(60);
+    }
+  }
+
+  .wi-fi-modal {
+    .modal-content {
+      background-size: fromHeight(180) fromHeight(180);
+      background-position: top fromHeight(20) left fromHeight(40);
+    }
+  }
+
+  .phone-modal {
+    .modal-content {
+      background-size: fromHeight(180) fromHeight(180);
+      background-position: top fromHeight(20) left fromHeight(40);
+    }
+
+    .phone-modal__card {
+      padding-top: fromHeight(30);
+      padding-right: fromHeight(60);
+      padding-bottom: fromHeight(40);
+      padding-left: fromHeight(300);
+      border-radius: fromHeight(20);
+      border: fromHeight(4) solid #000;
+      box-shadow: fromHeight(8) fromHeight(8) 0px 0px rgba(0, 0, 0, 0.25);
+
+      &::before {
+        left: fromHeight(270);
+        width: fromHeight(4);
+      }
+    }
+
+    .card__name {
+      font-size: fromHeight(32);
+      margin-bottom: fromHeight(15);
+    }
+
+    .card__position {
+      padding: fromHeight(2) fromHeight(15);
+      border-radius: fromHeight(40);
+      border: fromHeight(2) solid #000;
+      font-size: fromHeight(18);
+      margin-bottom: fromHeight(35);
+    }
+
+    .card__link {
+      font-size: fromHeight(26);
+
+      &:not(:last-child) {
+        margin-bottom: fromHeight(10);
+      }
+    }
+
+    .card__img {
+      left: fromHeight(35);
+      width: fromHeight(200);
+    }
+  }
+
+  .hummer-modal {
+    .modal-content {
+      background-size: fromHeight(180) fromHeight(180);
+      background-position: top fromHeight(20) left fromHeight(40);
+    }
+  }
+
+
+
+  .slider-modal {
+
+    .nav-buttons {
+      gap: fromHeight(24);
+      margin-left: fromHeight(-10);
+      margin-right: fromHeight(-10);
+      padding: 0px fromHeight(10);
+    }
+
+    .slider-prev-btn,
+    .slider-next-btn {
+      padding: fromHeight(24);
+      border-radius: fromHeight(20);
+      border: fromHeight(4) solid #000;
+      box-shadow: fromHeight(8) fromHeight(8) 0px 0px rgba(0, 0, 0, 0.25);
+      background-size: fromHeight(60) fromHeight(60);
+
+    }
+
+    .slider-prev-btn {
+      padding-left: fromHeight(100);
+      background-position: center left fromHeight(24);
+    }
+
+    .slider-next-btn {
+      padding-right: fromHeight(100);
+      background-position: center right fromHeight(24);
+    }
+
+    .swiper-pagination-bullet {
+      width: fromHeight(18);
+      height: fromHeight(18);
+      border: fromHeight(4) solid #000;
+    }
+
+    .swiper-pagination {
+      gap: fromHeight(30);
+      margin: fromHeight(32) 0;
+    }
+  }
+
+  .slide-item__inner {
+    min-height: fromHeight(420);
+  }
+
+  .slide-item__title {
+    margin-bottom: fromHeight(32);
+  }
+
+  .factory__wrapper {
+    gap: fromHeight(46);
+    padding: fromHeight(24);
+    border-radius: fromHeight(24);
+    border: fromHeight(4) solid #000;
+  }
+
+  .factory__image {
+    width: fromHeight(372);
+    height: fromHeight(344);
+    border-radius: fromHeight(16);
+  }
+
+  .factory__title {
+    font-size: fromHeight(32);
+    margin-bottom: fromHeight(4);
+  }
+
+  .factory__descr {
+    font-size: fromHeight(22);
+    margin-bottom: fromHeight(32);
+  }
+
+  .factory__text {
+    font-size: fromHeight(22);
+  }
+
+
+  .album__slider {
+    border-radius: fromHeight(24);
+    border: fromHeight(4) solid #000;
+  }
+
+  .album-modal {
+    .modal-btn {
+      margin-top: fromHeight(48);
+    }
+
+
+    .modal-content {
+      background-position: top fromHeight(60) left fromHeight(40);
+      background-size: fromHeight(220) fromHeight(200);
+    }
+
+    .nav-buttons {
+      gap: fromHeight(12);
+
+      .album-head-btn {
+        width: fromHeight(60);
+        height: fromHeight(60);
+        border-radius: fromHeight(12);
+        border: fromHeight(4) solid #000;
+      }
+
+      .album-prev-btn,
+      .album-next-btn {
+        svg {
+          width: fromHeight(25);
+          height: fromHeight(25);
+        }
+      }
+
+      .load-btn,
+      .show-btn {
+        svg {
+          width: fromHeight(30);
+          height: fromHeight(30);
+        }
+      }
+    }
+
+    .slide-item {
+      height: fromHeight(545);
+    }
+  }
+
+  .album-head {
+    gap: fromHeight(12);
+    padding: fromHeight(16);
+    border-bottom: fromHeight(4) solid #000;
+
+    .album-pagination {
+      font-size: fromHeight(22);
+    }
+
+    .album__title {
+      font-size: fromHeight(22);
+    }
+  }
+}
