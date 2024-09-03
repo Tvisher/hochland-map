@@ -14,7 +14,7 @@
             <img src="@/assets/img/database.svg" alt="" />
           </div>
         </div>
-        <div class="menu-btn__text">База знаний</div>
+        <div class="menu-btn__text">Узнать больше</div>
       </a>
 
       <a href="javascript:void(0)" class="menu-btn">
@@ -23,7 +23,7 @@
             <img src="@/assets/img/message.svg" alt="" />
           </div>
         </div>
-        <div class="menu-btn__text">Написать письмо</div>
+        <div class="menu-btn__text">Задать вопрос</div>
       </a>
     </div>
     <div

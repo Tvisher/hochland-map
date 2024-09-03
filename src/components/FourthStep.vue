@@ -46,7 +46,7 @@
             v-if="showQuiz"
             @modalClose="showQuiz = false"
             :questionsList="questionsList"
-            :step="3"
+            :step="4"
           >
             <div class="result__image">
               <img
@@ -61,6 +61,166 @@
               Перейти на следующий этап
             </div>
           </QuizModal>
+        </transition>
+
+        <transition name="fade" mode="out-in">
+          <div class="modal-template parking-modal" v-show="showParkingModal">
+            <div class="modal-content">
+              <div class="tabs-modal__inner">
+                <div class="tabs-content">
+                  Забронируйте место на парковке Хохланд
+                  <div class="parking-modal__image">
+                    <img
+                      src="@/assets/img/modules/module-4/modal-parking/modal-bg.svg"
+                      alt=""
+                    />
+                    <div
+                      class="sign-item"
+                      :class="{ pulse: parkingNumber == 1 }"
+                      data-item="1"
+                      @click="parkingNumber = 1"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/modal-parking/sign-1.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div
+                      class="sign-item"
+                      :class="{ pulse: parkingNumber == 2 }"
+                      data-item="2"
+                      @click="parkingNumber = 2"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/modal-parking/sign-2.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div
+                      class="sign-item"
+                      :class="{ pulse: parkingNumber == 3 }"
+                      data-item="3"
+                      @click="parkingNumber = 3"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/modal-parking/sign-3.svg"
+                        alt=""
+                      />
+                    </div>
+
+                    <div
+                      class="line-item"
+                      :class="{ pulse: parkingNumber == 1 }"
+                      data-item="1"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/modal-parking/line-1.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div
+                      class="line-item"
+                      :class="{
+                        pulse: parkingNumber == 1 || parkingNumber == 2,
+                      }"
+                      data-item="2"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/modal-parking/line-2.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div
+                      class="line-item"
+                      :class="{
+                        pulse: parkingNumber == 2 || parkingNumber == 3,
+                      }"
+                      data-item="3"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/modal-parking/line-3.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div
+                      class="line-item"
+                      :class="{ pulse: parkingNumber == 3 }"
+                      data-item="4"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/modal-parking/line-4.svg"
+                        alt=""
+                      />
+                    </div>
+
+                    <div
+                      class="markup-item"
+                      :class="{ pulse: parkingNumber == 1 }"
+                      data-item="1"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/modal-parking/markup-1.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div
+                      class="markup-item"
+                      :class="{ pulse: parkingNumber == 2 }"
+                      data-item="2"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/modal-parking/markup-2.svg"
+                        alt=""
+                      />
+                    </div>
+                    <div
+                      class="markup-item"
+                      :class="{ pulse: parkingNumber == 3 }"
+                      data-item="3"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/modal-parking/markup-3.svg"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-btn" @click="compliteStep(1)">Прочитано</div>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <transition name="fade" mode="out-in">
+          <div class="modal-template cafe-modal" v-show="showCafeModal">
+            <div class="modal-content">
+              <div class="tabs-modal__inner">
+                <div class="tabs-content">
+                  Забронируйте место в кафе Хохланд
+                  <div class="cafe-modal__image">
+                    <img
+                      src="@/assets/img/modules/module-4/cafe-modal/modal-bg.svg"
+                      alt=""
+                    />
+
+                    <div
+                      class="table-item"
+                      v-for="(el, ind) in 6"
+                      :data-table="ind + 1"
+                      :class="{ pulse: tableNumber == ind + 1 }"
+                      @click="tableNumber = ind + 1"
+                    >
+                      <img
+                        src="@/assets/img/modules/module-4/cafe-modal/table.svg"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-btn" @click="compliteStep(2)">Прочитано</div>
+              </div>
+            </div>
+          </div>
         </transition>
       </div>
     </div>
@@ -83,8 +243,10 @@ const moduleStep = ref(null);
 const isInteractive = ref(false);
 
 const showQuiz = ref(false);
-const showSliderModal = ref(false);
-const showPhotoAlbumModal = ref(false);
+const showParkingModal = ref(false);
+const showCafeModal = ref(false);
+const parkingNumber = ref(1);
+const tableNumber = ref(1);
 
 const questionsList = [
   {
@@ -158,11 +320,11 @@ const questionsList = [
 const openStep = (step) => {
   const currentStep = moduleStep.value;
   if (step == 1 && currentStep >= 1) {
-    showSliderModal.value = true;
+    showParkingModal.value = true;
   }
 
   if (step == 2 && currentStep >= 2) {
-    showPhotoAlbumModal.value = true;
+    showCafeModal.value = true;
   }
   if (step == 3 && currentStep >= 3) {
     showQuiz.value = true;
@@ -171,15 +333,14 @@ const openStep = (step) => {
 
 const compliteStep = (step) => {
   if (step == 1) {
-    showSliderModal.value = false;
-    pausePlayer();
+    showParkingModal.value = false;
     if (moduleStep.value < 2) {
       moduleStep.value = 2;
     }
   }
 
   if (step == 2) {
-    showPhotoAlbumModal.value = false;
+    showCafeModal.value = !1;
     if (moduleStep.value < 3) {
       moduleStep.value = 3;
     }
@@ -273,7 +434,6 @@ onMounted(() => {
   position: absolute;
   &.pulse {
     z-index: 3;
-    // filter: drop-shadow(0px 6px 10px #0078dc) drop-shadow(0px -6px 10px #0078dc);
     filter: drop-shadow(0px 6px 10px #00c5ff) drop-shadow(0px -6px 10px #00c5ff);
     animation: dropShadow 3s linear infinite 0.4s;
   }
