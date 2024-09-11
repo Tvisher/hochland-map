@@ -10,8 +10,8 @@
             class="interactive-item"
             :class="[moduleStep == 1 ? 'pulse' : '']"
             data-item="1"
-            @click="showMessage"
-            v-if="moduleStep < 2"
+            @click="setNextStep(2)"
+            v-if="moduleStep < 7"
           >
             <img src="@/assets/img/modules/module-1/object-6.svg" alt="" />
           </div>
@@ -28,7 +28,7 @@
         <div
           class="interactive-item"
           data-item="3"
-          :class="[moduleStep == 5 ? 'pulse' : '']"
+          :class="[moduleStep == 10 ? 'pulse' : '']"
           @click="setShowQuiz"
         >
           <img src="@/assets/img/modules/module-1/object-2.svg" alt="" />
@@ -37,8 +37,8 @@
         <div
           class="interactive-item"
           data-item="4"
-          :class="[moduleStep == 2 ? 'pulse' : '']"
-          @click="showSecondStepModal"
+          :class="[moduleStep == 7 ? 'pulse' : '']"
+          @click="isShowTabsModal = moduleStep >= 7 ? true : false"
         >
           <img src="@/assets/img/modules/module-1/object-3.svg" alt="" />
         </div>
@@ -46,45 +46,118 @@
         <div
           class="interactive-item"
           data-item="5"
-          :class="[moduleStep == 3 ? 'pulse' : '']"
-          @click="showVideoModal"
+          :class="[moduleStep == 8 ? 'pulse' : '']"
+          @click="isShowVideoModal = moduleStep >= 8 ? true : false"
         >
           <img src="@/assets/img/modules/module-1/object-4.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 4 ? 'pulse' : '']"
+          :class="[moduleStep == 9 ? 'pulse' : '']"
           data-item="6"
-          @click="showWardrobe = moduleStep >= 4 ? true : false"
+          @click="showWardrobe = moduleStep >= 9 ? true : false"
         >
           <img src="@/assets/img/modules/module-1/object-5.svg" alt="" />
         </div>
 
-        <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" v-if="showMessageModal">
-            <div class="man-modal__close" @click="closeModalAndNextStep"></div>
-            Дорогой друг, я так ждал тебя. Сегодня мы отправляемся в путешествие
-            к сыроварне «Хохланда». И я хочу рассказать тебе об этой компании...
-            до встречи!
-          </div>
-        </transition>
         <div
           class="arrow-template"
-          v-for="step in 5"
+          v-for="step in [1, 7, 8, 9, 10]"
           :class="[moduleStep == step ? 'show' : '']"
           :data-item="step"
         >
           <div class="arrow-template_img"></div>
         </div>
 
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="1" v-if="moduleStep == 2">
+            <img
+              src="@/assets/img/modules/module-1/dialog-1.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span>
+                Привет, мой дорогой друг! Я так рад, что мы теперь будем
+                работать вместе. Ты уже собрал вещи? Тебя ждет увлекательное
+                путешествие к сыроварне Hochland.
+              </span>
+              <div class="modal-btn" @click="moduleStep = 3">Дальше</div>
+            </div>
+          </div>
+        </transition>
+
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="2" v-if="moduleStep == 3">
+            <img
+              src="@/assets/img/modules/module-1/dialog-2.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span> Привет! Нет, еще не успел. А что нужно делать? </span>
+              <div class="modal-btn" @click="moduleStep = 4">Дальше</div>
+            </div>
+          </div>
+        </transition>
+
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="3" v-if="moduleStep == 4">
+            <img
+              src="@/assets/img/modules/module-1/dialog-3.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span>
+                Следуй инструкции — выбирай светящиеся предметы, и они
+                подскажут, что нужно делать.
+              </span>
+              <div class="modal-btn" @click="moduleStep = 5">Дальше</div>
+            </div>
+          </div>
+        </transition>
+
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="2" v-if="moduleStep == 5">
+            <img
+              src="@/assets/img/modules/module-1/dialog-2.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span> Хорошо, спасибо. А ты поедешь со мной? </span>
+              <div class="modal-btn" @click="moduleStep = 6">Дальше</div>
+            </div>
+          </div>
+        </transition>
+
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="1" v-if="moduleStep == 6">
+            <img
+              src="@/assets/img/modules/module-1/dialog-1.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span>
+                Нет, я буду ждать тебя там, мой рейс отправляется раньше. Но не
+                переживай, ты не останешься один. Тебе всегда помогут. Мне нужно
+                бежать. До встречи на сыроварне!
+              </span>
+              <div class="modal-btn" @click="moduleStep = 7">Дальше</div>
+            </div>
+          </div>
+        </transition>
+
         <transition name="fade" mode="out-in">
-          <div class="modal-template tabs-modal" v-if="isShowSecondStepModal">
+          <div
+            class="modal-template tabs-modal"
+            v-if="isShowTabsModal"
+            ref="tabsModal"
+          >
             <div class="modal-content">
-              <!-- <div
-                class="man-modal__close"
-                @click="isShowSecondStepModal = false"
-              ></div> -->
               <div class="tabs-modal__inner">
                 <div
                   class="mute-btn"
@@ -108,14 +181,240 @@
                   </div>
                 </div>
                 <div class="tabs-content">
-                  {{ tabsList[activeTab].tabContent }}
+                  <div class="tabs-content__inner" v-if="activeTab === 0">
+                    <div class="tabs-content__title">
+                      Настройка оргтехники проходит в первый рабочий день на
+                      встрече с инженером по информационным технологиям. Если
+                      техника еще не готова, то:
+                    </div>
+                    <ul class="tabs-content__list">
+                      <li class="list-item">
+                        <div class="list-item__title">Вариант 1:</div>
+                        <div class="list-item__content">
+                          <p>
+                            Создай запрос в
+                            <a
+                              href="https://ru-it.hochland.com/ESM.do?type=portal"
+                              target="_blank"
+                              >ServiceDesk</a
+                            >
+                            — это основной канал обращения. Приложение можно
+                            найти на домашней странице Портала России —<a
+                              href="https://hochland.sharepoint.com/sites/portal-ru"
+                              target="_blank"
+                              >https://hochland.sharepoint.com/sites/portal-ru</a
+                            >.
+                          </p>
+                        </div>
+                      </li>
+
+                      <li class="list-item">
+                        <div class="list-item__title">Вариант 2:</div>
+                        <div class="list-item__content">
+                          <p>
+                            Напиши письмо на электронный адрес
+                            <a
+                              href="mailto:ru-helpdeskit@hochland.com"
+                              target="_blank"
+                              >ru-helpdeskit@hochland.com</a
+                            >. Для удобства адрес электронной почты Service Desk
+                            выведен на рабочий стол твоего компьютера.
+                          </p>
+                        </div>
+                      </li>
+
+                      <li class="list-item">
+                        <div class="list-item__title">Вариант 3:</div>
+                        <div class="list-item__content">
+                          <p>Позвони по круглосуточному номеру телефона:</p>
+                          <div class="list-item__border-block">
+                            <div class="border-block__row">
+                              <div class="border-block__name">
+                                С внутренних телефонов компании: &nbsp;
+                              </div>
+                              <a
+                                href="tel:1310"
+                                target="_blank"
+                                class="border-block__value"
+                                >1310</a
+                              >
+                            </div>
+                            <div class="border-block__row">
+                              <div class="border-block__name">
+                                C мобильного телефона: &nbsp;
+                              </div>
+                              <a
+                                href="tel:+74957770905"
+                                target="_blank"
+                                class="border-block__value"
+                                >+7 (495) 777-09 05, доб. 1310</a
+                              >
+                            </div>
+                          </div>
+                          <p>
+                            Для удобства номер телефона Service Desk выведен на
+                            твой рабочий стол компьютера. Там же расположена
+                            информация по номеру твоего компьютера и логину для
+                            предоставления дополнительной информации при
+                            обращении в поддержку.
+                          </p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="tabs-content__inner" v-if="activeTab === 1">
+                    <div class="tabs-content__title">Настройка принтера</div>
+                    <div class="tabs-content__title">Lefort, Москва</div>
+                    <div class="tabs-content__title _small">
+                      Чтобы установить принтер, тебе нужно быть подключенным к
+                      Wi-Fi офиса.
+                    </div>
+                    <ol class="ol-list">
+                      <li><span>1. Открой проводник (любую папку).</span></li>
+                      <li>
+                        <span>
+                          2. В адресной строке введи IP-адрес принт-сервера
+                          \\10.10.4.30.
+                        </span>
+                        <img
+                          src="@/assets/img/modules/module-1/tabs-image-1.jpg"
+                          alt=""
+                        />
+                      </li>
+                      <li>
+                        <span
+                          >3. Введи логин и пароль, поставь галочку «Запомнить
+                          учётные данные».
+                        </span>
+                        <div class="pass-content">
+                          <p>Логин: SPACE1\Print_hochland</p>
+                          <p>Пароль: YYrVrSuS22</p>
+                        </div>
+                        <img
+                          src="@/assets/img/modules/module-1/tabs-image-2.jpg"
+                          alt=""
+                        />
+                      </li>
+                      <li>
+                        <span
+                          >4. Выбери необходимый принтер и установи на свой
+                          компьютер:</span
+                        >
+                        <div class="pass-content">
+                          <p>⦁ HLRUMOP007 — у переговорной Grunlander;</p>
+                          <p>⦁ HLRUMOP008 — у переговорной Almette.</p>
+                        </div>
+                        <img
+                          src="@/assets/img/modules/module-1/tabs-image-3.jpg"
+                          alt=""
+                        />
+                      </li>
+                    </ol>
+                    <div class="tabs-content__title _no-margin">
+                      Остальные локации
+                    </div>
+                    <div class="list-item__content">
+                      <p>
+                        Тебя сориентирует ИТ-специалист при приеме на работу и
+                        выдаче ноутбука. Принтер подключается автоматически.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="tabs-content__inner" v-if="activeTab === 2">
+                    <div class="tabs-content__title">
+                      Чтобы получить канцтовары обратись к секретарю:
+                    </div>
+                    <div class="list-item__border-block _three-tab">
+                      <div class="border-block__line">
+                        <div class="border-block__coll">Lefort:</div>
+                        <div class="border-block__coll">
+                          Эллина Ковальская
+                          <a
+                            href="mailto:reception.lefort@hochland.com"
+                            target="_blank"
+                            >reception.lefort@hochland.com</a
+                          ><br />
+                          <a href="tel: +7 (985) 428-63-74" target="_blank">
+                            +7 (985) 428-63-74</a
+                          >
+                          (с 9:00 до 18:00)
+                        </div>
+                      </div>
+                      <div class="border-block__line">
+                        <div class="border-block__coll">РАОС:</div>
+                        <div class="border-block__coll">
+                          Ольга Глубокова
+                          <a
+                            href="mailto:reception.raos@hochland.com"
+                            target="_blank"
+                            >reception.raos@hochland.com</a
+                          ><br />
+                          <a href="tel:+7 (495) 777-09-05-1100" target="_blank"
+                            >+7 (495) 777-09-05-1100</a
+                          >
+                        </div>
+                      </div>
+                      <div class="border-block__line">
+                        <div class="border-block__coll">Прохоровка:</div>
+                        <div class="border-block__coll">
+                          Екатерина Фесенко
+                          <a
+                            href="mailto:ekaterina.fesenko@hochland.com"
+                            target="_blank"
+                            >ekaterina.fesenko@hochland.com</a
+                          ><br />
+                          <a
+                            href="tel:+
+                          (47242) 23570-2102-2256"
+                            target="_blank"
+                            >+ (47242) 23570-2102-2256</a
+                          >
+                        </div>
+                      </div>
+                      <div class="border-block__line">
+                        <div class="border-block__coll">Белинский:</div>
+                        <div class="border-block__coll">
+                          Анна Андрюшкина
+                          <a
+                            href="mailto:anna.andryushkina@hochland.ru"
+                            target="_blank"
+                            >anna.andryushkina@hochland.ru</a
+                          >
+                          <a href="tel:+7(841)532-08-00" target="_blank"
+                            >+7 (841) 532-08-00, доб. 3100</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="list-item__content">
+                      <p>
+                        Всю актуальную информацию о площадке и контакты
+                        секретаря можно найти на портале в разделе “О компании”:
+                        <a
+                          href="https://hochland.sharepoint.com/sites/companyinfo/SitePages/Employee-onboarding-team-home.aspx?OR=Teams-HL&CT=1708436758204"
+                          target="_blank"
+                          >https://hochland.sharepoint.com/sites/companyinfo/SitePages/Employee-onboarding-team-home.aspx?OR=Teams-HL&CT=1708436758204</a
+                        >
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div
                   class="modal-btn"
-                  :class="[!isShowAlTabs ? 'pointer-none' : '']"
-                  @click="setNextStep(3)"
+                  v-if="!isShowAlTabs"
+                  @click="compliteTab"
                 >
                   Прочитано
+                </div>
+                <div
+                  v-else
+                  class="modal-btn"
+                  :class="[!isShowAlTabs ? 'pointer-none' : '']"
+                  @click="setNextStep(8)"
+                >
+                  Далее
                 </div>
               </div>
             </div>
@@ -125,16 +424,12 @@
         <transition name="fade" mode="out-in">
           <div class="modal-template video-modal" v-if="isShowVideoModal">
             <div class="modal-content">
-              <!-- <div
-                class="man-modal__close"
-                @click="isShowVideoModal = false"
-              ></div> -->
               <div class="video-block">
-                <vue-plyr @play="() => console.log('Video Is Play')">
+                <vue-plyr @play="() => (isShowVideoModalNextBtn = true)">
                   <video
                     crossorigin
                     playsinline
-                    poster="@/assets/img/poster.png"
+                    poster="@/assets/img/poster.jpg"
                   >
                     <source
                       src="@/assets/files/video-ex.mp4"
@@ -143,7 +438,13 @@
                   </video>
                 </vue-plyr>
               </div>
-              <div class="modal-btn" @click="setNextStep(4)">Просмотрено</div>
+              <div
+                class="modal-btn"
+                v-if="isShowVideoModalNextBtn"
+                @click="setNextStep(9)"
+              >
+                Просмотрено
+              </div>
             </div>
           </div>
         </transition>
@@ -196,9 +497,13 @@ const store = useGameStore();
 const stepLoad = ref(false);
 const moduleStep = ref(0);
 const isInteractive = ref(false);
+
 const showMessageModal = ref(false);
-const isShowSecondStepModal = ref(false);
+const isShowTabsModal = ref(false);
+const tabsModal = ref(null);
+
 const isShowVideoModal = ref(false);
+const isShowVideoModalNextBtn = ref(false);
 const showWardrobe = ref(false);
 const activeTab = ref(0);
 const featuredTabs = ref([0]);
@@ -211,147 +516,140 @@ const personVisual = ref({
 
 const isMute = ref(false);
 const isShowAlTabs = computed(() => {
-  return featuredTabs.value.length == tabsList.length;
+  return featuredTabs.value.length == tabsList.length + 1;
 });
 
 const tabsList = [
   {
     tabName: "Лист 1",
-    tabContent:
-      "Ты уже определился с корпоративной связью и подал заявку в ServiceDesk, предварительно согласовав с непосредственным руководителем и прикрепив письмо о согласовании к заявке? Если нет, то пора сделать.",
   },
   {
     tabName: "Лист 2",
-    tabContent:
-      "редварительно согласовав с непосредственным руководителем и прикрепив письмо о согласовании к заявке? Если нет, то пора сделать.",
   },
   {
     tabName: "Лист 1",
-    tabContent:
-      "Ты уже определился с корпоративной  предварительно согласовав с непным руководителем и прикрепив письмо о согласовании к заявке? Если нет, то пора сделать.",
   },
 ];
 
 const questionsList = [
   {
     id: 0,
-    title: "В чем заключается ключевая роль корпоративной этики?",
+    title: "К кому нужно обратиться, чтобы получить канцтовары?",
     options: [
       {
         id: 0,
-        title: "Это неотъемлемая часть любого бизнеса",
-        error: "Вы ответили не правильно! Описание  администратором",
+        title: "К директору компании",
+        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Это эффективный инструмент менеджмента",
-        error:
-          "Вы ответили не правильно! Описание ответа создается администратором",
+        title: "К охраннику",
+        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
       },
 
       {
         id: 2,
-        title: "Это ключевой элемент, объединяющий людей",
-        error: "Вы ответили не правильно! Описание ответа ",
+        title: "К секретарю",
+        message: "Молодец! Ты ответил правильно",
         correctAnswer: true,
       },
 
       {
         id: 3,
-        title: "Это способ повысить эффективность команды",
-        error: "Вы ответили не правильно!",
+        title: "К любому из коллег",
+        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
       },
     ],
   },
   {
     id: 1,
-    title: "Второй вопрос",
+    title: "Что нужно сделать перед посещением завода? ",
     options: [
       {
         id: 0,
-        title: "Это неотъемлемая часть любого бизнеса",
-        error: "Вы ответили не правильно! Описание  администратором",
+        title: "Надеть очень яркие вещи, чтобы привлекать внимание",
+        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Это эффективный инструмент менеджмента",
-        error:
-          "Вы ответили не правильно! Описание ответа создается администратором",
+        title: "Снять все ювелирные украшения, часы, пирсинг",
+        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
       },
 
       {
         id: 2,
-        title: "Это ключевой элемент, объединяющий людей",
-        error: "Вы ответили не правильно! Описание ответа ",
+        title: "Сделать короткую стрижку",
+        message: "Молодец! Ты ответил правильно",
         correctAnswer: true,
       },
 
       {
         id: 3,
-        title: "Это способ повысить эффективность команды",
-        error: "Вы ответили не правильно!",
+        title: "Трижды постирать одежду",
+        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
       },
     ],
   },
 ];
 
-const showMessage = () => {
-  if (moduleStep.value == 1) {
-    showMessageModal.value = true;
-    moduleStep.value = 0;
-  }
-};
-
 const setShowQuiz = () => {
-  if (moduleStep.value == 5) {
+  if (moduleStep.value == 10) {
     showQuiz.value = true;
   }
 };
 
-const showVideoModal = () => {
-  isShowVideoModal.value = moduleStep.value < 3 ? false : true;
-};
-
-const closeModalAndNextStep = () => {
-  showMessageModal.value = false;
-  moduleStep.value = 2;
-};
-
-const showSecondStepModal = () => {
-  isShowSecondStepModal.value = true;
-};
-
 const setNextStep = (step) => {
-  if (step == 3) {
-    if (moduleStep.value < 3) {
-      moduleStep.value = 3;
-    }
-    isShowSecondStepModal.value = false;
+  console.log(step);
+  if (step == 2) {
+    showMessageModal.value = true;
   }
-  if (step == 4) {
-    isShowVideoModal.value = !1;
-    if (moduleStep.value < 4) {
-      moduleStep.value = 4;
-    }
+
+  if (step == 8) {
+    isShowTabsModal.value = false;
   }
+
+  if (step == 9) {
+    isShowVideoModal.value = false;
+  }
+
+  moduleStep.value = moduleStep.value < step ? step : moduleStep.value;
 };
 
 const showCurrentTab = (ind) => {
-  activeTab.value = ind;
-  if (!featuredTabs.value.includes(ind)) {
-    featuredTabs.value.push(ind);
+  if (featuredTabs.value.includes(ind)) {
+    // featuredTabs.value.push(ind);
+    activeTab.value = ind;
   }
+  tabsModal.value.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+};
+const compliteTab = () => {
+  if (!featuredTabs.value.includes(activeTab.value + 1)) {
+    featuredTabs.value.push(activeTab.value + 1);
+  }
+  if (activeTab.value == 2) {
+    return;
+  }
+  activeTab.value += 1;
+  tabsModal.value.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
 };
 
 const closeWardrobe = (isComplite) => {
   if (isComplite) {
-    moduleStep.value = 5;
+    moduleStep.value = 10;
   }
   showWardrobe.value = false;
 };
@@ -377,13 +675,14 @@ onMounted(() => {
 
 .arrow-template {
   position: absolute;
-
+  z-index: 4;
   width: 123px;
   height: 215px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
   pointer-events: none;
+
   .arrow-template_img {
     width: 100%;
     height: 100%;
@@ -392,9 +691,11 @@ onMounted(() => {
     background-size: contain;
     background-position: center;
   }
+
   &.show {
     opacity: 1;
     visibility: visible;
+
     .arrow-template_img {
       animation: heartBeat 4s ease-in-out infinite 1s;
     }
@@ -405,43 +706,39 @@ onMounted(() => {
     width: 6%;
     height: 20%;
     top: 3%;
-    z-index: 4;
     transform: rotate(313deg);
   }
 
-  &[data-item="2"] {
+  &[data-item="7"] {
     right: 31.6%;
     width: 7%;
     height: 20%;
     top: 11%;
-    z-index: 4;
     transform: rotate(270deg);
   }
 
-  &[data-item="3"] {
+  &[data-item="8"] {
     right: 33%;
     width: 7%;
     height: 20%;
     top: 19%;
-    z-index: 4;
     transform: rotate(359deg);
   }
 
-  &[data-item="4"] {
+  &[data-item="9"] {
     left: 28%;
     width: 8%;
     height: 25%;
     top: 28%;
-    z-index: 4;
+    z-index: 6;
     transform: rotate(268deg) scaleY(-1);
   }
 
-  &[data-item="5"] {
+  &[data-item="10"] {
     right: 16%;
     width: 8%;
     height: 25%;
     top: 37%;
-    z-index: 4;
     transform: rotate(268deg);
   }
 }
@@ -450,6 +747,7 @@ onMounted(() => {
   cursor: pointer;
   transition: opacity 0.2s ease-in-out, filter 0.5s ease-in-out;
   filter: drop-shadow(0px 6px 0px rgba(0, 0, 0, 0));
+
   &.pulse {
     // filter: drop-shadow(0px 6px 10px #0078dc) drop-shadow(0px -6px 10px #0078dc);
     filter: drop-shadow(0px 6px 10px #00c5ff) drop-shadow(0px -6px 10px #00c5ff);
@@ -461,6 +759,7 @@ onMounted(() => {
     object-fit: contain;
     height: 100%;
   }
+
   position: absolute;
 
   &[data-item="1"] {

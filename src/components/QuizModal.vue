@@ -44,9 +44,7 @@
                   class="option__message"
                   v-if="checkedOption == option.id && validateIsOn"
                 >
-                  {{
-                    isCorrectAnswer ? "Вы ответили правильно!" : option.error
-                  }}
+                  {{ option.message }}
                 </div>
               </div>
             </label>
