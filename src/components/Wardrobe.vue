@@ -207,6 +207,7 @@ watch(currentStepData, () => {
 .wardrobe__content {
   user-select: none;
   background-image: url(@/assets/img/modules/module-1/wardrobe.svg);
+  background-color: #fff;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
