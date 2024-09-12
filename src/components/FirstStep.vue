@@ -527,7 +527,7 @@ const tabsList = [
     tabName: "Лист 2",
   },
   {
-    tabName: "Лист 1",
+    tabName: "Лист 3",
   },
 ];
 
