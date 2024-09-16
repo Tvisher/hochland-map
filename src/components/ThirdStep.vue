@@ -67,7 +67,7 @@
                   >
                     <swiper-slide class="slide-item">
                       <span class="slide-item__title"
-                        >Узнайте о компании Хохланд</span
+                        >Узнай о компании Хохланд</span
                       >
                       <div class="slide-item__inner">
                         <div class="video-block">
@@ -414,20 +414,21 @@ const questionsList = [
         title: "Андрей Голицын",
         correctAnswer: false,
       },
+
       {
         id: 1,
-        title: "Алексей Прохоров",
-        correctAnswer: true,
-      },
-      {
-        id: 2,
         title: "Павел Кузьмин",
         correctAnswer: false,
       },
       {
-        id: 3,
+        id: 2,
         title: "Олег Ферапонтов",
         correctAnswer: false,
+      },
+      {
+        id: 3,
+        title: "Алексей Прохоров",
+        correctAnswer: true,
       },
     ],
   },

@@ -8,8 +8,8 @@
         <div
           class="interactive-item"
           data-item="1"
-          :class="[moduleStep == 4 ? 'pulse' : '']"
-          @click="openStep(4)"
+          :class="[moduleStep == 3 ? 'pulse' : '']"
+          @click="openStep(3)"
         >
           <img src="@/assets/img/modules/module-2/object-1.svg" alt="" />
         </div>
@@ -17,8 +17,8 @@
         <div
           class="interactive-item"
           data-item="2"
-          :class="[moduleStep == 3 ? 'pulse' : '']"
-          @click="openStep(3)"
+          :class="[moduleStep == 2 ? 'pulse' : '']"
+          @click="openStep(2)"
         >
           <img src="@/assets/img/modules/module-2/object-2.svg" alt="" />
         </div>
@@ -26,8 +26,8 @@
         <div
           class="interactive-item"
           data-item="3"
-          :class="[moduleStep == 2 ? 'pulse' : '']"
-          @click="openStep(2)"
+          :class="[moduleStep == 4 ? 'pulse' : '']"
+          @click="openStep(4)"
         >
           <img src="@/assets/img/modules/module-2/object-3.svg" alt="" />
         </div>
@@ -111,7 +111,7 @@
                   автоматически. Если у тебя возникли проблемы — обратись в
                   Service Desk.
                 </div>
-                <div class="modal-btn" @click="compliteStep(2)">Прочитано</div>
+                <div class="modal-btn" @click="compliteStep(4)">Прочитано</div>
               </div>
             </div>
           </div>
@@ -136,11 +136,11 @@
 
                   <ul class="phone-modal__list">
                     <li class="list-item">
-                      Перейди на портал ServiceDesk
+                      Перейди на портал
                       <a
                         href="https://ru-it.hochland.com/ESM.do?type=portal"
                         target="_blank"
-                        >https://ru-it.hochland.com/ESM.do?type=portal</a
+                        >ServiceDesk</a
                       >
                       и авторизуйся в системе.
                     </li>
@@ -183,7 +183,7 @@
                       обрабатывается.
                     </li>
                   </ul>
-                  <div class="modal-btn" @click="compliteStep(3)">
+                  <div class="modal-btn" @click="compliteStep(2)">
                     Прочитано
                   </div>
                 </div>
@@ -245,7 +245,7 @@
                       >
                     </p>
                   </div>
-                  <div class="modal-btn" @click="compliteStep(4)">
+                  <div class="modal-btn" @click="compliteStep(3)">
                     Прочитано
                   </div>
                 </div>
@@ -368,15 +368,15 @@ const openStep = (step) => {
   }
 
   if (step == 2 && currentStep >= 2) {
-    showWiFiModal.value = true;
-  }
-
-  if (step == 3 && currentStep >= 3) {
     showPhoneModal.value = true;
   }
 
-  if (step == 4 && currentStep >= 4) {
+  if (step == 3 && currentStep >= 3) {
     showHummerModal.value = true;
+  }
+
+  if (step == 4 && currentStep >= 4) {
+    showWiFiModal.value = true;
   }
   if (step == 5 && currentStep >= 5) {
     showQuiz.value = true;
@@ -392,21 +392,21 @@ const compliteStep = (step) => {
   }
 
   if (step == 2) {
-    showWiFiModal.value = false;
+    showPhoneModal.value = false;
     if (moduleStep.value < 3) {
       moduleStep.value = 3;
     }
   }
 
   if (step == 3) {
-    showPhoneModal.value = false;
+    showHummerModal.value = false;
     if (moduleStep.value < 4) {
       moduleStep.value = 4;
     }
   }
 
   if (step == 4) {
-    showHummerModal.value = false;
+    showWiFiModal.value = false;
     if (moduleStep.value < 5) {
       moduleStep.value = 5;
     }
@@ -468,7 +468,7 @@ onMounted(() => {
     transform: rotate(190deg) scaleY(-1);
   }
 
-  &[data-item="2"] {
+  &[data-item="4"] {
     right: 37.6%;
     width: 7%;
     height: 20%;
@@ -477,7 +477,7 @@ onMounted(() => {
     transform: rotate(341deg);
   }
 
-  &[data-item="3"] {
+  &[data-item="2"] {
     right: 41%;
     width: 7%;
     height: 20%;
@@ -486,7 +486,7 @@ onMounted(() => {
     transform: rotate(317deg);
   }
 
-  &[data-item="4"] {
+  &[data-item="3"] {
     right: 4%;
     width: 7%;
     height: 20%;
