@@ -55,10 +55,11 @@
         <div class="modal-img">
           <div class="modal-img__man"></div>
         </div>
-        <div class="modal-template__title">Подготовка</div>
+        <div class="modal-template__title">
+          {{ modalInfo ? modalInfo.title : "" }}
+        </div>
         <div class="modal-template__text">
-          В 2017 году наша компания отметила Юбилей. И специально для вас мы
-          собрали коллекцию важных событий нашей истории.
+          {{ modalInfo ? modalInfo.descr : "" }}
         </div>
         <router-link
           v-if="modalData.selectedStep"
@@ -76,7 +77,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useGameStore } from "@/stores/GameStore.js";
 const store = useGameStore();
@@ -86,6 +87,34 @@ const images = ref([]);
 const modalData = ref({
   showModal: false,
   selectedStep: "",
+});
+
+const mapStepsText = [
+  {
+    title: "Подготовка ",
+    descr:
+      "Путешествие начинается! А чтобы оно прошло безупречно, нужно подготовиться. В этом модуле ты узнаешь, как настроить оргтехнику, установить рабочие программы, какую одежду можно носить в офисе и какие правила гигиены важно соблюдать на производстве.",
+  },
+  {
+    title: "Поездка начинается",
+    descr:
+      "Автобус уже ждет тебя. А чтобы было не скучно ехать, по дороге ты узнаешь, как найти контакт любого сотрудника, у кого получить корпоративный мобильный и что делать, если возникли технические сложности.",
+  },
+
+  {
+    title: "В дороге",
+    descr:
+      "Самое время познакомиться с соседями в автобусе. Ведь некоторые из них тоже едут к сыроварне и могут рассказать много интересного. Например, о заводах и руководстве компании. ",
+  },
+  {
+    title: "Успешное бронирование",
+    descr:
+      "Пора сделать остановку и осмотреть окрестности. Бери велосипед и прокатись по городу до ближайшего кафе. А заодно узнай, как забронировать парковочное или рабочее место в офисе.",
+  },
+];
+
+const modalInfo = computed(() => {
+  return mapStepsText[modalData.value.selectedStep - 1];
 });
 
 const loadImages = () => {

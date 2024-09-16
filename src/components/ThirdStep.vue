@@ -52,6 +52,7 @@
                     class="slider-el"
                     :slides-per-view="1"
                     :space-between="50"
+                    :autoHeight="true"
                     @slideChange="onSlideChange"
                     effect="fade"
                     :fadeEffect="{
@@ -77,10 +78,10 @@
                             <video
                               crossorigin
                               playsinline
-                              poster="@/assets/img/poster.png"
+                              poster="@/assets/img/poster.jpg"
                             >
                               <source
-                                src="@/assets/files/video-ex.mp4"
+                                src="@/assets/files/history-video.mp4"
                                 type="video/mp4"
                               />
                             </video>
@@ -90,7 +91,9 @@
                     </swiper-slide>
                     <swiper-slide class="slide-item">
                       <span class="slide-item__title"
-                        >Заводы компании Хохланд в России</span
+                        >Смотри, это один из заводов Hochland! Чуть позже мы
+                        обязательно пойдем туда, а пока давай узнаем немного
+                        истории</span
                       >
                       <div class="slide-item__inner">
                         <div class="factory__wrapper">
@@ -101,14 +104,17 @@
                             />
                           </div>
                           <div class="factory__info">
-                            <div class="factory__title">Московская область</div>
+                            <div class="factory__title">
+                              Завод в поселке РАОС
+                            </div>
                             <div class="factory__descr">
-                              пос. РАОС, д. 16 140126 Раменский район
+                              Московская область,<br />
+                              Раменский район, п. РАОС, 16
                             </div>
                             <div class="factory__text">
-                              Hochland производит плавленый сыр в России с 2000
-                              года. В ноябре 2003 года был введен в эксплуатацию
-                              новый завод в поселке РАОС, Московской области.
+                              В ноябре 2003 года был введен в эксплуатацию в
+                              пос. РАОС Московской области. Занимается
+                              производством плавленого сыра.
                             </div>
                           </div>
                         </div>
@@ -116,7 +122,9 @@
                     </swiper-slide>
                     <swiper-slide class="slide-item">
                       <span class="slide-item__title"
-                        >Заводы компании Хохланд в России</span
+                        >Смотри, это один из заводов Hochland! Чуть позже мы
+                        обязательно пойдем туда, а пока давай узнаем немного
+                        истории</span
                       >
                       <div class="slide-item__inner">
                         <div class="factory__wrapper">
@@ -127,14 +135,14 @@
                             />
                           </div>
                           <div class="factory__info">
-                            <div class="factory__title">пос. Прохоровка</div>
+                            <div class="factory__title">Завод в Прохоровке</div>
                             <div class="factory__descr">
-                              ул. Мичурина, д. 48 309000 Белгородская обл.
+                              Белгородская область,<br />
+                              п. Прохоровка, ул. Мичурина, 48
                             </div>
                             <div class="factory__text">
-                              В июле 2011 году Группа Hochland приобрела завод в
-                              п.Прохоровка, Белгородской области. С середины
-                              2012 года там производятся творожные сыры.
+                              Входит в группу Hochland с 2011 года. Завод
+                              занимается производством творожных сыров.
                             </div>
                           </div>
                         </div>
@@ -142,7 +150,9 @@
                     </swiper-slide>
                     <swiper-slide class="slide-item">
                       <span class="slide-item__title"
-                        >Заводы компании Хохланд в России</span
+                        >Смотри, это один из заводов Hochland! Чуть позже мы
+                        обязательно пойдем туда, а пока давай узнаем немного
+                        истории</span
                       >
                       <div class="slide-item__inner">
                         <div class="factory__wrapper">
@@ -153,16 +163,15 @@
                             />
                           </div>
                           <div class="factory__info">
-                            <div class="factory__title">гор. Белинский</div>
+                            <div class="factory__title">Завод в Белинском</div>
                             <div class="factory__descr">
-                              ул. Ленина, д. 28А 442250 Пензенская обл.
+                              Пензенская область,<br />
+                              г. Белинский, ул. Ленина, 82А
                             </div>
                             <div class="factory__text">
-                              Завод в Белинском, Пензенской области, вошел в
-                              состав Группы в ноябре 2017 года. После
-                              реконструкции на нем планируется производить
-                              продукцию для торговых сетей, а также сырье для
-                              завода в пос. РАОС.
+                              Вошел в состав группы в ноябре 2017 года. Здесь
+                              производят полутвердые сыры, а также сырье для
+                              завода в РАОС
                             </div>
                           </div>
                         </div>
@@ -184,6 +193,9 @@
             <div class="modal-content">
               <!-- <div class="man-modal__close" @click="compliteStep(2)"></div> -->
               <div class="tabs-modal__inner">
+                <div class="tabs-content__title">
+                  А это наши руководители. Давай познакомимся с ними поближе.
+                </div>
                 <div class="tabs-content">
                   <div class="album__wrapper">
                     <swiper
@@ -302,7 +314,7 @@
                     </swiper>
                   </div>
                   <div class="modal-btn" @click="compliteStep(2)">
-                    Прочитано
+                    Просмотрено
                   </div>
                 </div>
               </div>
@@ -321,6 +333,7 @@
               <img
                 src="@/assets/img/modules/module-3/modal-result.png"
                 alt=""
+                rel="preload"
               />
             </div>
             <div class="result__text">
@@ -368,66 +381,52 @@ const albumImagesList = [
 const questionsList = [
   {
     id: 0,
-    title: "В чем заключается ключевая роль корпоративной этики?",
+    title: "На каком заводе производят творожный сыр?",
     options: [
       {
         id: 0,
-        title: "Это неотъемлемая часть любого бизнеса",
-        error: "Вы ответили не правильно! Описание  администратором",
+        title: "Завод в поселке РАОС",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Это эффективный инструмент менеджмента",
-        error:
-          "Вы ответили не правильно! Описание ответа создается администратором",
-        correctAnswer: false,
-      },
-
-      {
-        id: 2,
-        title: "Это ключевой элемент, объединяющий людей",
-        error: "Вы ответили не правильно! Описание ответа ",
+        title: "Завод в Прохоровке",
         correctAnswer: true,
       },
-
+      {
+        id: 2,
+        title: "Завод в Белинском",
+        correctAnswer: false,
+      },
       {
         id: 3,
-        title: "Это способ повысить эффективность команды",
-        error: "Вы ответили не правильно!",
+        title: "Творожный сыр производят на всех трех заводах",
         correctAnswer: false,
       },
     ],
   },
   {
     id: 1,
-    title: "Второй вопрос",
+    title: "Как зовут генерального директора компании?",
     options: [
       {
         id: 0,
-        title: "Это неотъемлемая часть любого бизнеса",
-        error: "Вы ответили не правильно! Описание  администратором",
+        title: "Андрей Голицын",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Это эффективный инструмент менеджмента",
-        error:
-          "Вы ответили не правильно! Описание ответа создается администратором",
-        correctAnswer: false,
-      },
-
-      {
-        id: 2,
-        title: "Это ключевой элемент, объединяющий людей",
-        error: "Вы ответили не правильно! Описание ответа ",
+        title: "Алексей Прохоров",
         correctAnswer: true,
       },
-
+      {
+        id: 2,
+        title: "Павел Кузьмин",
+        correctAnswer: false,
+      },
       {
         id: 3,
-        title: "Это способ повысить эффективность команды",
-        error: "Вы ответили не правильно!",
+        title: "Олег Ферапонтов",
         correctAnswer: false,
       },
     ],
@@ -600,6 +599,7 @@ onMounted(() => {
     width: 21%;
     height: 30%;
     top: 22.7%;
+    z-index: 5;
   }
 
   &[data-item="3"] {

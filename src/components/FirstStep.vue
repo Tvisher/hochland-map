@@ -468,6 +468,7 @@
               <img
                 src="@/assets/img/modules/module-1/modal-result.png"
                 alt=""
+                rel="preload"
               />
             </div>
             <div class="result__text">
@@ -539,27 +540,23 @@ const questionsList = [
       {
         id: 0,
         title: "К директору компании",
-        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
       },
       {
         id: 1,
         title: "К охраннику",
-        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
       },
 
       {
         id: 2,
         title: "К секретарю",
-        message: "Молодец! Ты ответил правильно",
         correctAnswer: true,
       },
 
       {
         id: 3,
         title: "К любому из коллег",
-        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
       },
     ],
@@ -571,28 +568,50 @@ const questionsList = [
       {
         id: 0,
         title: "Надеть очень яркие вещи, чтобы привлекать внимание",
-        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
       },
       {
         id: 1,
         title: "Снять все ювелирные украшения, часы, пирсинг",
-        message: "Ты ошибся. Подумай еще и повтори попытку.",
-        correctAnswer: false,
+        correctAnswer: true,
       },
 
       {
         id: 2,
         title: "Сделать короткую стрижку",
-        message: "Молодец! Ты ответил правильно",
-        correctAnswer: true,
+        correctAnswer: false,
       },
 
       {
         id: 3,
         title: "Трижды постирать одежду",
-        message: "Ты ошибся. Подумай еще и повтори попытку.",
         correctAnswer: false,
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Когда уместно прийти на работу в джинсах?",
+    options: [
+      {
+        id: 0,
+        title: "В день проведения аудита",
+        correctAnswer: false,
+      },
+      {
+        id: 1,
+        title: "В день переговоров с важным клиентом",
+        correctAnswer: false,
+      },
+      {
+        id: 2,
+        title: "В любой день",
+        correctAnswer: false,
+      },
+      {
+        id: 3,
+        title: "В пятницу",
+        correctAnswer: true,
       },
     ],
   },

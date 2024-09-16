@@ -44,7 +44,12 @@
                   class="option__message"
                   v-if="checkedOption == option.id && validateIsOn"
                 >
-                  {{ option.message }}
+                  <!-- {{ option.message }} -->
+                  {{
+                    isCorrectAnswer
+                      ? "Молодец! Ты ответил правильно"
+                      : "Ты ошибся. Подумай еще и повтори попытку."
+                  }}
                 </div>
               </div>
             </label>
@@ -81,7 +86,7 @@ const currentQuestion = computed(
 );
 
 const isCorrectAnswer = computed(() => {
-  if (validateIsOn.value && checkedOption.value) {
+  if (validateIsOn.value && checkedOption.value !== null) {
     return questionsList[currentQuestionIndex.value].options[
       checkedOption.value
     ].correctAnswer;
@@ -93,7 +98,6 @@ const validateAnswer = () => {
     questionsList.length - 1 == currentQuestionIndex.value &&
     buttonText.value == "Далее"
   ) {
-    // console.log("Показать результат");
     showEndScreen.value = true;
     return;
   }
