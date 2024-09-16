@@ -67,7 +67,7 @@
                   >
                     <swiper-slide class="slide-item">
                       <span class="slide-item__title"
-                        >Узнай о компании Хохланд</span
+                        >Узнай о компании Hochland</span
                       >
                       <div class="slide-item__inner">
                         <div class="video-block">
