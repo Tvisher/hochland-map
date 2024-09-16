@@ -1,5 +1,9 @@
 <template>
-  <div class="interactive-map">
+  <div
+    class="interactive-map"
+    v-if="mapPageLoad"
+    :style="{ backgroundImage: `url(${mapBgImagePath})` }"
+  >
     <div class="app-logo">
       <img src="@/assets/img/logo.svg" alt="" />
     </div>
@@ -88,6 +92,7 @@ const modalData = ref({
   showModal: false,
   selectedStep: "",
 });
+const mapPageLoad = ref(false);
 
 const mapStepsText = [
   {
@@ -112,6 +117,8 @@ const mapStepsText = [
       "Пора сделать остановку и осмотреть окрестности. Бери велосипед и прокатись по городу до ближайшего кафе. А заодно узнай, как забронировать парковочное или рабочее место в офисе.",
   },
 ];
+const mapBgImagePath = new URL(`../assets/img/map-bg.svg`, import.meta.url)
+  .href;
 
 const modalInfo = computed(() => {
   return mapStepsText[modalData.value.selectedStep - 1];
@@ -149,6 +156,13 @@ const closeModal = (e) => {
 
 onMounted(() => {
   loadImages();
+  const bgImage = new Image();
+  bgImage.src = mapBgImagePath;
+  bgImage.onload = () => {
+    setTimeout(() => {
+      mapPageLoad.value = true;
+    }, 800);
+  };
 });
 </script>
 
@@ -162,7 +176,7 @@ onMounted(() => {
   }
 }
 .interactive-map {
-  background-image: url("@/assets/img/map-bg.svg");
+  // background-image: url("@/assets/img/map-bg.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top;

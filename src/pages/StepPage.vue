@@ -1,10 +1,5 @@
 <template>
   <div v-if="stepIsOpen">
-    <!-- <FirstStep v-if="step == 1" />
-    <SecondStep v-if="step == 2" />
-    <ThirdStep v-if="step == 3" />
-    <FourthStep v-if="step == 4" />
-    <FiveStep v-if="step == 5" /> -->
     <component :is="currentStep"></component>
   </div>
   <div v-else>модуль закрыт</div>
