@@ -199,10 +199,11 @@
                               >ServiceDesk</a
                             >
                             — это основной канал обращения. Приложение можно
-                            найти на домашней странице Портала России —<a
+                            найти на домашней странице
+                            <a
                               href="https://hochland.sharepoint.com/sites/portal-ru"
                               target="_blank"
-                              >https://hochland.sharepoint.com/sites/portal-ru</a
+                              >Портала России</a
                             >.
                           </p>
                         </div>
@@ -382,6 +383,7 @@
                             target="_blank"
                             >anna.andryushkina@hochland.ru</a
                           >
+                          <br />
                           <a href="tel:+7(841)532-08-00" target="_blank"
                             >+7 (841) 532-08-00, доб. 3100</a
                           >
@@ -391,11 +393,11 @@
                     <div class="list-item__content">
                       <p>
                         Всю актуальную информацию о площадке и контакты
-                        секретаря можно найти на портале в разделе “О компании”:
+                        секретаря можно найти на портале в разделе
                         <a
                           href="https://hochland.sharepoint.com/sites/companyinfo/SitePages/Employee-onboarding-team-home.aspx?OR=Teams-HL&CT=1708436758204"
                           target="_blank"
-                          >https://hochland.sharepoint.com/sites/companyinfo/SitePages/Employee-onboarding-team-home.aspx?OR=Teams-HL&CT=1708436758204</a
+                          >“О компании”</a
                         >
                       </p>
                     </div>
@@ -422,14 +424,18 @@
         </transition>
 
         <transition name="fade" mode="out-in">
-          <div class="modal-template video-modal" v-if="isShowVideoModal">
+          <div class="modal-template video-modal" v-show="isShowVideoModal">
             <div class="modal-content">
+              <div class="tabs-content__title">
+                Несколько важных правил, которые тебе нужно знать перед поездкой
+                на сыроварню
+              </div>
               <div class="video-block">
-                <vue-plyr @play="() => (isShowVideoModalNextBtn = true)">
+                <vue-plyr @ended="() => (isShowVideoModalNextBtn = true)">
                   <video
                     crossorigin
                     playsinline
-                    poster="@/assets/img/poster.jpg"
+                    poster="@/assets/img/poster-1.jpg"
                   >
                     <source
                       src="@/assets/files/video-ex.mp4"
@@ -578,7 +584,7 @@ const questionsList = [
 
       {
         id: 2,
-        title: "Сделать короткую стрижку",
+        title: "Месяц каждое утро измерять температуру тела",
         correctAnswer: false,
       },
 

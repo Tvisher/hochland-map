@@ -839,6 +839,8 @@
   img {
     display: block;
     margin: 40px 0;
+    height: auto;
+    max-width: 100%;
   }
 }
 
@@ -920,7 +922,8 @@
 
 .video-modal {
   .modal-content {
-    padding-left: 0;
+    // padding-left: 0;
+    padding-left: fromWidth(300);
     background-size: fromWidth(180) fromWidth(180);
     background-position: top fromWidth(60) left fromWidth(40);
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='189' height='187' viewBox='0 0 189 187' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg filter='url(%23filter0_d_2093_6093)'%3e%3ccircle cx='95' cy='90' r='90' fill='%23B2D2DC'/%3e%3c/g%3e%3cpath d='M169.822 28.3988H20.4316C16.7887 28.3988 13.8356 31.3471 13.8356 34.9839V133.316C13.8356 136.952 16.7887 139.901 20.4316 139.901H169.822C173.465 139.901 176.418 136.952 176.418 133.316V34.9839C176.418 31.3471 173.465 28.3988 169.822 28.3988Z' fill='white'/%3e%3cpath d='M169.822 139.99C119.817 139.99 69.7232 141.769 19.7183 140.791C11.7853 140.079 12.9441 130.824 13.1224 125.218C13.4789 97.6314 13.4789 68.8883 13.3006 41.3911C12.944 35.6958 12.6766 27.8649 20.4314 27.6869C69.3666 27.153 118.391 26.886 167.326 27.064C178.379 26.1741 178.112 34.717 177.666 43.1708C177.577 69.1553 176.774 100.835 176.596 126.997C176.774 132.337 177.22 139.99 169.822 140.168V139.99ZM169.822 139.723C176.864 139.545 176.418 131.981 176.151 126.82C175.794 97.5425 175.17 63.816 174.992 34.717C175.794 25.9961 150.658 30.9795 144.24 29.7336C112.686 29.7336 81.0433 29.5557 49.4895 29.2887C39.7738 29.2887 30.058 29.1107 20.3423 29.0217C13.6571 29.0217 14.2811 36.4967 14.3702 41.3021C14.1028 68.7994 14.192 97.5424 14.5485 125.129C14.7268 129.845 13.2115 139.367 20.788 138.833C70.4362 137.943 120.085 139.545 169.733 139.634L169.822 139.723Z' fill='black'/%3e%3cpath d='M169.287 37.7427H21.0554V130.557H169.287V37.7427Z' fill='url(%23paint0_linear_2093_6093)'/%3e%3cpath d='M112.508 36.3187L110.904 39.0774L58.5816 129.311L57.2445 131.625C48.331 131.625 39.4175 131.447 30.504 131.358L31.4845 129.578L81.7567 38.8994L83.1828 36.4077C92.3638 36.4077 103.417 36.3187 112.508 36.3187Z' fill='white'/%3e%3cpath d='M140.854 36.3188L139.249 39.1665L86.9268 129.489L85.6789 131.625C81.6678 131.625 77.7459 131.625 73.7348 131.625L74.9827 129.311L125.077 39.0775L126.681 36.2298C131.227 36.2298 136.486 36.2298 140.943 36.2298L140.854 36.3188Z' fill='white'/%3e%3cpath d='M169.287 36.4077C120.441 36.8527 68.8321 35.0729 20.3426 37.7426C20.7882 67.3755 20.7882 100.924 20.3426 130.557C68.5647 133.583 120.352 130.735 169.466 130.557C168.663 102.971 173.031 62.2142 169.466 36.4077H169.287ZM168.396 83.7493L169.109 130.379C119.817 129.578 70.2583 128.866 20.9665 129.667C21.2339 129.667 21.5013 129.667 21.7687 129.667C21.323 100.568 21.7687 38.3655 21.7687 38.3655C70.2582 38.8994 168.396 38.8994 167.95 38.9884C168.129 53.8494 168.218 68.7103 168.396 83.7493Z' fill='black'/%3e%3cpath d='M93.166 33.4711C92.4529 30.8905 96.464 29.9116 97.0879 32.4923C97.801 35.0729 93.7899 36.0518 93.166 33.4711Z' fill='black'/%3e%3cpath d='M188.719 139.634C128.374 138.032 61.7905 138.299 1.53508 139.278C-1.04984 144.706 6.25921 152.003 12.1421 151.38C21.6796 151.38 31.3062 151.38 40.8437 151.38C86.7483 152.715 132.564 151.558 178.468 151.024C184.262 151.291 190.145 145.151 188.808 139.634H188.719Z' fill='black'/%3e%3cdefs%3e%3cfilter id='filter0_d_2093_6093' x='0' y='0' width='185' height='185' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3e%3cfeFlood flood-opacity='0' result='BackgroundImageFix'/%3e%3cfeColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha'/%3e%3cfeOffset dx='-5' dy='5'/%3e%3cfeComposite in2='hardAlpha' operator='out'/%3e%3cfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/%3e%3cfeBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow_2093_6093'/%3e%3cfeBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow_2093_6093' result='shape'/%3e%3c/filter%3e%3clinearGradient id='paint0_linear_2093_6093' x1='1' y1='89.4401' x2='189' y2='89.4401' gradientUnits='userSpaceOnUse'%3e%3cstop stop-color='%230ABBEF'/%3e%3cstop offset='0.2' stop-color='%230D9ACF'/%3e%3cstop offset='0.8' stop-color='%2314598E'/%3e%3cstop offset='1' stop-color='%23174075'/%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e ");
@@ -928,7 +931,7 @@
 }
 
 .video-modal .modal-btn {
-  margin-left: fromWidth(300);
+  // margin-left: fromWidth(300);
   margin-top: fromWidth(30);
 }
 
@@ -939,7 +942,7 @@
     width: 100.2%;
     height: 100.2%;
   }
-  margin-left: fromWidth(300);
+  // margin-left: fromWidth(300);
   height: fromWidth(420);
   border-radius: fromWidth(20);
   border: 2px solid rgba(255, 255, 255, 0.8);
@@ -986,8 +989,8 @@
   background-repeat: no-repeat;
   background-size: fromWidth(66);
   background-position: center;
-  border-radius: 32px;
-  border: 4px solid #000;
+  border-radius: fromWidth(32);
+  border: fromWidth(4) solid #000;
   background-color: #fff;
 
   &.selected {
@@ -1043,7 +1046,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  border: 3px solid #000;
+  border: fromWidth(3) solid #000;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   overflow: hidden;
 
@@ -1087,7 +1090,7 @@
   position: absolute;
   bottom: fromWidth(51);
   left: fromWidth(71);
-  border: 3px solid #000;
+  border: fromWidth(3) solid #000;
   box-shadow: fromWidth(5) fromWidth(5) 0px 0px #000;
   display: flex;
   align-items: flex-start;
@@ -1132,7 +1135,7 @@
   fill: rgba(35, 194, 241, 0.1);
   backdrop-filter: blur(15px);
   border-radius: fromWidth(30);
-  border: 3px solid #000;
+  border: fromWidth(3) solid #000;
   width: fit-content;
   position: absolute;
   padding-right: fromWidth(213);
@@ -1248,9 +1251,9 @@
   }
 }
 
-.quiz-modal__inner {
-  padding-left: fromWidth(300);
-}
+// .quiz-modal__inner {
+//   padding-left: fromWidth(300);
+// }
 
 .quiz-modal__counter {
   color: #888;
@@ -1380,7 +1383,7 @@
 .quiz-modal__result {
   padding-top: fromWidth(550);
   position: relative;
-  margin-left: fromWidth(300);
+  // margin-left: fromWidth(300);
   border-radius: fromWidth(20);
   border: 4px solid #000;
   background: linear-gradient(
