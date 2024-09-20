@@ -7,13 +7,16 @@
       <div class="step-wrapper__content">
         <div
           class="step-wrapper__content_bg"
-          :class="{ show: moduleStep >= 2 }"
+          :class="{ show: moduleStep >= 5, hideWoman: moduleStep > 5 }"
         ></div>
-        <div class="bg-element" :class="{ show: moduleStep >= 2 }"></div>
+        <div
+          class="bg-element"
+          :class="{ show: moduleStep > 8 && moduleStep < 24 }"
+        ></div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 2 ? 'pulse' : '']"
+          :class="[moduleStep == 6 ? 'pulse' : '']"
           data-item="1"
           @click="showPhotoAlbumModal = true"
         >
@@ -22,7 +25,7 @@
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 3 ? 'pulse' : '']"
+          :class="[moduleStep == 8 ? 'pulse' : '']"
           data-item="2"
           @click="showSliderModal = true"
         >
@@ -31,28 +34,407 @@
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 5 ? 'pulse show' : '']"
+          :class="[moduleStep == 24 ? 'pulse show' : '']"
           data-item="3"
+          @click="showQuiz = true"
         >
           <img src="@/assets/img/modules/module-5/object-3.svg" alt="" />
         </div>
 
         <div
           class="arrow-template"
-          v-for="step in 3"
+          v-for="step in [6, 8, 24]"
           :class="[moduleStep == step ? 'show' : '']"
           :data-item="step"
         >
           <div class="arrow-template_img"></div>
         </div>
 
+        <!-- data-modal-dialog="4" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" v-if="moduleStep == 1">
-            <div class="man-modal__close" @click="compliteStep(1)"></div>
-            Дорогой друг, я так ждал тебя. Сегодня мы отправляемся в путешествие
-            к сыроварне «Хохланда». И я хочу рассказать тебе об этой компании...
-            до встречи!
-            <div class="modal-btn" @click="compliteStep(1)">Прочитано</div>
+          <div class="man-modal" data-modal-dialog="4" v-if="moduleStep == 1">
+            <img
+              src="@/assets/img/modules/module-5/dialog-1.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span> Как вам кофе? </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 2">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="5" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="5" v-if="moduleStep == 2">
+            <img
+              src="@/assets/img/modules/module-5/dialog-2.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span>
+                Спасибо, очень вкусно. Я весь день в дороге до сыроварни и
+                мечтал о нем.
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 3">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="6" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="6" v-if="moduleStep == 3">
+            <img
+              src="@/assets/img/modules/module-5/dialog-3.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span>
+                Могу ли я еще что-то принести для вас? У нас много свежей
+                выпечки.
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 4">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="7" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="7" v-if="moduleStep == 4">
+            <img
+              src="@/assets/img/modules/module-5/dialog-2.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span>
+                О, я бы не отказался от кусочка торта. Или эклера. Давайте я
+                изучу меню и позову вас.
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 5">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="8" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="8" v-if="moduleStep == 5">
+            <img
+              src="@/assets/img/modules/module-5/dialog-1.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span>Да, конечно. </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 6">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="9" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="9" v-if="moduleStep == 10">
+            <img
+              src="@/assets/img/modules/module-5/dialog-5.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >Привет! Меня зовут Борис. Я журналист из местной газеты. Я
+                услышал, что вы едете на сыроварню в Hochland, а я как раз пишу
+                статью об этой компании. Можно я задам вам несколько вопросов?
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 11">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="10" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="10" v-if="moduleStep == 11">
+            <img
+              src="@/assets/img/modules/module-5/dialog-6.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >SOS! Я никогда не общался с прессой, что <br />
+                мне делать… Наверное, пара минут общения <br />
+                никак не навредит компании, а мое имя<br />
+                опубликуют в газете и коллеги узнают обо<br />
+                мне. Страшно, конечно, но попробовать же<br />
+                можно.
+              </span>
+            </div>
+            <div class="modal-btn__ball" @click="moduleStep = 12"></div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="11" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="11" v-if="moduleStep == 12">
+            <img
+              src="@/assets/img/modules/module-5/dialog-7.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span> Привет. Конечно, чем я могу помочь? </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 13">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="12" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="12" v-if="moduleStep == 13">
+            <img
+              src="@/assets/img/modules/module-5/dialog-8.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >Я слышал, что компания хочет запустить новый продукт. Вы можете
+                мне рассказать о нем?
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 14">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="13" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="13" v-if="moduleStep == 14">
+            <img
+              src="@/assets/img/modules/module-5/dialog-6.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >Ох! Я думал, что вопросы будут легче. <br />
+                Сотрудникам же запрещено делать <br />
+                заявления от лица компании без<br />
+                письменного согласования с генеральным <br />
+                директором. Да и любой материал потом <br />
+                журналист тоже должен будет согласовать <br />
+                с ним до публикации.
+              </span>
+            </div>
+            <div class="modal-btn__ball" @click="moduleStep = 15"></div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="14" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="14" v-if="moduleStep == 15">
+            <img
+              src="@/assets/img/modules/module-5/dialog-7.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >Нет, к сожалению, на этот вопрос я не могу вам ответить.
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 16">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="15" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="15" v-if="moduleStep == 16">
+            <img
+              src="@/assets/img/modules/module-5/dialog-9.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span>Ну намекните хотя бы на состав нового продукта. </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 17">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="16" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="16" v-if="moduleStep == 17">
+            <img
+              src="@/assets/img/modules/module-5/dialog-10.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >Я не вправе делать заявления от лица компании, но вы можете
+                оставить запрос через специальную форму на сайте компании.
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 18">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="17" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="17" v-if="moduleStep == 18">
+            <img
+              src="@/assets/img/modules/module-5/dialog-11.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >Это займет время. А у меня <br />
+                горят сроки, я должен сдать статью уже завтра. Помогите мне,
+                пожалуйста. Иначе меня уволят.
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 19">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="18" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="18" v-if="moduleStep == 19">
+            <img
+              src="@/assets/img/modules/module-5/dialog-6.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >Жалко его, конечно, но даже если бы я знал <br />
+                официальную позицию компании по <br />
+                анонсированию нового продукта, я не могу вот так делиться ей со
+                всеми, еще и в устной форме
+              </span>
+            </div>
+            <div class="modal-btn__ball" @click="moduleStep = 20"></div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="19" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="19" v-if="moduleStep == 20">
+            <img
+              src="@/assets/img/modules/module-5/dialog-7.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >К сожалению, я ничем не могу вам помочь. Мне очень жаль.
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 21">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="20" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="20" v-if="moduleStep == 21">
+            <img
+              src="@/assets/img/modules/module-5/dialog-9.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >Неужели вам жалко? Я был уверен, что вы поможете мне…
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 22">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- data-modal-dialog="21" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="21" v-if="moduleStep == 22">
+            <img
+              src="@/assets/img/modules/module-5/dialog-12.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span
+                >Когда новый продукт выйдет, информацию о нем вы сможете
+                прочитать на официальных ресурсах:
+                <a href="https://www.hochland-group.com/ru" target="_blank"
+                  >корпоративном сайте группы</a
+                >
+                и нашего главного бренда
+                <a href="https://www.hochland.ru/" target="_blank"
+                  >www.hochland.ru</a
+                >, а также в официальной
+                <a href="https://vk.com/hochland" target="_blank">
+                  группе Hochland во «ВКонтакте»</a
+                >
+                и на канале
+                <a href="https://t.me/hochland_russia" target="_blank"
+                  >Hochland Russia в «Телеграме»</a
+                >
+                и
+                <a href="https://dzen.ru/hochlandrussia" target="_blank"
+                  >«Дзене»</a
+                >.
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 23">
+                Прочитано
+              </div>
+            </div>
+          </div>
+        </transition>
+        <!-- data-modal-dialog="22" -->
+        <transition name="fade-scale" mode="out-in">
+          <div class="man-modal" data-modal-dialog="22" v-if="moduleStep == 23">
+            <img
+              src="@/assets/img/modules/module-5/dialog-9.svg"
+              class="bgimage"
+              alt=""
+            />
+            <div class="man-modal__content">
+              <span>
+                Хорошо, я все понял, оставляю вас пить кофе в одиночестве.
+              </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 24">
+                Прочитано
+              </div>
+            </div>
           </div>
         </transition>
 
@@ -66,123 +448,10 @@
               <div class="tabs-modal__inner">
                 <div class="tabs-content">
                   <div class="album__wrapper">
-                    <swiper
-                      class="album__slider"
-                      :modules="[Navigation, Pagination, EffectFade]"
-                      :slides-per-view="1"
-                      effect="fade"
-                      :fadeEffect="{
-                        crossFade: true,
-                      }"
-                      :pagination="{
-                        el: '.album-pagination',
-                        type: 'fraction',
-                      }"
-                      :navigation="{
-                        prevEl: '.album-prev-btn',
-                        nextEl: '.album-next-btn',
-                      }"
-                    >
-                      <swiper-slide
-                        class="slide-item"
-                        v-for="imagePath in albumImagesList"
-                      >
-                        <img :src="imagePath" alt="" />
-                      </swiper-slide>
-                      <template v-slot:container-start>
-                        <div class="album-head">
-                          <div class="nav-buttons">
-                            <div class="album-prev-btn album-head-btn">
-                              <svg
-                                width="22"
-                                height="28"
-                                viewBox="0 0 22 28"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M3.84185 17.2839C1.82355 15.502 1.82355 12.4975 3.84185 10.7156L11.466 3.98463C13.3387 2.3313 16.2839 2.3313 18.1566 3.98463C20.1749 5.7665 20.1749 8.77101 18.1566 10.5529L14.2524 13.9998L18.1566 17.4466C20.1749 19.2285 20.1749 22.233 18.1566 24.0149C16.2839 25.6682 13.3387 25.6682 11.466 24.0149L3.84185 17.2839Z"
-                                  fill="#0ABAEE"
-                                  stroke="black"
-                                  stroke-width="4"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                />
-                              </svg>
-                            </div>
-                            <div class="album-next-btn album-head-btn">
-                              <svg
-                                width="22"
-                                height="28"
-                                viewBox="0 0 22 28"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M18.1581 17.2839C20.1764 15.502 20.1765 12.4975 18.1581 10.7156L10.534 3.98463C8.66131 2.3313 5.71608 2.3313 3.84337 3.98463C1.82507 5.7665 1.82507 8.77101 3.84337 10.5529L7.74761 13.9998L3.84337 17.4466C1.82507 19.2285 1.82507 22.233 3.84337 24.0149C5.71608 25.6682 8.6613 25.6682 10.534 24.0149L18.1581 17.2839Z"
-                                  fill="#0ABAEE"
-                                  stroke="black"
-                                  stroke-width="4"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                />
-                              </svg>
-                            </div>
-                          </div>
-                          <div class="album-pagination"></div>
-                          <span class="album__title"
-                            >Фотоальбом компании Хохланд</span
-                          >
-                          <div class="nav-buttons">
-                            <a
-                              href="javascript:void(0)"
-                              class="load-btn album-head-btn"
-                            >
-                              <svg
-                                width="32"
-                                height="32"
-                                viewBox="0 0 32 32"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M19.5 4.85714C19.5 2.9003 17.8264 1.5 16 1.5C14.1736 1.5 12.5 2.9003 12.5 4.85714V8.32269C11.2166 7.73947 9.63981 7.94682 8.56511 8.94475C7.14496 10.2635 7.14496 12.4508 8.56511 13.7695L13.5651 18.4124C14.9217 19.6721 17.0783 19.6721 18.4349 18.4124L23.4349 13.7695C24.855 12.4508 24.855 10.2635 23.4349 8.94476C22.3602 7.94682 20.7834 7.73947 19.5 8.32269V4.85714ZM8.5 21.5714C8.5 19.6146 6.82637 18.2143 5 18.2143C3.17363 18.2143 1.5 19.6146 1.5 21.5714V25.2857C1.5 26.706 2.10862 28.0435 3.1509 29.0113C4.18942 29.9756 5.5757 30.5 7 30.5H25C26.4243 30.5 27.8106 29.9756 28.8491 29.0113C29.8914 28.0435 30.5 26.706 30.5 25.2857V21.5714C30.5 19.6146 28.8264 18.2143 27 18.2143C25.1736 18.2143 23.5 19.6146 23.5 21.5714V23.7857H8.5V21.5714Z"
-                                  fill="#0ABAEE"
-                                  stroke="black"
-                                  stroke-width="3"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                />
-                              </svg>
-                            </a>
-                            <a
-                              href="javascript:void(0)"
-                              class="show-btn album-head-btn"
-                            >
-                              <svg
-                                width="32"
-                                height="32"
-                                viewBox="0 0 32 32"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M28.7915 3.20854L27.7308 4.2692L28.7915 3.20854C27.6975 2.11458 26.2138 1.5 24.6667 1.5H21.7778C19.6198 1.5 17.8704 3.24941 17.8704 5.40741C17.8704 7.56541 19.6198 9.31482 21.7778 9.31482H22.6852V10.2222C22.6852 12.3802 24.4346 14.1296 26.5926 14.1296C28.7506 14.1296 30.5 12.3802 30.5 10.2222V7.33333C30.5 5.78624 29.8854 4.30251 28.7915 3.20854ZM3.20854 28.7915L4.2692 27.7308L3.20854 28.7915C4.30251 29.8854 5.78624 30.5 7.33333 30.5H10.2222C12.3802 30.5 14.1296 28.7506 14.1296 26.5926C14.1296 24.4346 12.3802 22.6852 10.2222 22.6852H9.31482V21.7778C9.31482 19.6198 7.56541 17.8704 5.40741 17.8704C3.24941 17.8704 1.5 19.6198 1.5 21.7778V24.6667C1.5 26.2138 2.11458 27.6975 3.20854 28.7915ZM7.33333 1.5C5.78624 1.5 4.30251 2.11458 3.20854 3.20854C2.11458 4.30251 1.5 5.78624 1.5 7.33333V10.2222C1.5 12.3802 3.24941 14.1296 5.40741 14.1296C7.56541 14.1296 9.31482 12.3802 9.31482 10.2222V9.31482H10.2222C12.3802 9.31482 14.1296 7.56541 14.1296 5.40741C14.1296 3.24941 12.3802 1.5 10.2222 1.5H7.33333ZM30.5 21.7778C30.5 19.6198 28.7506 17.8704 26.5926 17.8704C24.4346 17.8704 22.6852 19.6198 22.6852 21.7778V22.6852H21.7778C19.6198 22.6852 17.8704 24.4346 17.8704 26.5926C17.8704 28.7506 19.6198 30.5 21.7778 30.5H24.6667C26.2138 30.5 27.6975 29.8854 28.7915 28.7915C29.8854 27.6975 30.5 26.2138 30.5 24.6667V21.7778Z"
-                                  fill="#0ABAEE"
-                                  stroke="black"
-                                  stroke-width="3"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                />
-                              </svg>
-                            </a>
-                          </div>
-                        </div>
-                      </template>
-                    </swiper>
+                    <AlbumSlider :albumImagesList="albumImagesList" />
                   </div>
-                  <div class="modal-btn" @click="compliteStep(2)">
-                    Прочитано
+                  <div class="modal-btn" @click="compliteStep(7)">
+                    Просмотрено
                   </div>
                 </div>
               </div>
@@ -192,43 +461,41 @@
 
         <transition name="fade" mode="in-out">
           <div
-            class="modal-template slider-modal mobile-modal"
+            class="modal-template slider-modal mobile-modal five_module_slider"
             v-show="showSliderModal"
           >
             <div class="modal-content">
-              <div class="man-modal__close" @click="compliteStep(3)"></div>
+              <div class="man-modal__close" @click="compliteStep(8)"></div>
               <div class="tabs-modal__inner">
                 <div class="tabs-content">
-                  Как правильно и не правильно поступать
-                  <swiper
-                    class="slider-el"
-                    :slides-per-view="1"
-                    :space-between="50"
-                    effect="fade"
-                    :fadeEffect="{
-                      crossFade: true,
-                    }"
-                    :navigation="{
-                      prevEl: '.slider-prev-btn',
-                      nextEl: '.slider-next-btn',
-                    }"
-                    :modules="[Navigation, Pagination, EffectFade]"
-                    :pagination="{ clickable: true }"
-                  >
-                    <swiper-slide class="slide-item">
-                      <div class="slide-item__inner">
-                        <div class="factory__wrapper"></div>
-                      </div>
-                    </swiper-slide>
-                    <div class="nav-buttons">
-                      <div class="slider-prev-btn">Назад</div>
-                      <div class="slider-next-btn">Дальше</div>
-                    </div>
-                  </swiper>
+                  <FiveModuleSlider />
                 </div>
               </div>
             </div>
           </div>
+        </transition>
+
+        <transition name="fade" mode="out-in">
+          <QuizModal
+            v-if="showQuiz"
+            @modalClose="showQuiz = false"
+            :questionsList="questionsList"
+            :step="5"
+          >
+            <div class="result__image">
+              <img
+                src="@/assets/img/modules/module-5/modal-result.png"
+                alt=""
+                rel="preload"
+              />
+            </div>
+            <div class="result__text">
+              Вы ответили правильно на все вопросы!
+            </div>
+            <div class="result__btn" @click="compliteModule">
+              Перейти на следующий этап
+            </div>
+          </QuizModal>
         </transition>
       </div>
     </div>
@@ -237,10 +504,9 @@
 
 <script setup>
 import QuizModal from "@/components/QuizModal.vue";
+import FiveModuleSlider from "@/components/FiveModuleSlider.vue";
+import AlbumSlider from "@/components/AlbumSlider.vue";
 import { ref, onMounted, computed } from "vue";
-
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation, Pagination, EffectFade } from "swiper/modules";
 
 import { useRouter } from "vue-router";
 const router = useRouter();
@@ -263,44 +529,114 @@ const albumImagesList = [
   "https://imagedelivery.net/4_JwVYxosZqzJ7gIDJgTLA/e68bc7f9-c34f-4321-9cf9-f88c0fc43300/16x9",
 ];
 
-const openStep = (step) => {
-  const currentStep = moduleStep.value;
-  if (step == 1 && currentStep >= 1) {
-    showSliderModal.value = true;
-  }
+const questionsList = [
+  {
+    id: 0,
+    title:
+      "Как называется сборник правил поведения для сотрудников и деловых партнеров Hochland?",
+    options: [
+      {
+        id: 0,
+        title: "Сборник поведенческих принципов",
+        correctAnswer: false,
+      },
+      {
+        id: 1,
+        title: "Кодекс поведения",
+        correctAnswer: true,
+      },
+      {
+        id: 2,
+        title: "Корпоративный глоссарий",
+        correctAnswer: false,
+      },
+      {
+        id: 3,
+        title: "Домовой устав",
+        correctAnswer: false,
+      },
+    ],
+  },
+  {
+    id: 1,
+    title: "Что означает в MS Teams иконка белого «кирпича» на красном фоне?",
+    options: [
+      {
+        id: 0,
+        title: "Сотрудник ушел на обед",
+        correctAnswer: false,
+      },
+      {
+        id: 1,
+        title: "Сотрудник в отпуске",
+        correctAnswer: false,
+      },
 
-  if (step == 2 && currentStep >= 2) {
-    showPhotoAlbumModal.value = true;
-  }
-  if (step == 3 && currentStep >= 3) {
-    showQuiz.value = true;
-  }
-};
+      {
+        id: 2,
+        title: "Сотрудник больше не работает в компании",
+        correctAnswer: false,
+      },
+
+      {
+        id: 3,
+        title:
+          "Сотрудник в данный момент демонстрирует свой экран на онлайн-встрече",
+        correctAnswer: true,
+      },
+    ],
+  },
+  {
+    id: 2,
+    title:
+      "Может ли сотрудник делать заявление от лица компании без согласования генерального директора",
+    options: [
+      {
+        id: 0,
+        title:
+          "Да, сотрудник может делиться любой информацией о компании и делать заявления",
+        correctAnswer: false,
+      },
+      {
+        id: 1,
+        title: "Да, только если журналист обещает анонимность",
+        correctAnswer: false,
+      },
+
+      {
+        id: 2,
+        title: "Да, если журналист близкий друг и ты ему доверяешь",
+        correctAnswer: false,
+      },
+
+      {
+        id: 3,
+        title:
+          "Нет. Без письменного согласования генерального директора запрещено делать любые заявления от лица компании",
+        correctAnswer: true,
+      },
+    ],
+  },
+];
 
 const compliteStep = (step) => {
-  if (step == 1) {
-    if (moduleStep.value < 2) {
-      moduleStep.value = 2;
-    }
-  }
-
-  if (step == 2) {
+  if (step == 7) {
     showPhotoAlbumModal.value = false;
-    if (moduleStep.value < 3) {
-      moduleStep.value = 3;
+    if (moduleStep.value < 8) {
+      moduleStep.value = 8;
     }
   }
 
-  if (step == 3) {
+  if (step == 8) {
     showSliderModal.value = false;
-    if (moduleStep.value <= 4) {
-      moduleStep.value = 4;
+    if (moduleStep.value <= 9) {
+      moduleStep.value = 10;
     }
   }
 };
 
 const compliteModule = () => {
-  store.openNewStep(4);
+  store.openNewStep(6);
   router.push("/");
 };
 
@@ -353,7 +689,7 @@ onMounted(() => {
 }
 
 .step-wrapper__content {
-  background-image: url(@/assets/img/modules/module-5/module-5-bg-1.svg);
+  background-image: url(@/assets/img/modules/module-5/module-5-bg-0.svg);
 }
 
 .step-wrapper__content_bg {
@@ -367,10 +703,28 @@ onMounted(() => {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-
   &.show {
     opacity: 1;
     visibility: visible;
+  }
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-image: url(@/assets/img/modules/module-5/module-5-bg-1.svg);
+    background-size: contain;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    // opacity: 0;
+    // visibility: hidden;
+  }
+  &.hideWoman {
+    &::before {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 }
 
@@ -402,26 +756,31 @@ onMounted(() => {
     }
   }
 
-  &[data-item="1"] {
-    display: none;
-  }
-
-  &[data-item="2"] {
-    right: 35.2%;
+  &[data-item="6"] {
+    right: 59%;
     width: 6%;
     height: 20%;
-    top: 53%;
+    bottom: 7%;
     z-index: 4;
-    transform: rotate(209deg) scaleY(-1);
+    transform: rotate(259deg);
   }
 
-  &[data-item="3"] {
+  &[data-item="8"] {
     left: 73.6%;
     width: 6%;
     height: 18%;
     top: 67%;
     z-index: 4;
     transform: rotate(277deg) scaleY(-1);
+  }
+
+  &[data-item="24"] {
+    left: 72.6%;
+    width: 6%;
+    height: 18%;
+    top: 13%;
+    z-index: 4;
+    transform: rotate(266deg);
   }
 }
 
