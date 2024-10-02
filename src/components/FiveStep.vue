@@ -451,6 +451,7 @@
                     <AlbumSlider
                       :albumImagesList="albumImagesList"
                       :filePath="pdfFilePath"
+                      :albumName="''"
                     />
                   </div>
                   <div class="modal-btn" @click="compliteStep(7)">

@@ -60,7 +60,7 @@
           </div>
         </div>
         <div class="album-pagination"></div>
-        <span class="album__title">Фотоальбом компании Хохланд</span>
+        <span class="album__title">{{ albumName }}</span>
         <div class="nav-buttons">
           <a
             :href="filePath"
@@ -112,6 +112,6 @@
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, EffectFade } from "swiper/modules";
 
-const props = defineProps(["albumImagesList", "filePath"]);
+const props = defineProps(["albumImagesList", "filePath", "albumName"]);
 </script>
 <style lang="scss"></style>
