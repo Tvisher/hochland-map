@@ -62,7 +62,12 @@
         <div class="album-pagination"></div>
         <span class="album__title">Фотоальбом компании Хохланд</span>
         <div class="nav-buttons">
-          <a href="javascript:void(0)" class="load-btn album-head-btn">
+          <a
+            :href="filePath"
+            target="_blank"
+            download=""
+            class="load-btn album-head-btn"
+          >
             <svg
               width="32"
               height="32"
@@ -80,7 +85,7 @@
               />
             </svg>
           </a>
-          <a href="javascript:void(0)" class="show-btn album-head-btn">
+          <a :href="filePath" target="_blank" class="show-btn album-head-btn">
             <svg
               width="32"
               height="32"
@@ -107,6 +112,6 @@
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, EffectFade } from "swiper/modules";
 
-const props = defineProps(["albumImagesList"]);
+const props = defineProps(["albumImagesList", "filePath"]);
 </script>
 <style lang="scss"></style>

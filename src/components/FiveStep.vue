@@ -448,7 +448,10 @@
               <div class="tabs-modal__inner">
                 <div class="tabs-content">
                   <div class="album__wrapper">
-                    <AlbumSlider :albumImagesList="albumImagesList" />
+                    <AlbumSlider
+                      :albumImagesList="albumImagesList"
+                      :filePath="pdfFilePath"
+                    />
                   </div>
                   <div class="modal-btn" @click="compliteStep(7)">
                     Просмотрено
@@ -522,11 +525,20 @@ const showQuiz = ref(false);
 const showSliderModal = ref(false);
 const showPhotoAlbumModal = ref(false);
 
+const pdfFilePath = new URL(
+  "../assets/files/Kodeks_povedeniya_aprel_2022.pdf",
+  import.meta.url
+);
 const albumImagesList = [
-  "https://media.istockphoto.com/id/1035676256/ru/%D1%84%D0%BE%D1%82%D0%BE/%D1%84%D0%BE%D0%BD-%D0%B3%D0%B0%D0%BB%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B8-%D0%B8-%D0%B7%D0%B2%D0%B5%D0%B7%D0%B4.jpg?s=612x612&w=0&k=20&c=1isVPNymmOKsGK4BeN8po-LZR50I27bPHO4GMNHyPjk=",
-  "https://cdnn21.img.ria.ru/images/152691/90/1526919024_0:3:1036:586_1920x0_80_0_0_69764315cc0cc33438fc0085a9ae56e3.jpg",
-  "https://s0.rbk.ru/v6_top_pics/media/img/6/53/346916705155536.jpeg",
-  "https://imagedelivery.net/4_JwVYxosZqzJ7gIDJgTLA/e68bc7f9-c34f-4321-9cf9-f88c0fc43300/16x9",
+  new URL("../assets/img/modules/module-5/pdf/1.jpg", import.meta.url),
+  new URL("../assets/img/modules/module-5/pdf/2.jpg", import.meta.url),
+  new URL("../assets/img/modules/module-5/pdf/3.jpg", import.meta.url),
+  new URL("../assets/img/modules/module-5/pdf/4.jpg", import.meta.url),
+  new URL("../assets/img/modules/module-5/pdf/5.jpg", import.meta.url),
+  new URL("../assets/img/modules/module-5/pdf/6.jpg", import.meta.url),
+  new URL("../assets/img/modules/module-5/pdf/7.jpg", import.meta.url),
+  new URL("../assets/img/modules/module-5/pdf/8.jpg", import.meta.url),
+  new URL("../assets/img/modules/module-5/pdf/9.jpg", import.meta.url),
 ];
 
 const questionsList = [
