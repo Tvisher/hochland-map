@@ -201,7 +201,7 @@
                     <AlbumSlider
                       :albumImagesList="albumImagesList"
                       :filePath="pdfFilePath"
-                      :albumName="''"
+                      :albumName="'Фотоальбом компании Hochland'"
                     />
                   </div>
                   <div class="modal-btn" @click="compliteStep(2)">

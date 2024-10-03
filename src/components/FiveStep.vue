@@ -451,7 +451,7 @@
                     <AlbumSlider
                       :albumImagesList="albumImagesList"
                       :filePath="pdfFilePath"
-                      :albumName="''"
+                      :albumName="'Кодекс поведения'"
                     />
                   </div>
                   <div class="modal-btn" @click="compliteStep(7)">
