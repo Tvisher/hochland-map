@@ -1,0 +1,15 @@
+@use "sass:math";
+@function compute($max) {
+  $number: math.div($max, 19.2);
+  @return #{$number}vw;
+}
+
+@function fromWidth($pxVal) {
+  $number: #{math.div($pxVal, 19.2)};
+  @return clamp(#{0}px, #{$number}vw, #{$pxVal}px);
+}
+
+@function fromHeight($pxVal) {
+  $number: #{math.div($pxVal, 10.82)};
+  @return clamp(#{0}px, #{$number}vh, #{$pxVal}px);
+}

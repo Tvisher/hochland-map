@@ -6,12 +6,12 @@
 </template>
 
 <script setup>
-import FirstStep from "@/components/FirstStep.vue";
-import SecondStep from "@/components/SecondStep.vue";
-import ThirdStep from "@/components/ThirdStep.vue";
-import FourthStep from "@/components/FourthStep.vue";
-import FiveStep from "@/components/FiveStep.vue";
-import SixStep from "@/components/SixStep.vue";
+import FirstStep from "@/components/steps/FirstStep.vue";
+import SecondStep from "@/components/steps/SecondStep.vue";
+import ThirdStep from "@/components/steps/ThirdStep.vue";
+import FourthStep from "@/components/steps/FourthStep.vue";
+import FiveStep from "@/components/steps/FiveStep.vue";
+import SixStep from "@/components/steps/SixStep.vue";
 
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";

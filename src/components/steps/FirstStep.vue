@@ -517,7 +517,7 @@ const featuredTabs = ref([0]);
 const showQuiz = ref(false);
 
 const personVisual = ref({
-  path: new URL(`../assets/img/modules/module-1/object-1.svg`, import.meta.url),
+  path: new URL(`@/assets/img/modules/module-1/object-1.svg`, import.meta.url),
   isSelected: false,
 });
 

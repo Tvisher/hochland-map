@@ -11,13 +11,14 @@
           class="interactive-item"
           :class="[moduleStep == 1 ? 'pulse' : '']"
           data-item="1"
+          @click="showPhotoAlbumModal = true"
         >
           <img src="@/assets/img/modules/module-6/object-1.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 2 ? 'pulse' : '']"
+          :class="[moduleStep == 3 ? 'pulse' : '']"
           data-item="2"
         >
           <img src="@/assets/img/modules/module-6/object-2.svg" alt="" />
@@ -25,8 +26,9 @@
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 3 ? 'pulse' : '']"
+          :class="[moduleStep == 2 ? 'pulse' : '']"
           data-item="3"
+          @click="showTestModal = true"
         >
           <img src="@/assets/img/modules/module-6/object-3.svg" alt="" />
         </div>
@@ -56,15 +58,85 @@
           <div class="arrow-template_img"></div>
         </div>
       </div>
+
+      <transition name="fade" mode="in-out">
+        <div
+          class="modal-template album-modal menu-modal"
+          v-if="showPhotoAlbumModal"
+        >
+          <div class="modal-content">
+            <!-- <div class="man-modal__close" @click="compliteStep(2)"></div> -->
+            <div class="tabs-modal__inner">
+              <div class="tabs-content">
+                <div class="album__wrapper">
+                  <AlbumSlider
+                    :albumImagesList="albumImagesList"
+                    :filePath="pdfFilePath"
+                    :albumName="'Кодекс поведения'"
+                  />
+                </div>
+                <div class="modal-btn" @click="compliteStep(1)">
+                  Просмотрено
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <transition name="fade" mode="out-in">
+        <div class="modal-template file-modal tv-modal" v-show="showTestModal">
+          <div class="modal-content">
+            <div class="file-modal__inner">
+              <div class="file-modal__title">
+                Пока администратор проверяет анкету, у тебя есть время изучить
+                семь принципов лидерства в компании и закрепить знания
+                викториной. Эти правила помогут тебе вести за собой людей,
+                никогда не сдаваться и быть уверенным в своих силах.
+              </div>
+              <a
+                href="@/assets/img/modules/module-2/modal-card-image.png"
+                download
+                class="file-modal__btn"
+              >
+                <span>Скачать PDF</span>
+                <div class="ico">
+                  <svg
+                    width="42"
+                    height="42"
+                    viewBox="0 0 42 42"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M25.2692 5.57143C25.2692 3.22009 23.2512 1.5 21 1.5C18.7488 1.5 16.7308 3.22009 16.7308 5.57143V11.3811C15.069 10.1215 12.6505 10.2124 11.0981 11.654C9.37756 13.2516 9.37755 15.8912 11.0981 17.4889L18.0212 23.9175C19.6782 25.4561 22.3218 25.4561 23.9788 23.9175L30.9019 17.4889C32.6224 15.8912 32.6224 13.2516 30.9019 11.654C29.3495 10.2124 26.931 10.1215 25.2692 11.3811V5.57143ZM10.0385 28.7143C10.0385 26.363 8.02044 24.6429 5.76923 24.6429C3.51802 24.6429 1.5 26.363 1.5 28.7143V33.8571C1.5 35.6563 2.27071 37.3571 3.6015 38.5929C4.92854 39.8251 6.70614 40.5 8.53846 40.5H33.4615C35.2939 40.5 37.0715 39.8251 38.3985 38.5929C39.7293 37.3571 40.5 35.6563 40.5 33.8571V28.7143C40.5 26.363 38.482 24.6429 36.2308 24.6429C33.9796 24.6429 31.9615 26.363 31.9615 28.7143V32.3571H10.0385V28.7143Z"
+                      fill="#0ABBEF"
+                      stroke="black"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </a>
+              <div class="file-modal__title">
+                Сохрани их и обязательно применяй в работе.
+              </div>
+              <SixModuleTest />
+            </div>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script setup>
 import QuizModal from "@/components/QuizModal.vue";
+import SixModuleTest from "@/components/SixModuleTest.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, EffectFade } from "swiper/modules";
-
+import AlbumSlider from "@/components/AlbumSlider.vue";
 import { ref, onMounted } from "vue";
 
 import { useRouter } from "vue-router";
@@ -80,6 +152,23 @@ const isInteractive = ref(false);
 const showQuiz = ref(false);
 const showSliderModal = ref(false);
 const showPhotoAlbumModal = ref(false);
+const showTestModal = ref(false);
+
+const pdfFilePath = new URL(
+  "@/assets/files/Kodeks_povedeniya_aprel_2022.pdf",
+  import.meta.url
+);
+const albumImagesList = [
+  new URL("@/assets/img/modules/module-5/pdf/1.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/2.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/3.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/4.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/5.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/6.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/7.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/8.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/9.jpg", import.meta.url),
+];
 
 const questionsList = [
   {
@@ -150,46 +239,17 @@ const questionsList = [
   },
 ];
 
-const openStep = (step) => {
-  const currentStep = moduleStep.value;
-  if (step == 1 && currentStep >= 1) {
-    showSliderModal.value = true;
-  }
-
-  if (step == 2 && currentStep >= 2) {
-    showPhotoAlbumModal.value = true;
-  }
-  if (step == 3 && currentStep >= 3) {
-    showQuiz.value = true;
-  }
-};
-
 const compliteStep = (step) => {
   if (step == 1) {
-    showSliderModal.value = false;
-    pausePlayer();
+    showPhotoAlbumModal.value = false;
     if (moduleStep.value < 2) {
       moduleStep.value = 2;
-    }
-  }
-
-  if (step == 2) {
-    showPhotoAlbumModal.value = false;
-    if (moduleStep.value < 3) {
-      moduleStep.value = 3;
-    }
-  }
-
-  if (step == 3) {
-    showQuiz.value = false;
-    if (moduleStep.value < 3) {
-      moduleStep.value = 3;
     }
   }
 };
 
 const compliteModule = () => {
-  store.openNewStep(4);
+  store.openNewStep(7);
   router.push("/");
 };
 

@@ -7,16 +7,16 @@
       <div class="step-wrapper__content">
         <div
           class="step-wrapper__content_bg"
-          :class="{ show: moduleStep >= 5, hideWoman: moduleStep > 5 }"
+          :class="{ show: moduleStep == 5, hideWoman: moduleStep >= 4 }"
         ></div>
         <div
           class="bg-element"
-          :class="{ show: moduleStep > 8 && moduleStep < 24 }"
+          :class="{ show: moduleStep > 5 && moduleStep < 20 }"
         ></div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 6 ? 'pulse' : '']"
+          :class="[moduleStep == 4 ? 'pulse' : '']"
           data-item="1"
           @click="showPhotoAlbumModal = true"
         >
@@ -25,7 +25,7 @@
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 8 ? 'pulse' : '']"
+          :class="[moduleStep == 5 ? 'pulse' : '']"
           data-item="2"
           @click="showSliderModal = true"
         >
@@ -34,7 +34,7 @@
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 24 ? 'pulse show' : '']"
+          :class="[moduleStep == 20 ? 'pulse show' : '']"
           data-item="3"
           @click="showQuiz = true"
         >
@@ -43,7 +43,7 @@
 
         <div
           class="arrow-template"
-          v-for="step in [6, 8, 24]"
+          v-for="step in [4, 5, 20]"
           :class="[moduleStep == step ? 'show' : '']"
           :data-item="step"
         >
@@ -51,7 +51,7 @@
         </div>
 
         <!-- data-modal-dialog="4" -->
-        <transition name="fade-scale" mode="out-in">
+        <!-- <transition name="fade-scale" mode="out-in">
           <div class="man-modal" data-modal-dialog="4" v-if="moduleStep == 1">
             <img
               src="@/assets/img/modules/module-5/dialog-1.svg"
@@ -65,22 +65,24 @@
               </div>
             </div>
           </div>
-        </transition>
+        </transition> -->
 
         <!-- data-modal-dialog="5" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="5" v-if="moduleStep == 2">
+          <div class="man-modal" data-modal-dialog="5" v-if="moduleStep == 1">
             <img
-              src="@/assets/img/modules/module-5/dialog-2.svg"
+              src="@/assets/img/modules/module-5/dialog-2-1.svg"
               class="bgimage"
               alt=""
             />
             <div class="man-modal__content">
               <span>
-                Спасибо, очень вкусно. Я весь день в дороге до сыроварни и
-                мечтал о нем.
+                <!-- Спасибо, очень вкусно. Я весь день в дороге до сыроварни и
+                мечтал о нем. -->
+                Спасибо за кофе. Я весь день в дороге до сыроварни и мечтал о
+                нем
               </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 3">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 2">
                 Прочитано
               </div>
             </div>
@@ -89,18 +91,15 @@
 
         <!-- data-modal-dialog="6" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="6" v-if="moduleStep == 3">
+          <div class="man-modal" data-modal-dialog="6" v-if="moduleStep == 2">
             <img
               src="@/assets/img/modules/module-5/dialog-3.svg"
               class="bgimage"
               alt=""
             />
             <div class="man-modal__content">
-              <span>
-                Могу ли я еще что-то принести для вас? У нас много свежей
-                выпечки.
-              </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 4">
+              <span> Могу ли я еще что-то принести для вас? </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 3">
                 Прочитано
               </div>
             </div>
@@ -109,18 +108,15 @@
 
         <!-- data-modal-dialog="7" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="7" v-if="moduleStep == 4">
+          <div class="man-modal" data-modal-dialog="7" v-if="moduleStep == 3">
             <img
               src="@/assets/img/modules/module-5/dialog-2.svg"
               class="bgimage"
               alt=""
             />
             <div class="man-modal__content">
-              <span>
-                О, я бы не отказался от кусочка торта. Или эклера. Давайте я
-                изучу меню и позову вас.
-              </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 5">
+              <span> Давайте я изучу меню и позову вас. </span>
+              <div class="modal-btn dialog-btn" @click="moduleStep = 4">
                 Прочитано
               </div>
             </div>
@@ -128,7 +124,7 @@
         </transition>
 
         <!-- data-modal-dialog="8" -->
-        <transition name="fade-scale" mode="out-in">
+        <!-- <transition name="fade-scale" mode="out-in">
           <div class="man-modal" data-modal-dialog="8" v-if="moduleStep == 5">
             <img
               src="@/assets/img/modules/module-5/dialog-1.svg"
@@ -142,11 +138,11 @@
               </div>
             </div>
           </div>
-        </transition>
+        </transition> -->
 
         <!-- data-modal-dialog="9" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="9" v-if="moduleStep == 10">
+          <div class="man-modal" data-modal-dialog="9" v-if="moduleStep == 6">
             <img
               src="@/assets/img/modules/module-5/dialog-5.svg"
               class="bgimage"
@@ -158,7 +154,7 @@
                 услышал, что вы едете на сыроварню в Hochland, а я как раз пишу
                 статью об этой компании. Можно я задам вам несколько вопросов?
               </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 11">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 7">
                 Прочитано
               </div>
             </div>
@@ -167,15 +163,15 @@
 
         <!-- data-modal-dialog="10" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="10" v-if="moduleStep == 11">
+          <div class="man-modal" data-modal-dialog="10" v-if="moduleStep == 7">
             <img
               src="@/assets/img/modules/module-5/dialog-6.svg"
               class="bgimage"
               alt=""
             />
             <div class="man-modal__content">
-              <span
-                >SOS! Я никогда не общался с прессой, что <br />
+              <span>
+                SOS! Я никогда не общался с прессой,что <br />
                 мне делать… Наверное, пара минут общения <br />
                 никак не навредит компании, а мое имя<br />
                 опубликуют в газете и коллеги узнают обо<br />
@@ -183,13 +179,13 @@
                 можно.
               </span>
             </div>
-            <div class="modal-btn__ball" @click="moduleStep = 12"></div>
+            <div class="modal-btn__ball" @click="moduleStep = 8"></div>
           </div>
         </transition>
 
         <!-- data-modal-dialog="11" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="11" v-if="moduleStep == 12">
+          <div class="man-modal" data-modal-dialog="11" v-if="moduleStep == 8">
             <img
               src="@/assets/img/modules/module-5/dialog-7.svg"
               class="bgimage"
@@ -197,7 +193,7 @@
             />
             <div class="man-modal__content">
               <span> Привет. Конечно, чем я могу помочь? </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 13">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 9">
                 Прочитано
               </div>
             </div>
@@ -206,7 +202,7 @@
 
         <!-- data-modal-dialog="12" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="12" v-if="moduleStep == 13">
+          <div class="man-modal" data-modal-dialog="12" v-if="moduleStep == 9">
             <img
               src="@/assets/img/modules/module-5/dialog-8.svg"
               class="bgimage"
@@ -217,7 +213,7 @@
                 >Я слышал, что компания хочет запустить новый продукт. Вы можете
                 мне рассказать о нем?
               </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 14">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 10">
                 Прочитано
               </div>
             </div>
@@ -226,7 +222,7 @@
 
         <!-- data-modal-dialog="13" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="13" v-if="moduleStep == 14">
+          <div class="man-modal" data-modal-dialog="13" v-if="moduleStep == 10">
             <img
               src="@/assets/img/modules/module-5/dialog-6.svg"
               class="bgimage"
@@ -243,13 +239,13 @@
                 с ним до публикации.
               </span>
             </div>
-            <div class="modal-btn__ball" @click="moduleStep = 15"></div>
+            <div class="modal-btn__ball" @click="moduleStep = 11"></div>
           </div>
         </transition>
 
         <!-- data-modal-dialog="14" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="14" v-if="moduleStep == 15">
+          <div class="man-modal" data-modal-dialog="14" v-if="moduleStep == 11">
             <img
               src="@/assets/img/modules/module-5/dialog-7.svg"
               class="bgimage"
@@ -259,7 +255,7 @@
               <span
                 >Нет, к сожалению, на этот вопрос я не могу вам ответить.
               </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 16">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 12">
                 Прочитано
               </div>
             </div>
@@ -268,7 +264,7 @@
 
         <!-- data-modal-dialog="15" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="15" v-if="moduleStep == 16">
+          <div class="man-modal" data-modal-dialog="15" v-if="moduleStep == 12">
             <img
               src="@/assets/img/modules/module-5/dialog-9.svg"
               class="bgimage"
@@ -276,7 +272,7 @@
             />
             <div class="man-modal__content">
               <span>Ну намекните хотя бы на состав нового продукта. </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 17">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 13">
                 Прочитано
               </div>
             </div>
@@ -285,7 +281,7 @@
 
         <!-- data-modal-dialog="16" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="16" v-if="moduleStep == 17">
+          <div class="man-modal" data-modal-dialog="16" v-if="moduleStep == 13">
             <img
               src="@/assets/img/modules/module-5/dialog-10.svg"
               class="bgimage"
@@ -296,7 +292,7 @@
                 >Я не вправе делать заявления от лица компании, но вы можете
                 оставить запрос через специальную форму на сайте компании.
               </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 18">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 14">
                 Прочитано
               </div>
             </div>
@@ -305,7 +301,7 @@
 
         <!-- data-modal-dialog="17" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="17" v-if="moduleStep == 18">
+          <div class="man-modal" data-modal-dialog="17" v-if="moduleStep == 14">
             <img
               src="@/assets/img/modules/module-5/dialog-11.svg"
               class="bgimage"
@@ -317,7 +313,7 @@
                 горят сроки, я должен сдать статью уже завтра. Помогите мне,
                 пожалуйста. Иначе меня уволят.
               </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 19">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 15">
                 Прочитано
               </div>
             </div>
@@ -326,7 +322,7 @@
 
         <!-- data-modal-dialog="18" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="18" v-if="moduleStep == 19">
+          <div class="man-modal" data-modal-dialog="18" v-if="moduleStep == 15">
             <img
               src="@/assets/img/modules/module-5/dialog-6.svg"
               class="bgimage"
@@ -340,13 +336,13 @@
                 всеми, еще и в устной форме
               </span>
             </div>
-            <div class="modal-btn__ball" @click="moduleStep = 20"></div>
+            <div class="modal-btn__ball" @click="moduleStep = 16"></div>
           </div>
         </transition>
 
         <!-- data-modal-dialog="19" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="19" v-if="moduleStep == 20">
+          <div class="man-modal" data-modal-dialog="19" v-if="moduleStep == 16">
             <img
               src="@/assets/img/modules/module-5/dialog-7.svg"
               class="bgimage"
@@ -356,7 +352,7 @@
               <span
                 >К сожалению, я ничем не могу вам помочь. Мне очень жаль.
               </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 21">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 17">
                 Прочитано
               </div>
             </div>
@@ -365,7 +361,7 @@
 
         <!-- data-modal-dialog="20" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="20" v-if="moduleStep == 21">
+          <div class="man-modal" data-modal-dialog="20" v-if="moduleStep == 17">
             <img
               src="@/assets/img/modules/module-5/dialog-9.svg"
               class="bgimage"
@@ -375,7 +371,7 @@
               <span
                 >Неужели вам жалко? Я был уверен, что вы поможете мне…
               </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 22">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 18">
                 Прочитано
               </div>
             </div>
@@ -384,7 +380,7 @@
 
         <!-- data-modal-dialog="21" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="21" v-if="moduleStep == 22">
+          <div class="man-modal" data-modal-dialog="21" v-if="moduleStep == 18">
             <img
               src="@/assets/img/modules/module-5/dialog-12.svg"
               class="bgimage"
@@ -413,7 +409,7 @@
                   >«Дзене»</a
                 >.
               </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 23">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 19">
                 Прочитано
               </div>
             </div>
@@ -421,7 +417,7 @@
         </transition>
         <!-- data-modal-dialog="22" -->
         <transition name="fade-scale" mode="out-in">
-          <div class="man-modal" data-modal-dialog="22" v-if="moduleStep == 23">
+          <div class="man-modal" data-modal-dialog="22" v-if="moduleStep == 19">
             <img
               src="@/assets/img/modules/module-5/dialog-9.svg"
               class="bgimage"
@@ -431,7 +427,7 @@
               <span>
                 Хорошо, я все понял, оставляю вас пить кофе в одиночестве.
               </span>
-              <div class="modal-btn dialog-btn" @click="moduleStep = 24">
+              <div class="modal-btn dialog-btn" @click="moduleStep = 20">
                 Прочитано
               </div>
             </div>
@@ -454,7 +450,7 @@
                       :albumName="'Кодекс поведения'"
                     />
                   </div>
-                  <div class="modal-btn" @click="compliteStep(7)">
+                  <div class="modal-btn" @click="compliteStep(4)">
                     Просмотрено
                   </div>
                 </div>
@@ -469,7 +465,7 @@
             v-show="showSliderModal"
           >
             <div class="modal-content">
-              <div class="man-modal__close" @click="compliteStep(8)"></div>
+              <div class="man-modal__close" @click="compliteStep(5)"></div>
               <div class="tabs-modal__inner">
                 <div class="tabs-content">
                   <FiveModuleSlider />
@@ -510,7 +506,7 @@
 import QuizModal from "@/components/QuizModal.vue";
 import FiveModuleSlider from "@/components/FiveModuleSlider.vue";
 import AlbumSlider from "@/components/AlbumSlider.vue";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 
 import { useRouter } from "vue-router";
 const router = useRouter();
@@ -527,19 +523,19 @@ const showSliderModal = ref(false);
 const showPhotoAlbumModal = ref(false);
 
 const pdfFilePath = new URL(
-  "../assets/files/Kodeks_povedeniya_aprel_2022.pdf",
+  "@/assets/files/Kodeks_povedeniya_aprel_2022.pdf",
   import.meta.url
 );
 const albumImagesList = [
-  new URL("../assets/img/modules/module-5/pdf/1.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-5/pdf/2.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-5/pdf/3.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-5/pdf/4.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-5/pdf/5.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-5/pdf/6.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-5/pdf/7.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-5/pdf/8.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-5/pdf/9.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/1.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/2.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/3.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/4.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/5.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/6.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/7.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/8.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-5/pdf/9.jpg", import.meta.url),
 ];
 
 const questionsList = [
@@ -618,7 +614,8 @@ const questionsList = [
 
       {
         id: 2,
-        title: "Да, если журналист близкий друг и ты ему доверяешь",
+        title:
+          "Нет, только после согласования с непосредственным руководителем",
         correctAnswer: false,
       },
 
@@ -633,17 +630,17 @@ const questionsList = [
 ];
 
 const compliteStep = (step) => {
-  if (step == 7) {
+  if (step == 4) {
     showPhotoAlbumModal.value = false;
-    if (moduleStep.value < 8) {
-      moduleStep.value = 8;
+    if (moduleStep.value < 5) {
+      moduleStep.value = 5;
     }
   }
 
-  if (step == 8) {
+  if (step == 5) {
     showSliderModal.value = false;
-    if (moduleStep.value <= 9) {
-      moduleStep.value = 10;
+    if (moduleStep.value < 6) {
+      moduleStep.value = 6;
     }
   }
 };
@@ -730,13 +727,17 @@ onMounted(() => {
     background-image: url(@/assets/img/modules/module-5/module-5-bg-1.svg);
     background-size: contain;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-    // opacity: 0;
-    // visibility: hidden;
+    opacity: 0;
+    visibility: hidden;
   }
   &.hideWoman {
+    opacity: 1;
+    visibility: visible;
+  }
+  &.show {
     &::before {
-      opacity: 0;
-      visibility: hidden;
+      opacity: 1;
+      visibility: visible;
     }
   }
 }
@@ -769,7 +770,7 @@ onMounted(() => {
     }
   }
 
-  &[data-item="6"] {
+  &[data-item="4"] {
     right: 59%;
     width: 6%;
     height: 20%;
@@ -778,7 +779,7 @@ onMounted(() => {
     transform: rotate(259deg);
   }
 
-  &[data-item="8"] {
+  &[data-item="5"] {
     left: 73.6%;
     width: 6%;
     height: 18%;
@@ -787,7 +788,7 @@ onMounted(() => {
     transform: rotate(277deg) scaleY(-1);
   }
 
-  &[data-item="24"] {
+  &[data-item="20"] {
     left: 72.6%;
     width: 6%;
     height: 18%;

@@ -99,7 +99,7 @@
                         <div class="factory__wrapper">
                           <div class="factory__image">
                             <img
-                              src="../assets/img/modules/module-3/factory-1.jpg"
+                              src="@/assets/img/modules/module-3/factory-1.jpg"
                               alt=""
                             />
                           </div>
@@ -130,7 +130,7 @@
                         <div class="factory__wrapper">
                           <div class="factory__image">
                             <img
-                              src="../assets/img/modules/module-3/factory-2.jpg"
+                              src="@/assets/img/modules/module-3/factory-2.jpg"
                               alt=""
                             />
                           </div>
@@ -158,7 +158,7 @@
                         <div class="factory__wrapper">
                           <div class="factory__image">
                             <img
-                              src="../assets/img/modules/module-3/factory-3.jpg"
+                              src="@/assets/img/modules/module-3/factory-3.jpg"
                               alt=""
                             />
                           </div>
@@ -264,21 +264,18 @@ const showSliderModal = ref(false);
 const showPhotoAlbumModal = ref(false);
 
 const sliderPlayer = ref(null);
-const pdfFilePath = new URL(
-  "../assets/files/welcome_book.pdf",
-  import.meta.url
-);
+const pdfFilePath = new URL("@/assets/files/welcome_book.pdf", import.meta.url);
 const albumImagesList = [
-  new URL("../assets/img/modules/module-3/pdf/1.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-3/pdf/2.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-3/pdf/3.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-3/pdf/4.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-3/pdf/5.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-3/pdf/6.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-3/pdf/7.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-3/pdf/8.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-3/pdf/9.jpg", import.meta.url),
-  new URL("../assets/img/modules/module-3/pdf/10.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-3/pdf/1.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-3/pdf/2.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-3/pdf/3.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-3/pdf/4.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-3/pdf/5.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-3/pdf/6.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-3/pdf/7.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-3/pdf/8.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-3/pdf/9.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-3/pdf/10.jpg", import.meta.url),
 ];
 const questionsList = [
   {

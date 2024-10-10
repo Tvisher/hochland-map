@@ -1,5 +1,3 @@
-@use "sass:math";
-
 @font-face {
   font-family: "Open Sans";
   src: url("/fonts/OpenSans-Regular.woff") format("woff");
@@ -48,21 +46,6 @@
 }
 
 @import "normalize.scss";
-
-@function compute($max) {
-  $number: math.div($max, 19.2);
-  @return #{$number}vw;
-}
-
-@function fromWidth($pxVal) {
-  $number: #{math.div($pxVal, 19.2)};
-  @return clamp(#{0}px, #{$number}vw, #{$pxVal}px);
-}
-
-@function fromHeight($pxVal) {
-  $number: #{math.div($pxVal, 10.82)};
-  @return clamp(#{0}px, #{$number}vh, #{$pxVal}px);
-}
 
 @keyframes bounce {
   30% {
@@ -703,7 +686,7 @@
     right: 25%;
     top: 39%;
     width: fromWidth(660);
-    height: fromWidth(456);
+    height: fromWidth(411);
     padding-top: fromWidth(130);
     z-index: 6;
   }
@@ -713,7 +696,7 @@
     right: 39.5%;
     top: 40%;
     width: fromWidth(660);
-    height: fromWidth(456);
+    height: fromWidth(411);
     padding-top: fromWidth(130);
     z-index: 6;
   }
@@ -1690,17 +1673,12 @@
 }
 
 .file-modal__inner {
-  // border-radius: fromWidth(20);
-  // border: fromWidth(4) solid #000;
-  // background: #fff;
   margin-left: fromWidth(300);
-  // padding: fromWidth(32) fromWidth(48);
-  // padding-bottom: fromWidth(48);
 }
 
 .file-modal__title {
   color: #000;
-  // text-align: center;
+
   font-family: "Open Sans";
   font-size: fromWidth(32);
   font-style: normal;
@@ -1711,7 +1689,6 @@
 
 .file-modal__img {
   margin-bottom: fromWidth(50);
-
   box-sizing: border-box;
   width: 100%;
   justify-content: center;
@@ -1792,7 +1769,7 @@
 
 .cafe-modal__image {
   user-select: none;
-  margin-top: fromWidth(32);
+  margin: fromWidth(32) 0;
   position: relative;
   overflow: hidden;
   border: fromWidth(4) solid #000;
@@ -1803,6 +1780,20 @@
     width: 100%;
     height: 100%;
     display: block;
+  }
+}
+
+.tv-modal {
+  .modal-content {
+    max-width: 62.5%;
+    padding-left: 0;
+    background-size: fromWidth(180) fromWidth(180);
+    background-position: top fromWidth(45) left fromWidth(40);
+    background-image: url(../img/tv-modal-ico.svg);
+  }
+
+  .file-modal__btn {
+    margin-bottom: fromWidth(48);
   }
 }
 

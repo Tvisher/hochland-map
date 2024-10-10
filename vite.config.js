@@ -5,6 +5,13 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@/assets/scss/functions.scss";`
+      }
+    }
+  },
   base: './',
   build: {
     outDir: './docs',
