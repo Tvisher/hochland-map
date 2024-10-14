@@ -18,7 +18,7 @@
           class="interactive-item"
           :class="[moduleStep == 4 ? 'pulse' : '']"
           data-item="1"
-          @click="showPhotoAlbumModal = true"
+          @click="openStep(4)"
         >
           <img src="@/assets/img/modules/module-5/object-1.svg" alt="" />
         </div>
@@ -27,7 +27,7 @@
           class="interactive-item"
           :class="[moduleStep == 5 ? 'pulse' : '']"
           data-item="2"
-          @click="showSliderModal = true"
+          @click="openStep(5)"
         >
           <img src="@/assets/img/modules/module-5/object-2.svg" alt="" />
         </div>
@@ -36,7 +36,7 @@
           class="interactive-item"
           :class="[moduleStep == 20 ? 'pulse show' : '']"
           data-item="3"
-          @click="showQuiz = true"
+          @click="openStep(20)"
         >
           <img src="@/assets/img/modules/module-5/object-3.svg" alt="" />
         </div>
@@ -628,6 +628,20 @@ const questionsList = [
     ],
   },
 ];
+
+const openStep = (step) => {
+  const currentStep = moduleStep.value;
+  if (step == 4 && currentStep >= 4) {
+    showPhotoAlbumModal.value = true;
+  }
+
+  if (step == 5 && currentStep >= 5) {
+    showSliderModal.value = true;
+  }
+  if (step == 20 && currentStep >= 20) {
+    showQuiz.value = true;
+  }
+};
 
 const compliteStep = (step) => {
   if (step == 4) {

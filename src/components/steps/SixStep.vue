@@ -11,14 +11,14 @@
           class="interactive-item"
           :class="[moduleStep == 1 ? 'pulse' : '']"
           data-item="1"
-          @click="showPhotoAlbumModal = true"
+          @click="openStep(1)"
         >
           <img src="@/assets/img/modules/module-6/object-1.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 3 ? 'pulse' : '']"
+          :class="[moduleStep == 5 ? 'pulse' : '']"
           data-item="2"
         >
           <img src="@/assets/img/modules/module-6/object-2.svg" alt="" />
@@ -28,7 +28,7 @@
           class="interactive-item"
           :class="[moduleStep == 2 ? 'pulse' : '']"
           data-item="3"
-          @click="showTestModal = true"
+          @click="openStep(2)"
         >
           <img src="@/assets/img/modules/module-6/object-3.svg" alt="" />
         </div>
@@ -43,10 +43,20 @@
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 5 ? 'pulse' : '']"
+          :class="[moduleStep == 3 ? 'pulse' : '']"
           data-item="5"
+          @click="openStep(3)"
         >
           <img src="@/assets/img/modules/module-6/object-5.svg" alt="" />
+        </div>
+
+        <div
+          class="interactive-item"
+          :class="[moduleStep == 4 ? 'pulse' : '']"
+          data-item="6"
+          @click="openStep(4)"
+        >
+          <img src="@/assets/img/modules/module-6/object-6.svg" alt="" />
         </div>
 
         <div
@@ -65,7 +75,6 @@
           v-if="showPhotoAlbumModal"
         >
           <div class="modal-content">
-            <!-- <div class="man-modal__close" @click="compliteStep(2)"></div> -->
             <div class="tabs-modal__inner">
               <div class="tabs-content">
                 <div class="album__wrapper">
@@ -127,6 +136,140 @@
           </div>
         </div>
       </transition>
+
+      <transition name="fade" mode="in-out">
+        <div
+          class="modal-template slider-modal time-modal"
+          v-show="showSixModuleTimeSlider"
+        >
+          <div class="modal-content">
+            <div class="man-modal__close" @click="compliteStep(3)"></div>
+            <div class="tabs-modal__inner">
+              <div class="tabs-content">
+                <SixModuleTimeSlider />
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <transition name="fade" mode="in-out">
+        <div
+          class="modal-template newspapper-modal"
+          v-show="showNewspaperModal"
+        >
+          <div class="modal-content">
+            <div class="tabs-content">
+              <div class="file-modal__title">
+                Любишь быть в курсе всех событий? Сохрани себе эти ссылки и
+                узнавай новости компании первым
+              </div>
+              <div class="newspapper-modal__content">
+                <div class="newspapper-modal__block">
+                  <div class="modal__block_wrapper">
+                    <div class="modal__block_ico"></div>
+                    <div class="modal__block_info">
+                      <div class="modal__block_text">
+                        Корпоративная социальная сеть в Viva Engage — группа
+                        «Новости Hochland в России»: добавиться туда может
+                        каждый сотрудник
+                      </div>
+                      <a href="#" target="_blank" class="modal__block_link"
+                        >Перейти</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="newspapper-modal__block">
+                  <div class="modal__block_wrapper">
+                    <div class="modal__block_ico"></div>
+                    <div class="modal__block_info">
+                      <div class="modal__block_text">
+                        Если ты работаешь в Московском офисе, то присоединяйся к
+                        этой группе в Viva
+                      </div>
+                      <a href="#" target="_blank" class="modal__block_link"
+                        >Перейти</a
+                      >
+                    </div>
+                  </div>
+
+                  <div class="modal__block_wrapper">
+                    <div class="modal__block_ico"></div>
+                    <div class="modal__block_info" style="align-items: center">
+                      <div class="modal__block_text">Онлайн-журнал:</div>
+                      <a href="#" target="_blank" class="modal__block_link"
+                        >Перейти</a
+                      >
+                    </div>
+                  </div>
+
+                  <div class="modal__block_wrapper">
+                    <div class="modal__block_ico"></div>
+                    <div class="modal__block_info" style="align-items: center">
+                      <div class="modal__block_text">Корпоративный портал</div>
+                      <a href="#" target="_blank" class="modal__block_link"
+                        >Перейти</a
+                      >
+                    </div>
+                  </div>
+
+                  <div class="modal__block_wrapper">
+                    <div class="modal__block_ico"></div>
+                    <div class="modal__block_info">
+                      <div class="modal__block_text">
+                        Лента новостей по концерну в Viva Engage
+                      </div>
+                      <a href="#" target="_blank" class="modal__block_link"
+                        >Перейти</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <div class="newspapper-modal__block">
+                  <div class="modal__block_wrapper">
+                    <div class="modal__block_ico"></div>
+                    <div class="modal__block_info">
+                      <div class="modal__block_text">
+                        Больше информации о самой компании можно узнать в
+                        специальном одноименном разделе на портале
+                      </div>
+                      <a href="#" target="_blank" class="modal__block_link"
+                        >Перейти</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="newspaper-modal__footer">
+                А ещё, каждую неделю выходит Дайджест новостей Hochland. Его ты
+                найдешь на своей корпоративной почте от Команды внутренних
+                коммуникаций (RU-CorpComm) с адресом
+                <a href="mailto:ru-corpcomm@hochland.ru"
+                  >ru-corpcomm@hochland.ru</a
+                >. Не пропусти.
+              </p>
+              <div class="modal-btn" @click="compliteStep(4)">Прочитано</div>
+            </div>
+          </div>
+        </div>
+      </transition>
+
+      <transition name="fade" mode="in-out">
+        <div class="modal-template timeline-modal" v-show="showTimelineSlider">
+          <div class="modal-content">
+            <div class="timeline-modal__title">
+              Смотри, скоро праздник! <br />
+              Не забудь поздравить коллег и партнёров
+            </div>
+            <!-- <div class="tabs-content"> -->
+            <TimelineSlider />
+            <!-- </div> -->
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -134,9 +277,9 @@
 <script setup>
 import QuizModal from "@/components/QuizModal.vue";
 import SixModuleTest from "@/components/SixModuleTest.vue";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation, Pagination, EffectFade } from "swiper/modules";
 import AlbumSlider from "@/components/AlbumSlider.vue";
+import SixModuleTimeSlider from "@/components/SixModuleTimeSlider.vue";
+import TimelineSlider from "@/components/TimelineSlider.vue";
 import { ref, onMounted } from "vue";
 
 import { useRouter } from "vue-router";
@@ -151,8 +294,12 @@ const isInteractive = ref(false);
 
 const showQuiz = ref(false);
 const showSliderModal = ref(false);
+
+const showSixModuleTimeSlider = ref(false);
 const showPhotoAlbumModal = ref(false);
 const showTestModal = ref(false);
+const showNewspaperModal = ref(false);
+const showTimelineSlider = ref(true);
 
 const pdfFilePath = new URL(
   "@/assets/files/Kodeks_povedeniya_aprel_2022.pdf",
@@ -239,11 +386,44 @@ const questionsList = [
   },
 ];
 
+const openStep = (step) => {
+  const currentStep = moduleStep.value;
+  if (step == 1 && currentStep >= 1) {
+    showPhotoAlbumModal.value = true;
+  }
+
+  if (step == 2 && currentStep >= 2) {
+    showTestModal.value = true;
+  }
+
+  if (step == 3 && currentStep >= 3) {
+    showSixModuleTimeSlider.value = true;
+  }
+
+  if (step == 4 && currentStep >= 4) {
+    showNewspaperModal.value = true;
+  }
+};
+
 const compliteStep = (step) => {
   if (step == 1) {
     showPhotoAlbumModal.value = false;
     if (moduleStep.value < 2) {
       moduleStep.value = 2;
+    }
+  }
+
+  if (step == 3) {
+    showSixModuleTimeSlider.value = false;
+    if (moduleStep.value < 4) {
+      moduleStep.value = 4;
+    }
+  }
+
+  if (step == 4) {
+    showNewspaperModal.value = false;
+    if (moduleStep.value < 5) {
+      moduleStep.value = 5;
     }
   }
 };
@@ -263,8 +443,81 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.newspaper-modal__footer {
+  font-size: fromWidth(24);
+  font-weight: 600;
+  line-height: 158%;
+  margin-bottom: fromWidth(64);
+  margin-top: fromWidth(32);
+  a {
+    color: #0abbef;
+    text-decoration: none;
+  }
+}
+.newspapper-modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: fromWidth(32);
+}
 .step-wrapper__content {
   background-image: url(@/assets/img/modules/module-6/module-6-bg.svg);
+}
+
+.modal__block_text {
+  color: #000;
+  font-size: fromWidth(24);
+  font-weight: 600;
+  line-height: 158%;
+}
+
+.modal__block_link {
+  text-decoration: none;
+  border-radius: fromWidth(12);
+  border: fromWidth(3) solid #000;
+  color: #000;
+  text-align: center;
+  font-size: fromWidth(24);
+  font-weight: 700;
+  line-height: 100%;
+  height: fit-content;
+  padding: fromWidth(13) fromWidth(56) fromWidth(13) fromWidth(24);
+
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='16' height='22' viewBox='0 0 16 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M13.0226 9.30909C13.9839 10.243 13.9839 11.757 13.0226 12.6909L6.45852 19.0677C5.49723 20.0016 3.93867 20.0016 2.97738 19.0677C2.01609 18.1339 2.01609 16.6198 2.97738 15.6859L7.80091 11L2.97738 6.3141C2.01609 5.38023 2.01609 3.86614 2.97738 2.93228C3.93867 1.99842 5.49723 1.99842 6.45852 2.93228L13.0226 9.30909Z' fill='%230ABAEE'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.6037 7.71676C16.4654 9.52536 16.4654 12.4746 14.6037 14.2832L8.0396 20.6601C6.20054 22.4467 3.23537 22.4466 1.39629 20.6601C-0.46543 18.8514 -0.46543 15.9022 1.39629 14.0936L4.58072 11L1.39629 7.90643C-0.46543 6.09782 -0.46543 3.14855 1.39629 1.33995C3.23536 -0.446649 6.20054 -0.44665 8.03961 1.33995L14.6037 7.71676ZM2.97738 6.3141C2.01609 5.38023 2.01609 3.86614 2.97738 2.93228C3.93867 1.99842 5.49723 1.99842 6.45852 2.93228L13.0226 9.30909C13.9839 10.243 13.9839 11.757 13.0226 12.6909L6.45852 19.0677C5.49723 20.0016 3.93867 20.0016 2.97738 19.0677C2.01609 18.1339 2.01609 16.6198 2.97738 15.6859L7.80091 11L2.97738 6.3141Z' fill='black'/%3e%3c/svg%3e ");
+  background-repeat: no-repeat;
+  background-size: fromWidth(16) fromWidth(22);
+  background-position: center right fromWidth(24);
+}
+
+.newspapper-modal__block {
+  display: flex;
+  flex-direction: column;
+  gap: fromWidth(32);
+  border-radius: fromWidth(24);
+  border: fromWidth(4) solid #000;
+  background: #fff;
+  padding: fromWidth(24) fromWidth(40) fromWidth(36) fromWidth(24);
+}
+
+.modal__block_ico {
+  width: fromWidth(40);
+  height: fromWidth(40);
+  background-image: url(@/assets/img/modules/module-6/viva-logo.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex-shrink: 0;
+}
+
+.modal__block_wrapper {
+  display: flex;
+  gap: fromWidth(24);
+}
+.modal__block_info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: fromWidth(40);
+  border-left: 2px solid #ddd;
+  gap: fromWidth(40);
 }
 
 .content__part {
@@ -388,6 +641,13 @@ onMounted(() => {
         drop-shadow(0px -6px 10px #00c5ff);
       animation: dropShadow 3s linear infinite 0.4s;
     }
+  }
+
+  &[data-item="6"] {
+    left: 7.5%;
+    width: 16%;
+    height: 17%;
+    top: 64%;
   }
 }
 .video-block {

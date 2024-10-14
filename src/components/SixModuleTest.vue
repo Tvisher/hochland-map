@@ -40,7 +40,7 @@
               </div>
               <div
                 class="option__message"
-                v-show="checkedOption == option.id && validateIsOn"
+                :class="{ show: checkedOption == option.id && validateIsOn }"
               >
                 {{
                   isCorrectAnswer ? "Правильный ответ!" : "Неправильный ответ!"
@@ -49,10 +49,14 @@
             </div>
           </label>
         </div>
-        <div class="submit-btn" @click="validateAnswer">{{ buttonText }}</div>
       </div>
     </div>
-    <div class="test-content__footer"></div>
+    <div class="test-content__footer">
+      <div>
+        Принцип {{ currentQuestionIndex + 1 }} из {{ questionsList.length }}
+      </div>
+      <div class="submit-btn" @click="validateAnswer">{{ buttonText }}</div>
+    </div>
   </div>
 </template>
 
@@ -335,6 +339,7 @@ const validateAnswer = () => {
     align-items: center;
     gap: 16px;
     justify-content: space-between;
+    width: 100%;
   }
 
   .option__title {
@@ -348,6 +353,10 @@ const validateAnswer = () => {
     font-style: normal;
     font-weight: 600;
     margin-top: 0;
+    opacity: 0;
+    &.show {
+      opacity: 1;
+    }
   }
 
   .quiz-modal__option {
@@ -373,6 +382,15 @@ const validateAnswer = () => {
         background-color: #df5763;
       }
     }
+  }
+  .submit-btn {
+    box-shadow: none;
+    padding: fromWidth(15) fromWidth(63);
+    padding-left: fromWidth(24);
+    font-size: fromWidth(22);
+    border-radius: fromWidth(12);
+    line-height: 100%;
+    background-position: center right fromWidth(20);
   }
 }
 .test-content__ico {
@@ -401,5 +419,17 @@ const validateAnswer = () => {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top;
+}
+
+.test-content__footer {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  padding-left: 32px;
+  font-size: fromWidth(22);
+  font-weight: 700;
+  border-top: fromWidth(4) solid #000;
 }
 </style>

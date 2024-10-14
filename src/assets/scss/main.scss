@@ -906,7 +906,9 @@
 .hummer-modal,
 .slider-modal,
 .album-modal,
-.mobile-modal {
+.mobile-modal,
+.newspapper-modal,
+.timeline-modal {
   display: block;
 
   .modal-content {
@@ -1574,9 +1576,9 @@
 
 .submit-btn {
   border-radius: fromWidth(20);
-  border: 4px solid #000;
+  border: fromWidth(4) solid #000;
   background: #fff;
-  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: fromWidth(8) fromWidth(8) 0px 0px rgba(0, 0, 0, 0.25);
   color: #000;
   text-align: center;
   font-family: "Open Sans";
@@ -1785,7 +1787,7 @@
 
 .tv-modal {
   .modal-content {
-    max-width: 62.5%;
+    max-width: 73.6%;
     padding-left: 0;
     background-size: fromWidth(180) fromWidth(180);
     background-position: top fromWidth(45) left fromWidth(40);
@@ -1795,6 +1797,25 @@
   .file-modal__btn {
     margin-bottom: fromWidth(48);
   }
+}
+
+.timeline-modal {
+  .modal-content {
+    max-width: 73.6%;
+    padding-left: fromWidth(300);
+    background-size: fromWidth(180) fromWidth(180);
+    background-position: top fromWidth(45) left fromWidth(40);
+    background-image: url(../img/timeline-modal-ico.svg);
+    padding-right: 0;
+    overflow: hidden;
+  }
+}
+
+.timeline-modal__title {
+  font-size: fromWidth(32);
+  margin-bottom: fromWidth(94);
+  font-weight: 700;
+  padding-right: fromWidth(90);
 }
 
 .table-item {
@@ -2379,6 +2400,29 @@
   }
   .factory__wrapper {
     padding: 0;
+  }
+}
+
+.time-modal {
+  .modal-content {
+    max-width: 73%;
+    background-size: fromWidth(180) fromWidth(180);
+    background-position: top fromWidth(40) left fromWidth(40);
+    background-image: url(../img/time-modal-ico.svg);
+  }
+}
+
+.newspapper-modal {
+  .modal-content {
+    max-width: 73%;
+    background-size: fromWidth(240) fromWidth(240);
+    background-position: top fromWidth(40) left fromWidth(40);
+    background-image: url(../img/newspapper-modal-ico.svg);
+  }
+
+  .tabs-content {
+    padding-left: fromWidth(300);
+    margin-bottom: 0;
   }
 }
 
