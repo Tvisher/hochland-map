@@ -16,82 +16,96 @@
     @init="(swiper) => calcBallPosition(swiper.activeIndex)"
   >
     <swiper-slide class="slide-item timeline-slide">
-      <div class="timeline-slide__ico">
-        <img
-          src="@/assets/img/modules/module-6/timeline-slider-icos/ico-1.svg"
-          alt=""
-        />
-      </div>
-      <div class="timeline-slide__content">
-        <div class="timeline-slide__date">23 февраля</div>
-        <div class="timeline-slide__text">День защитника отечества</div>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide class="slide-item timeline-slide">
-      <div class="timeline-slide__ico">
-        <img
-          src="@/assets/img/modules/module-6/timeline-slider-icos/ico-2.svg"
-          alt=""
-        />
-      </div>
-      <div class="timeline-slide__content">
-        <div class="timeline-slide__date">8 марта</div>
-        <div class="timeline-slide__text">Международный женский день</div>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide class="slide-item timeline-slide">
-      <div class="timeline-slide__ico">
-        <img
-          src="@/assets/img/modules/module-6/timeline-slider-icos/ico-3.svg"
-          alt=""
-        />
-      </div>
-      <div class="timeline-slide__content">
-        <div class="timeline-slide__date">18 июня</div>
-        <div class="timeline-slide__text">День сыродела</div>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide class="slide-item timeline-slide">
-      <div class="timeline-slide__ico">
-        <img
-          src="@/assets/img/modules/module-6/timeline-slider-icos/ico-4.svg"
-          alt=""
-        />
-      </div>
-      <div class="timeline-slide__content">
-        <div class="timeline-slide__date">1 сентября</div>
-        <div class="timeline-slide__text">День основания компании</div>
-      </div>
-    </swiper-slide>
-
-    <swiper-slide class="slide-item timeline-slide">
-      <div class="timeline-slide__ico">
-        <img
-          src="@/assets/img/modules/module-6/timeline-slider-icos/ico-5.svg"
-          alt=""
-        />
-      </div>
-      <div class="timeline-slide__content">
-        <div class="timeline-slide__date">Ежегодно 3-е воскресенье октября</div>
-        <div class="timeline-slide__text">
-          День работников пищевой промышленности
+      <div class="timeline-slide__wrapper">
+        <div class="timeline-slide__ico">
+          <img
+            src="@/assets/img/modules/module-6/timeline-slider-icos/ico-1.svg"
+            alt=""
+          />
+        </div>
+        <div class="timeline-slide__content">
+          <div class="timeline-slide__date">23 февраля</div>
+          <div class="timeline-slide__text">День защитника отечества</div>
         </div>
       </div>
     </swiper-slide>
 
     <swiper-slide class="slide-item timeline-slide">
-      <div class="timeline-slide__ico">
-        <img
-          src="@/assets/img/modules/module-6/timeline-slider-icos/ico-6.svg"
-          alt=""
-        />
+      <div class="timeline-slide__wrapper">
+        <div class="timeline-slide__ico">
+          <img
+            src="@/assets/img/modules/module-6/timeline-slider-icos/ico-2.svg"
+            alt=""
+          />
+        </div>
+        <div class="timeline-slide__content">
+          <div class="timeline-slide__date">8 марта</div>
+          <div class="timeline-slide__text">Международный женский день</div>
+        </div>
       </div>
-      <div class="timeline-slide__content">
-        <div class="timeline-slide__date">Декабрь</div>
-        <div class="timeline-slide__text">Новый год</div>
+    </swiper-slide>
+
+    <swiper-slide class="slide-item timeline-slide">
+      <div class="timeline-slide__wrapper">
+        <div class="timeline-slide__ico">
+          <img
+            src="@/assets/img/modules/module-6/timeline-slider-icos/ico-3.svg"
+            alt=""
+          />
+        </div>
+        <div class="timeline-slide__content">
+          <div class="timeline-slide__date">18 июня</div>
+          <div class="timeline-slide__text">День сыродела</div>
+        </div>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide class="slide-item timeline-slide">
+      <div class="timeline-slide__wrapper">
+        <div class="timeline-slide__ico">
+          <img
+            src="@/assets/img/modules/module-6/timeline-slider-icos/ico-4.svg"
+            alt=""
+          />
+        </div>
+        <div class="timeline-slide__content">
+          <div class="timeline-slide__date">1 сентября</div>
+          <div class="timeline-slide__text">День основания компании</div>
+        </div>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide class="slide-item timeline-slide">
+      <div class="timeline-slide__wrapper">
+        <div class="timeline-slide__ico">
+          <img
+            src="@/assets/img/modules/module-6/timeline-slider-icos/ico-5.svg"
+            alt=""
+          />
+        </div>
+        <div class="timeline-slide__content">
+          <div class="timeline-slide__date">
+            Ежегодно 3-е воскресенье октября
+          </div>
+          <div class="timeline-slide__text">
+            День работников пищевой промышленности
+          </div>
+        </div>
+      </div>
+    </swiper-slide>
+
+    <swiper-slide class="slide-item timeline-slide">
+      <div class="timeline-slide__wrapper">
+        <div class="timeline-slide__ico">
+          <img
+            src="@/assets/img/modules/module-6/timeline-slider-icos/ico-6.svg"
+            alt=""
+          />
+        </div>
+        <div class="timeline-slide__content">
+          <div class="timeline-slide__date">Декабрь</div>
+          <div class="timeline-slide__text">Новый год</div>
+        </div>
       </div>
     </swiper-slide>
 
@@ -291,19 +305,22 @@ const calcBallPosition = (ind) => {
 }
 .timeline-slide {
   margin-right: fromWidth(90);
-  display: flex !important;
-  align-items: center;
-  gap: fromWidth(20);
-  border-radius: fromWidth(16);
-  border: fromWidth(4) solid #000;
-  background: #fff;
-  box-shadow: fromWidth(6) fromWidth(6) 0px 0px rgb(0, 0, 0);
-  padding: fromWidth(32) fromWidth(40) fromWidth(32) fromWidth(24);
   width: fit-content !important;
-  transition: all 0.8s ease-in-out;
 
-  &.swiper-slide-active {
+  &.swiper-slide-active .timeline-slide__wrapper {
     box-shadow: fromWidth(6) fromWidth(6) 0px 0px rgb(10, 186, 238);
+  }
+
+  .timeline-slide__wrapper {
+    transition: box-shadow 0.5s ease-in-out;
+    display: flex !important;
+    align-items: center;
+    gap: fromWidth(20);
+    border-radius: fromWidth(16);
+    border: fromWidth(4) solid #000;
+    background: #fff;
+    box-shadow: fromWidth(6) fromWidth(6) 0px 0px rgb(0, 0, 0);
+    padding: fromWidth(32) fromWidth(40) fromWidth(32) fromWidth(24);
   }
 }
 

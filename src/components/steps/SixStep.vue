@@ -20,6 +20,7 @@
           class="interactive-item"
           :class="[moduleStep == 5 ? 'pulse' : '']"
           data-item="2"
+          @click="openStep(5)"
         >
           <img src="@/assets/img/modules/module-6/object-2.svg" alt="" />
         </div>
@@ -35,8 +36,9 @@
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 4 ? 'pulse' : '']"
+          :class="[moduleStep == 6 ? 'pulse' : '']"
           data-item="4"
+          @click="openStep(6)"
         >
           <img src="@/assets/img/modules/module-6/object-4.svg" alt="" />
         </div>
@@ -61,7 +63,7 @@
 
         <div
           class="arrow-template"
-          v-for="step in 3"
+          v-for="step in [1, 2, 3, 4, 5]"
           :class="[moduleStep == step ? 'show' : '']"
           :data-item="step"
         >
@@ -131,7 +133,7 @@
               <div class="file-modal__title">
                 Сохрани их и обязательно применяй в работе.
               </div>
-              <SixModuleTest />
+              <SixModuleTest @testComplite="testComplite" />
             </div>
           </div>
         </div>
@@ -174,7 +176,10 @@
                         «Новости Hochland в России»: добавиться туда может
                         каждый сотрудник
                       </div>
-                      <a href="#" target="_blank" class="modal__block_link"
+                      <a
+                        href="https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI2NzQ0MTQxODI0MCJ9/all"
+                        target="_blank"
+                        class="modal__block_link"
                         >Перейти</a
                       >
                     </div>
@@ -189,7 +194,10 @@
                         Если ты работаешь в Московском офисе, то присоединяйся к
                         этой группе в Viva
                       </div>
-                      <a href="#" target="_blank" class="modal__block_link"
+                      <a
+                        href="https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI4MTI4NjA1Mzg4OCJ9/all"
+                        target="_blank"
+                        class="modal__block_link"
                         >Перейти</a
                       >
                     </div>
@@ -199,7 +207,10 @@
                     <div class="modal__block_ico"></div>
                     <div class="modal__block_info" style="align-items: center">
                       <div class="modal__block_text">Онлайн-журнал:</div>
-                      <a href="#" target="_blank" class="modal__block_link"
+                      <a
+                        href="https://hochland.sharepoint.com/sites/companynewsru1"
+                        target="_blank"
+                        class="modal__block_link"
                         >Перейти</a
                       >
                     </div>
@@ -209,7 +220,10 @@
                     <div class="modal__block_ico"></div>
                     <div class="modal__block_info" style="align-items: center">
                       <div class="modal__block_text">Корпоративный портал</div>
-                      <a href="#" target="_blank" class="modal__block_link"
+                      <a
+                        href="https://hochland.sharepoint.com/sites/portal-ru "
+                        target="_blank"
+                        class="modal__block_link"
                         >Перейти</a
                       >
                     </div>
@@ -221,7 +235,10 @@
                       <div class="modal__block_text">
                         Лента новостей по концерну в Viva Engage
                       </div>
-                      <a href="#" target="_blank" class="modal__block_link"
+                      <a
+                        href="https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIyNDgzNzY1MjQ4MCJ9/all"
+                        target="_blank"
+                        class="modal__block_link"
                         >Перейти</a
                       >
                     </div>
@@ -236,7 +253,10 @@
                         Больше информации о самой компании можно узнать в
                         специальном одноименном разделе на портале
                       </div>
-                      <a href="#" target="_blank" class="modal__block_link"
+                      <a
+                        href="https://hochland.sharepoint.com/sites/companyinfo/SitePages/Employee-onboarding-team-home.aspx "
+                        target="_blank"
+                        class="modal__block_link"
                         >Перейти</a
                       >
                     </div>
@@ -264,11 +284,33 @@
               Смотри, скоро праздник! <br />
               Не забудь поздравить коллег и партнёров
             </div>
-            <!-- <div class="tabs-content"> -->
-            <TimelineSlider />
-            <!-- </div> -->
+            <div class="tabs-content">
+              <TimelineSlider />
+            </div>
+            <div class="modal-btn" @click="compliteStep(5)">Прочитано</div>
           </div>
         </div>
+      </transition>
+
+      <transition name="fade" mode="out-in">
+        <QuizModal
+          v-if="showQuiz"
+          @modalClose="showQuiz = false"
+          :questionsList="questionsList"
+          :step="6"
+        >
+          <div class="result__image">
+            <img
+              src="@/assets/img/modules/module-6/modal-result.png"
+              alt=""
+              rel="preload"
+            />
+          </div>
+          <div class="result__text">Вы ответили правильно на все вопросы!</div>
+          <div class="result__btn" @click="compliteModule">
+            Перейти на следующий этап
+          </div>
+        </QuizModal>
       </transition>
     </div>
   </div>
@@ -293,13 +335,12 @@ const moduleStep = ref(null);
 const isInteractive = ref(false);
 
 const showQuiz = ref(false);
-const showSliderModal = ref(false);
 
 const showSixModuleTimeSlider = ref(false);
 const showPhotoAlbumModal = ref(false);
 const showTestModal = ref(false);
 const showNewspaperModal = ref(false);
-const showTimelineSlider = ref(true);
+const showTimelineSlider = ref(false);
 
 const pdfFilePath = new URL(
   "@/assets/files/Kodeks_povedeniya_aprel_2022.pdf",
@@ -320,71 +361,127 @@ const albumImagesList = [
 const questionsList = [
   {
     id: 0,
-    title: "В чем заключается ключевая роль корпоративной этики?",
+    title: "Сколько дней дается на заполнение отчета после командировки?",
     options: [
       {
         id: 0,
-        title: "Это неотъемлемая часть любого бизнеса",
-        error: "Вы ответили не правильно! Описание  администратором",
+        title: "2",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Это эффективный инструмент менеджмента",
-        error:
-          "Вы ответили не правильно! Описание ответа создается администратором",
+        title: "5",
         correctAnswer: false,
       },
-
       {
         id: 2,
-        title: "Это ключевой элемент, объединяющий людей",
-        error: "Вы ответили не правильно! Описание ответа ",
+        title: "7",
         correctAnswer: true,
       },
-
       {
         id: 3,
-        title: "Это способ повысить эффективность команды",
-        error: "Вы ответили не правильно!",
+        title: "10",
         correctAnswer: false,
       },
     ],
   },
   {
     id: 1,
-    title: "Второй вопрос",
+    title: "Какая основа для работы в коллективе? ",
     options: [
       {
         id: 0,
-        title: "Это неотъемлемая часть любого бизнеса",
-        error: "Вы ответили не правильно! Описание  администратором",
+        title: "Быть в курсе всех новостей.",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Это эффективный инструмент менеджмента",
-        error:
-          "Вы ответили не правильно! Описание ответа создается администратором",
+        title: "Знать каждого члена команды.",
         correctAnswer: false,
       },
 
       {
         id: 2,
-        title: "Это ключевой элемент, объединяющий людей",
-        error: "Вы ответили не правильно! Описание ответа ",
+        title: "Доверие и взаимное уважение.",
         correctAnswer: true,
       },
 
       {
         id: 3,
-        title: "Это способ повысить эффективность команды",
-        error: "Вы ответили не правильно!",
+        title: "Желание быть первым.",
+        correctAnswer: false,
+      },
+    ],
+  },
+  {
+    id: 2,
+    title:
+      "Какое из этих высказываний противоречит основным принципам управления персоналом и работы в коллективе?",
+    options: [
+      {
+        id: 0,
+        title: "«Мы призываем к постоянному совершенствованию и поощряем его».",
+        correctAnswer: false,
+      },
+      {
+        id: 1,
+        title:
+          "«Мы призываем к полной ясности в речи и поощряем обмен информацией».",
+        correctAnswer: false,
+      },
+
+      {
+        id: 2,
+        title:
+          "«Мы призываем к инициативности и поощряем установку: «Я сделаю это! Я возьму это в свои руки!»",
+        correctAnswer: false,
+      },
+
+      {
+        id: 3,
+        title:
+          "«Мы призываем избегать любых конфликтных ситуаций, так как они мешают развитию»",
+        correctAnswer: true,
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    title: "Где можно узнать все свежие новости о жизни компании? ",
+    options: [
+      {
+        id: 0,
+        title: "В столовой за обедом.",
+        correctAnswer: false,
+      },
+      {
+        id: 1,
+        title: "На корпоративном интранет-портале.",
+        correctAnswer: true,
+      },
+
+      {
+        id: 2,
+        title: "В курилке.",
+        correctAnswer: false,
+      },
+
+      {
+        id: 3,
+        title: "В автобусе по дороге на работу.",
         correctAnswer: false,
       },
     ],
   },
 ];
+
+const testComplite = () => {
+  if (moduleStep.value < 3) {
+    moduleStep.value = 3;
+    showTestModal.value = false;
+  }
+};
 
 const openStep = (step) => {
   const currentStep = moduleStep.value;
@@ -402,6 +499,14 @@ const openStep = (step) => {
 
   if (step == 4 && currentStep >= 4) {
     showNewspaperModal.value = true;
+  }
+
+  if (step == 5 && currentStep >= 5) {
+    showTimelineSlider.value = true;
+  }
+
+  if (step == 6 && currentStep >= 6) {
+    showQuiz.value = true;
   }
 };
 
@@ -424,6 +529,13 @@ const compliteStep = (step) => {
     showNewspaperModal.value = false;
     if (moduleStep.value < 5) {
       moduleStep.value = 5;
+    }
+  }
+
+  if (step == 5) {
+    showTimelineSlider.value = false;
+    if (moduleStep.value < 6) {
+      moduleStep.value = 6;
     }
   }
 };
@@ -558,30 +670,48 @@ onMounted(() => {
     }
   }
   &[data-item="1"] {
-    right: 54%;
+    left: 17%;
     width: 6%;
     height: 20%;
-    top: -3%;
+    top: 41%;
     z-index: 4;
     transform: rotate(-60deg);
   }
 
   &[data-item="2"] {
-    right: 55.6%;
+    right: 61.6%;
     width: 7%;
     height: 20%;
-    top: 5%;
+    top: 41%;
     z-index: 4;
-    transform: rotate(341deg);
+    transform: rotate(138deg) scale(-1, 1);
   }
 
   &[data-item="3"] {
-    left: 9%;
+    left: 26%;
     width: 6%;
     height: 18%;
-    top: 67%;
+    top: 1%;
     z-index: 4;
-    transform: rotate(210deg) scaleY(-1);
+    transform: rotate(267deg);
+  }
+
+  &[data-item="4"] {
+    left: 6%;
+    width: 6%;
+    height: 18%;
+    top: 40%;
+    z-index: 4;
+    transform: rotate(325deg);
+  }
+
+  &[data-item="5"] {
+    left: 87%;
+    width: 6%;
+    height: 18%;
+    top: 43%;
+    z-index: 4;
+    transform: rotate(167deg) scale(-1, 1);
   }
 }
 

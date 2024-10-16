@@ -62,7 +62,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
-
+const emit = defineEmits(["testComplite"]);
 const questionsList = [
   {
     id: 0,
@@ -77,7 +77,7 @@ const questionsList = [
       {
         id: 1,
         title: "Я вкладываю массу усилий в «копеечный» результат",
-        correctAnswer: false,
+        correctAnswer: true,
       },
 
       {
@@ -101,7 +101,7 @@ const questionsList = [
       {
         id: 0,
         title: "Брать ответственность на себя",
-        correctAnswer: false,
+        correctAnswer: true,
       },
       {
         id: 1,
@@ -135,7 +135,7 @@ const questionsList = [
       {
         id: 1,
         title: "Поддерживать каждого члена команды",
-        correctAnswer: false,
+        correctAnswer: true,
       },
 
       {
@@ -176,7 +176,7 @@ const questionsList = [
       {
         id: 3,
         title: "Проводить тренинги для сотрудников",
-        correctAnswer: false,
+        correctAnswer: true,
       },
     ],
   },
@@ -193,7 +193,7 @@ const questionsList = [
       {
         id: 1,
         title: "Поддерживать и хвалить коллег",
-        correctAnswer: false,
+        correctAnswer: true,
       },
 
       {
@@ -228,7 +228,7 @@ const questionsList = [
       {
         id: 2,
         title: "Повышать квалификацию в своей области",
-        correctAnswer: false,
+        correctAnswer: true,
       },
 
       {
@@ -246,7 +246,7 @@ const questionsList = [
       {
         id: 0,
         title: "«Ориентироваться на процесс, а не на результат»",
-        correctAnswer: false,
+        correctAnswer: true,
       },
       {
         id: 1,
@@ -277,6 +277,8 @@ const validateIsOn = ref(false);
 
 const buttonText = ref("Ответить");
 const showEndScreen = ref(false);
+const complitedAnswers = ref(0);
+
 const currentQuestion = computed(
   () => questionsList[currentQuestionIndex.value]
 );
@@ -290,6 +292,10 @@ const isCorrectAnswer = computed(() => {
 });
 
 const validateAnswer = () => {
+  if (complitedAnswers.value == questionsList.length) {
+    emit("testComplite");
+    return;
+  }
   if (
     questionsList.length - 1 == currentQuestionIndex.value &&
     buttonText.value == "Далее"
@@ -311,7 +317,12 @@ const validateAnswer = () => {
 
   if (isCorrectAnswer.value) {
     hasCurrentAnswer.value = true;
-    buttonText.value = "Далее";
+    complitedAnswers.value++;
+    if (complitedAnswers.value == questionsList.length) {
+      buttonText.value = "Завершить";
+    } else {
+      buttonText.value = "Далее";
+    }
   }
 };
 </script>

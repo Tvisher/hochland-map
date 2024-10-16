@@ -266,7 +266,7 @@
         <div class="times-slide__body">
           <div class="times-slide__ico">
             <img
-              src="@/assets/img/modules/module-6/time-slider/slide-ico-6.svg"
+              src="@/assets/img/modules/module-6/time-slider/slide-ico-7.svg"
               alt=""
             />
           </div>
@@ -319,6 +319,12 @@ import { Navigation, Pagination, EffectFade } from "swiper/modules";
 .times-slide__ico {
   width: fromWidth(160);
   height: fromWidth(174);
+  flex-shrink: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
 .times-slide__content {
