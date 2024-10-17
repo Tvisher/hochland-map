@@ -106,7 +106,8 @@
                 никогда не сдаваться и быть уверенным в своих силах.
               </div>
               <a
-                href="@/assets/img/modules/module-2/modal-card-image.png"
+                href="@/assets/files/7_принципов_лидерства.pdf"
+                ,
                 download
                 class="file-modal__btn"
               >
