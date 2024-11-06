@@ -6,9 +6,17 @@
     <div class="step-wrapper__block">
       <div
         class="step-wrapper__content"
-        :class="{ hideBg: moduleStep >= 10 }"
+        :class="{
+          hideBg: moduleStep >= 10,
+          lastBg: moduleStep >= 18,
+        }"
         :data-step="typeOfBg"
       >
+        <transition name="fade" mode="out-in">
+          <div class="step-bg-segment" v-if="moduleStep >= 18">
+            <img src="@/assets/img/modules/module-7/bg-element.svg" alt="" />
+          </div>
+        </transition>
         <div
           class="interactive-item"
           :class="[moduleStep == 1 ? 'pulse' : '']"
@@ -17,6 +25,36 @@
           @click="openStep(2)"
         >
           <img src="@/assets/img/modules/module-7/object-1.svg" alt="" />
+        </div>
+
+        <div
+          class="interactive-item"
+          :class="[moduleStep == 18 ? 'pulse' : '']"
+          data-item="3"
+          v-if="moduleStep >= 18"
+          @click="openStep(19)"
+        >
+          <img src="@/assets/img/modules/module-7/object-3.svg" alt="" />
+        </div>
+
+        <div
+          class="interactive-item"
+          :class="[moduleStep == 19 ? 'pulse' : '']"
+          data-item="2"
+          v-if="moduleStep >= 18"
+          @click="openStep(20)"
+        >
+          <img src="@/assets/img/modules/module-7/object-2.svg" alt="" />
+        </div>
+
+        <div
+          class="interactive-item"
+          :class="[moduleStep == 20 ? 'pulse' : '']"
+          data-item="4"
+          v-if="moduleStep >= 18"
+          @click="openStep(21)"
+        >
+          <img src="@/assets/img/modules/module-7/object-4.svg" alt="" />
         </div>
 
         <div
@@ -546,6 +584,7 @@ const openStep = (step) => {
   if (step == 2 && currentStep <= 2) {
     moduleStep.value = 2;
   }
+  console.log(step);
 };
 
 const compliteStep = (step) => {
@@ -582,10 +621,33 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.step-bg-segment {
+  position: absolute;
+  pointer-events: none;
+  width: 35.5%;
+  height: 81%;
+  left: 8.7%;
+  bottom: 0%;
+  z-index: 6;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}
 .step-wrapper__content {
   background-image: url(@/assets/img/modules/module-7/module-7-bg-0.svg);
+  background-size: contain;
   &.hideBg {
     background-image: none;
+  }
+  &.lastBg {
+    background-image: url(@/assets/img/modules/module-7/module-7-bg-3.svg);
+    &::before,
+    &::after {
+      opacity: 0 !important;
+    }
   }
   &::before,
   &::after {
@@ -710,6 +772,34 @@ onMounted(() => {
     width: 22%;
     height: 80%;
     bottom: -1%;
+  }
+
+  &[data-item="2"] {
+    left: 41.6%;
+    width: 5%;
+    height: 8.5%;
+    top: 55.5%;
+    z-index: 5;
+    pointer-events: none;
+    &.pulse {
+      pointer-events: initial;
+    }
+  }
+
+  &[data-item="3"] {
+    left: 33.8%;
+    width: 35%;
+    height: 93%;
+    bottom: 0%;
+    z-index: 4;
+  }
+
+  &[data-item="4"] {
+    left: 68.8%;
+    width: 22%;
+    height: 45%;
+    bottom: 34.6%;
+    z-index: 4;
   }
 
   // &[data-item="2"] {
