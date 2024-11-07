@@ -107,7 +107,6 @@
               </div>
               <a
                 href="@/assets/files/7_принципов_лидерства.pdf"
-                ,
                 download
                 class="file-modal__btn"
               >
@@ -307,7 +306,10 @@
               rel="preload"
             />
           </div>
-          <div class="result__text">Вы ответили правильно на все вопросы!</div>
+          <div class="result__text">
+            Ты ответил правильно <br />
+            на все вопросы!
+          </div>
           <div class="result__btn" @click="compliteModule">
             Перейти на следующий этап
           </div>

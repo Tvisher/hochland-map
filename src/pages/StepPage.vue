@@ -22,6 +22,7 @@ import { useGameStore } from "@/stores/GameStore.js";
 const store = useGameStore();
 
 const step = ref(+route.params.id);
+
 const currentStep = computed(() => {
   switch (step.value) {
     case 1:

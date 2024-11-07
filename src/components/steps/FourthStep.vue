@@ -56,7 +56,8 @@
               />
             </div>
             <div class="result__text">
-              Вы ответили правильно на все вопросы!
+              Ты ответил правильно <br />
+              на все вопросы!
             </div>
             <div class="result__btn" @click="compliteModule">
               Перейти на следующий этап

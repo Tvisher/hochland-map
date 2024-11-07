@@ -1068,7 +1068,9 @@
 .album-modal,
 .mobile-modal,
 .newspapper-modal,
-.timeline-modal {
+.timeline-modal,
+.atm-modal,
+.poster-modal {
   display: block;
 
   .modal-content {
@@ -1633,6 +1635,12 @@
   &[data-step="6"] {
     .modal-content {
       background-image: url("../img/modules/module-6/quiz-ico.svg");
+    }
+  }
+
+  &[data-step="7"] {
+    .modal-content {
+      background-image: url("../img/modules/module-7/quiz-ico.svg");
     }
   }
 }
@@ -2455,6 +2463,22 @@
   background: #fff;
 }
 
+.atm-modal {
+  .modal-content {
+    background-image: url(../img/atm-modal-ico.svg);
+    background-size: fromWidth(200) fromWidth(200);
+    background-position: top fromWidth(60) left fromWidth(40);
+  }
+}
+
+.poster-modal {
+  .modal-content {
+    background-image: url(../img/poster-modal-ico.svg);
+    background-size: fromWidth(200) fromWidth(200);
+    background-position: top fromWidth(60) left fromWidth(40);
+  }
+}
+
 .album-modal {
   user-select: none;
 
@@ -2589,6 +2613,14 @@
   .tabs-content {
     padding-left: fromWidth(300);
     margin-bottom: 0;
+  }
+}
+
+.card-modal {
+  .modal-content {
+    background-image: url(../img/card-modal-ico.svg);
+    background-size: fromWidth(200) fromWidth(200);
+    background-position: top fromWidth(60) left fromWidth(40);
   }
 }
 

@@ -29,22 +29,32 @@
 
         <div
           class="interactive-item"
+          :class="[moduleStep == 19 ? 'pulse' : '']"
+          data-item="2"
+          v-if="moduleStep >= 18"
+          @click="showPhotoAlbumModal = true"
+        >
+          <img src="@/assets/img/modules/module-7/object-2.svg" alt="" />
+        </div>
+
+        <div
+          class="interactive-item"
           :class="[moduleStep == 18 ? 'pulse' : '']"
           data-item="3"
           v-if="moduleStep >= 18"
-          @click="openStep(19)"
+          @click="showATMModal = true"
         >
           <img src="@/assets/img/modules/module-7/object-3.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 19 ? 'pulse' : '']"
-          data-item="2"
+          :class="[moduleStep == 21 ? 'pulse' : '']"
+          data-item="5"
           v-if="moduleStep >= 18"
-          @click="openStep(20)"
+          @click="showQuiz = true"
         >
-          <img src="@/assets/img/modules/module-7/object-2.svg" alt="" />
+          <img src="@/assets/img/modules/module-7/object-5.svg" alt="" />
         </div>
 
         <div
@@ -52,14 +62,14 @@
           :class="[moduleStep == 20 ? 'pulse' : '']"
           data-item="4"
           v-if="moduleStep >= 18"
-          @click="openStep(21)"
+          @click="showPosterModal = true"
         >
           <img src="@/assets/img/modules/module-7/object-4.svg" alt="" />
         </div>
 
         <div
           class="arrow-template"
-          v-for="step in [4, 5, 20]"
+          v-for="step in [1, 18, 19, 20, 21]"
           :class="[moduleStep == step ? 'show' : '']"
           :data-item="step"
         >
@@ -393,10 +403,106 @@
           </div>
         </transition>
 
+        <transition name="fade" mode="out-in">
+          <div class="modal-template atm-modal" v-show="showATMModal">
+            <div class="modal-content">
+              <!-- <div class="man-modal__close" @click="compliteStep(4)"></div> -->
+              <div class="tabs-modal__inner">
+                <div class="tabs-content__inner">
+                  <div class="tabs-content__title">
+                    Ты знаешь, когда тебе будет поступать зарплата?
+                  </div>
+
+                  <div class="tabs-content__title _small">
+                    Зарплата будет начисляться два раза в месяц — 10-го и 25-го
+                    числа.
+                  </div>
+                  <br />
+
+                  <div
+                    class="tabs-content__title _small"
+                    style="font-weight: 600"
+                  >
+                    25-го числа каждого месяца на твою карту будет приходить
+                    первая часть. Она будет состоять только из отработанных
+                    часов за период с 1-го по 15-е число. Из этой части
+                    удерживаются НДФЛ и алименты, если они у тебя есть.
+                    <br />
+                    <br />
+                    10-го числа будет приходить остаток. Это окончательный
+                    расчет всех доходов за месяц: отработанные часы, премии,
+                    премиальные надбавки, командировки, простои, отпуска,
+                    больничные, дотации на питание, сыр и т. д. Из этой части
+                    будут вычитаться: первая часть зарплаты, которая пришла
+                    25-го числа, отпускные, больничные, НДФЛ, алименты, обеды и
+                    т. д.
+                  </div>
+                  <br />
+                  <br />
+
+                  <div class="tabs-content__title _small">
+                    Ежемесячные и ежегодные премии будут выплачиваться по
+                    служебным запискам от руководителей.
+                    <br />
+                    <br />
+                    А ещё ежегодно в компании проводится индексация заработной
+                    платы.
+                  </div>
+                  <br />
+                  <br />
+
+                  <div class="modal-btn" @click="compliteStep(18)">
+                    Прочитано
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <transition name="fade" mode="out-in">
+          <div class="modal-template poster-modal" v-show="showPosterModal">
+            <div class="modal-content">
+              <!-- <div class="man-modal__close" @click="compliteStep(4)"></div> -->
+              <div class="tabs-modal__inner">
+                <div class="tabs-content__inner">
+                  <div class="tabs-content__title">
+                    Когда я могу пойти в отпуск?
+                  </div>
+                  <div
+                    class="tabs-content__title _small"
+                    style="font-weight: 600"
+                  >
+                    Новому сотруднику положен отпуск не ранее чем через полгода.
+                    Каждый отработанный месяц стоит 2,33 дня отпуска. Итого
+                    через шесть месяцев работы у сотрудника накопится 14 дней
+                    отдыха. По согласованию с руководителем можно взять отпуск и
+                    раньше, но тоже из расчета 2,33.
+                    <br />
+                    <br />
+                    Стоимость отпускного дня равна доходу за предыдущие 12
+                    месяцев / 29,3 (среднемесячное число календарных дней).
+                    <br />
+                    <br />
+                    Оплата отпускных будет происходить по пятницам и зависеть от
+                    даты начала отпуска — не позднее чем за 3 дня до начала и не
+                    раньше чем за 10 дней.
+                  </div>
+                  <br />
+                  <br />
+                  <div class="modal-btn" @click="compliteStep(20)">
+                    Прочитано
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+
         <!-- AlbumSlider -->
         <transition name="fade" mode="in-out">
           <div
-            class="modal-template album-modal menu-modal"
+            class="modal-template album-modal card-modal"
             v-if="showPhotoAlbumModal"
           >
             <div class="modal-content">
@@ -409,7 +515,7 @@
                       :albumName="'Кодекс поведения'"
                     />
                   </div>
-                  <div class="modal-btn" @click="compliteStep(4)">
+                  <div class="modal-btn" @click="compliteStep(19)">
                     Просмотрено
                   </div>
                 </div>
@@ -417,13 +523,14 @@
             </div>
           </div>
         </transition>
+
         <!-- QuizModal -->
         <transition name="fade" mode="out-in">
           <QuizModal
             v-if="showQuiz"
             @modalClose="showQuiz = false"
             :questionsList="questionsList"
-            :step="5"
+            :step="7"
           >
             <div class="result__image">
               <img
@@ -433,7 +540,8 @@
               />
             </div>
             <div class="result__text">
-              Вы ответили правильно на все вопросы!
+              Ты ответил правильно <br />
+              на все вопросы!
             </div>
             <div class="result__btn" @click="compliteModule">
               Перейти на следующий этап
@@ -459,9 +567,10 @@ const store = useGameStore();
 const stepLoad = ref(false);
 const moduleStep = ref(null);
 const isInteractive = ref(false);
+const showATMModal = ref(false);
 
 const showQuiz = ref(false);
-const showSliderModal = ref(false);
+const showPosterModal = ref(false);
 const showPhotoAlbumModal = ref(false);
 const typeOfBg = computed(() => {
   if (moduleStep.value >= 9 && moduleStep.value < 17) {
@@ -491,89 +600,81 @@ const albumImagesList = [
 const questionsList = [
   {
     id: 0,
-    title:
-      "Как называется сборник правил поведения для сотрудников и деловых партнеров Hochland?",
+    title: "Какие бонусы будут после прохождения испытательного периода? ",
     options: [
       {
         id: 0,
-        title: "Сборник поведенческих принципов",
+        title: "Увеличенный рабочий день",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Кодекс поведения",
-        correctAnswer: true,
-      },
-      {
-        id: 2,
-        title: "Корпоративный глоссарий",
+        title: "Дополнительный выходной",
         correctAnswer: false,
       },
       {
+        id: 2,
+        title: "ДМС и пенсионный счет",
+        correctAnswer: true,
+      },
+      {
         id: 3,
-        title: "Домовой устав",
+        title: "Личный наставник",
         correctAnswer: false,
       },
     ],
   },
+
   {
     id: 1,
-    title: "Что означает в MS Teams иконка белого «кирпича» на красном фоне?",
+    title: "Какого числа будет приходить зарплата?",
     options: [
       {
         id: 0,
-        title: "Сотрудник ушел на обед",
+        title: "5-го и 15-го",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Сотрудник в отпуске",
-        correctAnswer: false,
+        title: "10-го и 25-го",
+        correctAnswer: true,
       },
-
       {
         id: 2,
-        title: "Сотрудник больше не работает в компании",
+        title: "12-го и 27-го",
         correctAnswer: false,
       },
-
       {
         id: 3,
-        title:
-          "Сотрудник в данный момент демонстрирует свой экран на онлайн-встрече",
-        correctAnswer: true,
+        title: "5-го и 29-го",
+        correctAnswer: false,
       },
     ],
   },
+
   {
     id: 2,
-    title:
-      "Может ли сотрудник делать заявление от лица компании без согласования генерального директора",
+    title: "Когда можно пойти в отпуск?",
     options: [
       {
         id: 0,
-        title:
-          "Да, сотрудник может делиться любой информацией о компании и делать заявления",
-        correctAnswer: false,
+        title: "Через полгода",
+        correctAnswer: true,
       },
       {
         id: 1,
-        title: "Да, только если журналист обещает анонимность",
+        title: "Через девять месяцев",
         correctAnswer: false,
       },
-
       {
         id: 2,
-        title:
-          "Нет, только после согласования с непосредственным руководителем",
+        title: "Через год",
         correctAnswer: false,
       },
-
       {
         id: 3,
-        title:
-          "Нет. Без письменного согласования генерального директора запрещено делать любые заявления от лица компании",
-        correctAnswer: true,
+        title: "Какой ещё отпуск?",
+        correctAnswer: false,
       },
     ],
   },
@@ -588,17 +689,24 @@ const openStep = (step) => {
 };
 
 const compliteStep = (step) => {
-  if (step == 4) {
-    showPhotoAlbumModal.value = false;
-    if (moduleStep.value < 5) {
-      moduleStep.value = 5;
+  if (step == 18) {
+    showATMModal.value = false;
+    if (moduleStep.value < 19) {
+      moduleStep.value = 19;
     }
   }
 
-  if (step == 5) {
-    showSliderModal.value = false;
-    if (moduleStep.value < 6) {
-      moduleStep.value = 6;
+  if (step == 19) {
+    showPhotoAlbumModal.value = false;
+    if (moduleStep.value < 20) {
+      moduleStep.value = 20;
+    }
+  }
+
+  if (step == 20) {
+    showPosterModal.value = false;
+    if (moduleStep.value < 21) {
+      moduleStep.value = 21;
     }
   }
 };
@@ -721,31 +829,49 @@ onMounted(() => {
     }
   }
 
-  &[data-item="4"] {
-    right: 59%;
+  &[data-item="1"] {
+    left: 13%;
     width: 6%;
     height: 20%;
-    bottom: 7%;
+    top: 15%;
     z-index: 4;
-    transform: rotate(259deg);
+    transform: rotate(310deg);
   }
 
-  &[data-item="5"] {
-    left: 73.6%;
+  &[data-item="18"] {
+    left: 24.6%;
     width: 6%;
     height: 18%;
-    top: 67%;
+    top: 0%;
     z-index: 4;
-    transform: rotate(277deg) scaleY(-1);
+    transform: rotate(289deg);
+  }
+
+  &[data-item="19"] {
+    left: 32.6%;
+    width: 6%;
+    height: 18%;
+    top: 42%;
+    z-index: 4;
+    transform: rotate(289deg);
   }
 
   &[data-item="20"] {
-    left: 72.6%;
+    left: 60.6%;
     width: 6%;
     height: 18%;
-    top: 13%;
+    top: 16%;
     z-index: 4;
-    transform: rotate(266deg);
+    transform: rotate(289deg);
+  }
+
+  &[data-item="21"] {
+    left: 74%;
+    width: 6%;
+    height: 18%;
+    top: 2%;
+    z-index: 4;
+    transform: rotate(270deg);
   }
 }
 
@@ -802,25 +928,12 @@ onMounted(() => {
     z-index: 4;
   }
 
-  // &[data-item="2"] {
-  //   right: 31%;
-  //   width: 7%;
-  //   height: 8%;
-  //   top: 72%;
-  // }
-
-  // &[data-item="3"] {
-  //   right: -4px;
-  //   top: 0px;
-  //   width: 17.5%;
-  //   height: 91.36%;
-  //   opacity: 0;
-  //   visibility: hidden;
-  //   transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-  //   &.show {
-  //     opacity: 1;
-  //     visibility: visible;
-  //   }
-  // }
+  &[data-item="5"] {
+    right: 2.2%;
+    width: 13.2%;
+    height: 7.2%;
+    top: 9%;
+    z-index: 4;
+  }
 }
 </style>
