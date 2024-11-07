@@ -507,6 +507,15 @@
           >
             <div class="modal-content">
               <div class="tabs-modal__inner">
+                <div class="tabs-content__title">Зарплатная карта</div>
+                <div class="tabs-content__title _small">
+                  Твоя зарплата будет начисляться на карточку банка-партнера.
+                  Сейчас это Альфа-Банк. Зарплатная карта дает ряд преимуществ,
+                  о которых ты сейчас и узнаешь. Но если тебе удобно получать
+                  деньги на карту другого банка — это тоже возможно.
+                  <br />
+                  <br />
+                </div>
                 <div class="tabs-content">
                   <div class="album__wrapper">
                     <AlbumSlider
