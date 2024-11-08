@@ -721,7 +721,7 @@ const compliteStep = (step) => {
 };
 
 const compliteModule = () => {
-  store.openNewStep(6);
+  store.openNewStep(8);
   router.push("/");
 };
 
