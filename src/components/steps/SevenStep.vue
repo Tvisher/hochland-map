@@ -543,7 +543,7 @@
           >
             <div class="result__image">
               <img
-                src="@/assets/img/modules/module-5/modal-result.png"
+                src="@/assets/img/modules/module-7/modal-result.png"
                 alt=""
                 rel="preload"
               />
