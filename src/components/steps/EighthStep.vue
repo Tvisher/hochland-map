@@ -126,7 +126,76 @@
         >
           <div class="arrow-template_img"></div>
         </div>
+        <transition name="fade" mode="out-in">
+          <div class="modal-template glasses-modal" v-show="showGlassesModal">
+            <div class="modal-content">
+              <div class="tabs-modal__inner">
+                <div class="tabs-content__inner">
+                  <div class="tabs-content__title">
+                    Каждый новый сотрудник компании получает в подарок
+                    приветственный пакет. Ты уже забрал свой?
+                    <br /><br />
+                    А бонусом к этому пакету есть
+                    <a href="#">стикеры в Телеграме</a> — забирай их себе и
+                    отправляй коллегам.
+                  </div>
+                  <div class="modal-btn" @click="compliteStep()">
+                    Получить стикеры
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
 
+        <transition name="fade" mode="out-in">
+          <div class="modal-template reward-modal" v-show="showRewardModal">
+            <div class="modal-content">
+              <div class="tabs-modal__inner">
+                <div class="tabs-content__inner">
+                  <div class="tabs-content__title">
+                    Ты знаком с премией «Лидеры года»? Она проходит ежегодно.
+                    Участвовать может каждый, независимо от стажа и должности.
+                  </div>
+                  <div class="tabs-content__title _small">
+                    Всего пять номинаций:
+                  </div>
+
+                  <div class="phone-modal__list">
+                    <ul>
+                      <li class="list-item">
+                        «Быстрый старт» — для новых сотрудников
+                      </li>
+                      <li>
+                        «Лидер с большой буквы» — для руководителей команд
+                      </li>
+                      <li>
+                        «Инноватор года» — для сотрудников, которые предложили
+                        прорывное решение для компании
+                      </li>
+                      <li>
+                        «Лидер в профессии» — для высокоэффективных сотрудников
+                      </li>
+                      <li>
+                        «Проект года» — специальная командная номинация для тех,
+                        кто готов вывести кросс-функциональное взаимодействие в
+                        компании на новый уровень
+                      </li>
+                    </ul>
+                    <p
+                      class="tabs-content__title _small"
+                      style="font-weight: 600"
+                    >
+                      Больше информации ты можешь найти на
+                      <a href="#">сайте премии</a>:
+                    </p>
+                  </div>
+                  <div class="modal-btn" @click="compliteStep()">Прочитано</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
         <!-- QuizModal -->
         <transition name="fade" mode="out-in">
           <QuizModal
@@ -169,7 +238,8 @@ const store = useGameStore();
 const stepLoad = ref(false);
 const moduleStep = ref(null);
 const isInteractive = ref(false);
-const showATMModal = ref(false);
+const showGlassesModal = ref(false);
+const showRewardModal = ref(false);
 
 const showQuiz = ref(false);
 const typeOfBg = computed(() => {

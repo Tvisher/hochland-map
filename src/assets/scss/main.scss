@@ -1070,7 +1070,9 @@
 .newspapper-modal,
 .timeline-modal,
 .atm-modal,
-.poster-modal {
+.poster-modal,
+.glasses-modal,
+.reward-modal {
   display: block;
 
   .modal-content {
@@ -2621,6 +2623,33 @@
     background-image: url(../img/card-modal-ico.svg);
     background-size: fromWidth(200) fromWidth(200);
     background-position: top fromWidth(60) left fromWidth(40);
+  }
+}
+
+.glasses-modal {
+  a {
+    color: #0abbef;
+    text-decoration: none;
+  }
+  .modal-content {
+    background-image: url(../img/glasses-modal-ico.svg);
+    background-size: fromWidth(200) fromWidth(200);
+    background-position: top fromWidth(60) left fromWidth(40);
+  }
+}
+
+.reward-modal {
+  .modal-content {
+    background-image: url(../img/glasses-modal-ico.svg);
+    background-size: fromWidth(200) fromWidth(200);
+    background-position: top fromWidth(60) left fromWidth(40);
+  }
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .tabs-content__title a {
+    text-decoration: none;
   }
 }
 
