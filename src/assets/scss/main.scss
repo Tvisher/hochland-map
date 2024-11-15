@@ -597,6 +597,11 @@
   cursor: pointer;
 }
 
+.modal-btn[disabled] {
+  opacity: 0.5;
+  cursor: no-drop;
+}
+
 .man-modal {
   will-change: transform;
   position: absolute;
@@ -1077,7 +1082,8 @@
 
   .modal-content {
     margin: auto;
-    margin-top: 8%;
+    // margin-top: 8%;
+    margin-top: fromWidth(64);
     box-sizing: border-box;
     max-width: 64.5%;
     width: 100%;
@@ -1963,15 +1969,16 @@
 
 .tv-modal {
   .modal-content {
-    max-width: 73.6%;
+    max-width: 65%;
     padding-left: 0;
+    padding-right: fromWidth(64);
     background-size: fromWidth(180) fromWidth(180);
     background-position: top fromWidth(45) left fromWidth(40);
     background-image: url(../img/tv-modal-ico.svg);
   }
 
   .file-modal__btn {
-    margin-bottom: fromWidth(48);
+    margin-bottom: 0;
   }
 }
 

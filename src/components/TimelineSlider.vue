@@ -14,6 +14,7 @@
     @activeIndexChange="(swiper) => calcBallPosition(swiper.activeIndex)"
     @resize="(swiper) => calcBallPosition(swiper.activeIndex)"
     @init="(swiper) => calcBallPosition(swiper.activeIndex)"
+    @reachEnd="() => emit('reachEnd')"
   >
     <swiper-slide class="slide-item timeline-slide">
       <div class="timeline-slide__wrapper">
@@ -184,6 +185,7 @@
 import { onMounted, ref } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation } from "swiper/modules";
+const emit = defineEmits(["reachEnd"]);
 
 const calcBallPosition = (ind) => {
   const timelineBall = document.querySelector(".timeline__ball");
@@ -201,9 +203,9 @@ const calcBallPosition = (ind) => {
   timelineBall.style.left = `${defaultPosition}px`;
 };
 
-// onMounted(() => {
-//   calcBallPosition(0);
-// });
+onMounted(() => {
+  calcBallPosition(0);
+});
 </script>
 
 <style lang="scss">

@@ -240,16 +240,7 @@ const moduleStep = ref(null);
 const isInteractive = ref(false);
 const showGlassesModal = ref(false);
 const showRewardModal = ref(false);
-
 const showQuiz = ref(false);
-const typeOfBg = computed(() => {
-  if (moduleStep.value >= 9 && moduleStep.value < 17) {
-    return "first";
-  }
-  if (moduleStep.value >= 17) {
-    return "second";
-  }
-});
 
 const questionsList = [
   {

@@ -15,6 +15,7 @@
       prevEl: '.album-prev-btn',
       nextEl: '.album-next-btn',
     }"
+    @reachEnd="() => emit('reachEnd')"
   >
     <swiper-slide class="slide-item" v-for="imagePath in props.albumImagesList">
       <img :src="imagePath" alt="" />
@@ -111,7 +112,7 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, EffectFade } from "swiper/modules";
-
+const emit = defineEmits(["reachEnd"]);
 const props = defineProps(["albumImagesList", "filePath", "albumName"]);
 </script>
 <style lang="scss"></style>

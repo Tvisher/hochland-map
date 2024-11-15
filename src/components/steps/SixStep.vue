@@ -84,11 +84,16 @@
                     :albumImagesList="albumImagesList"
                     :filePath="pdfFilePath"
                     :albumName="'Кодекс поведения'"
+                    @reachEnd="albumViewed = true"
                   />
                 </div>
-                <div class="modal-btn" @click="compliteStep(1)">
+                <button
+                  class="modal-btn"
+                  :disabled="!albumViewed"
+                  @click="compliteStep(1)"
+                >
                   Просмотрено
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -98,41 +103,78 @@
       <transition name="fade" mode="out-in">
         <div class="modal-template file-modal tv-modal" v-show="showTestModal">
           <div class="modal-content">
-            <div class="file-modal__inner">
-              <div class="file-modal__title">
-                Пока администратор проверяет анкету, у тебя есть время изучить
-                семь принципов лидерства в компании и закрепить знания
-                викториной. Эти правила помогут тебе вести за собой людей,
-                никогда не сдаваться и быть уверенным в своих силах.
-              </div>
-              <a
-                href="@/assets/files/7_принципов_лидерства.pdf"
-                download
-                class="file-modal__btn"
-              >
-                <span>Скачать PDF</span>
-                <div class="ico">
-                  <svg
-                    width="42"
-                    height="42"
-                    viewBox="0 0 42 42"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M25.2692 5.57143C25.2692 3.22009 23.2512 1.5 21 1.5C18.7488 1.5 16.7308 3.22009 16.7308 5.57143V11.3811C15.069 10.1215 12.6505 10.2124 11.0981 11.654C9.37756 13.2516 9.37755 15.8912 11.0981 17.4889L18.0212 23.9175C19.6782 25.4561 22.3218 25.4561 23.9788 23.9175L30.9019 17.4889C32.6224 15.8912 32.6224 13.2516 30.9019 11.654C29.3495 10.2124 26.931 10.1215 25.2692 11.3811V5.57143ZM10.0385 28.7143C10.0385 26.363 8.02044 24.6429 5.76923 24.6429C3.51802 24.6429 1.5 26.363 1.5 28.7143V33.8571C1.5 35.6563 2.27071 37.3571 3.6015 38.5929C4.92854 39.8251 6.70614 40.5 8.53846 40.5H33.4615C35.2939 40.5 37.0715 39.8251 38.3985 38.5929C39.7293 37.3571 40.5 35.6563 40.5 33.8571V28.7143C40.5 26.363 38.482 24.6429 36.2308 24.6429C33.9796 24.6429 31.9615 26.363 31.9615 28.7143V32.3571H10.0385V28.7143Z"
-                      fill="#0ABBEF"
-                      stroke="black"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
+            <div class="file-modal__inner" v-if="!showTestView">
+              <div class="tv-modal__preview">
+                <div class="tv-modal__image">
+                  <img
+                    src="@/assets/img/modules/module-6/tv-modal-preview.svg"
+                    alt=""
+                  />
                 </div>
-              </a>
-              <div class="file-modal__title">
-                Сохрани их и обязательно применяй в работе.
+                <div class="file-modal__title small-marg">
+                  Пока администратор проверяет анкету, у тебя есть время изучить
+                  семь принципов лидерства в компании и закрепить знания
+                  викториной. Эти правила помогут тебе вести за собой людей,
+                  никогда не сдаваться и быть уверенным в своих силах.
+                </div>
+                <div class="file-modal__title">
+                  Сохрани их и обязательно применяй в работе.
+                </div>
+                <div class="file-modal-btn-wrapper">
+                  <a
+                    href="@/assets/files/7_принципов_лидерства.pdf"
+                    download
+                    class="file-modal__btn"
+                  >
+                    <span>Скачать PDF</span>
+                    <div class="ico">
+                      <svg
+                        width="42"
+                        height="42"
+                        viewBox="0 0 42 42"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M25.2692 5.57143C25.2692 3.22009 23.2512 1.5 21 1.5C18.7488 1.5 16.7308 3.22009 16.7308 5.57143V11.3811C15.069 10.1215 12.6505 10.2124 11.0981 11.654C9.37756 13.2516 9.37755 15.8912 11.0981 17.4889L18.0212 23.9175C19.6782 25.4561 22.3218 25.4561 23.9788 23.9175L30.9019 17.4889C32.6224 15.8912 32.6224 13.2516 30.9019 11.654C29.3495 10.2124 26.931 10.1215 25.2692 11.3811V5.57143ZM10.0385 28.7143C10.0385 26.363 8.02044 24.6429 5.76923 24.6429C3.51802 24.6429 1.5 26.363 1.5 28.7143V33.8571C1.5 35.6563 2.27071 37.3571 3.6015 38.5929C4.92854 39.8251 6.70614 40.5 8.53846 40.5H33.4615C35.2939 40.5 37.0715 39.8251 38.3985 38.5929C39.7293 37.3571 40.5 35.6563 40.5 33.8571V28.7143C40.5 26.363 38.482 24.6429 36.2308 24.6429C33.9796 24.6429 31.9615 26.363 31.9615 28.7143V32.3571H10.0385V28.7143Z"
+                          fill="#0ABBEF"
+                          stroke="black"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </a>
+                  <div class="test-load-btn" @click="showTestView = true">
+                    <span>Перейти к викторине</span>
+                    <div class="ico">
+                      <svg
+                        width="22"
+                        height="30"
+                        viewBox="0 0 22 30"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M17.9061 12.6942C19.2279 13.9677 19.2279 16.0323 17.9061 17.3058L8.88046 26.0014C7.55869 27.2749 5.41567 27.2749 4.09389 26.0014C2.77212 24.728 2.77212 22.6633 4.09389 21.3899L10.7262 15L4.09389 8.61013C2.77212 7.33668 2.77212 5.27201 4.09389 3.99856C5.41567 2.72512 7.55869 2.72512 8.88046 3.99857L17.9061 12.6942Z"
+                          fill="white"
+                        />
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M20.0801 10.5229C22.64 12.9891 22.64 17.0109 20.0801 19.4771L11.0545 28.1728C8.52573 30.6091 4.44863 30.6091 1.9199 28.1728C-0.639968 25.7065 -0.639968 21.6848 1.9199 19.2185L6.29849 15L1.9199 10.7815C-0.639968 8.31522 -0.639968 4.29348 1.9199 1.8272C4.44862 -0.609066 8.52574 -0.609068 11.0545 1.8272L20.0801 10.5229ZM4.09389 8.61013C2.77212 7.33668 2.77212 5.27201 4.09389 3.99856C5.41567 2.72512 7.55869 2.72512 8.88046 3.99857L17.9061 12.6942C19.2279 13.9677 19.2279 16.0323 17.9061 17.3058L8.88046 26.0014C7.55869 27.2749 5.41567 27.2749 4.09389 26.0014C2.77212 24.728 2.77212 22.6633 4.09389 21.3899L10.7262 15L4.09389 8.61013Z"
+                          fill="black"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div class="file-modal__inner" v-else>
               <SixModuleTest @testComplite="testComplite" />
             </div>
           </div>
@@ -145,10 +187,14 @@
           v-show="showSixModuleTimeSlider"
         >
           <div class="modal-content">
-            <div class="man-modal__close" @click="compliteStep(3)"></div>
+            <div
+              class="man-modal__close"
+              @click="compliteStep(3)"
+              v-if="timesliderViewed"
+            ></div>
             <div class="tabs-modal__inner">
               <div class="tabs-content">
-                <SixModuleTimeSlider />
+                <SixModuleTimeSlider @reachEnd="timesliderViewed = true" />
               </div>
             </div>
           </div>
@@ -172,6 +218,21 @@
                     <div class="modal__block_ico"></div>
                     <div class="modal__block_info">
                       <div class="modal__block_text">
+                        Если ты работаешь в Московском офисе, то присоединяйся к
+                        этой группе в Viva
+                      </div>
+                      <a
+                        href="https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI4MTI4NjA1Mzg4OCJ9/all"
+                        target="_blank"
+                        class="modal__block_link"
+                        >Перейти</a
+                      >
+                    </div>
+                  </div>
+                  <div class="modal__block_wrapper">
+                    <div class="modal__block_ico _empty"></div>
+                    <div class="modal__block_info">
+                      <div class="modal__block_text">
                         Корпоративная социальная сеть в Viva Engage — группа
                         «Новости Hochland в России»: добавиться туда может
                         каждый сотрудник
@@ -184,56 +245,12 @@
                       >
                     </div>
                   </div>
-                </div>
 
-                <div class="newspapper-modal__block">
                   <div class="modal__block_wrapper">
-                    <div class="modal__block_ico"></div>
+                    <div class="modal__block_ico _empty"></div>
                     <div class="modal__block_info">
                       <div class="modal__block_text">
-                        Если ты работаешь в Московском офисе, то присоединяйся к
-                        этой группе в Viva
-                      </div>
-                      <a
-                        href="https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI4MTI4NjA1Mzg4OCJ9/all"
-                        target="_blank"
-                        class="modal__block_link"
-                        >Перейти</a
-                      >
-                    </div>
-                  </div>
-
-                  <div class="modal__block_wrapper">
-                    <div class="modal__block_ico"></div>
-                    <div class="modal__block_info" style="align-items: center">
-                      <div class="modal__block_text">Онлайн-журнал:</div>
-                      <a
-                        href="https://hochland.sharepoint.com/sites/companynewsru1"
-                        target="_blank"
-                        class="modal__block_link"
-                        >Перейти</a
-                      >
-                    </div>
-                  </div>
-
-                  <div class="modal__block_wrapper">
-                    <div class="modal__block_ico"></div>
-                    <div class="modal__block_info" style="align-items: center">
-                      <div class="modal__block_text">Корпоративный портал</div>
-                      <a
-                        href="https://hochland.sharepoint.com/sites/portal-ru "
-                        target="_blank"
-                        class="modal__block_link"
-                        >Перейти</a
-                      >
-                    </div>
-                  </div>
-
-                  <div class="modal__block_wrapper">
-                    <div class="modal__block_ico"></div>
-                    <div class="modal__block_info">
-                      <div class="modal__block_text">
-                        Лента новостей по концерну в Viva Engage
+                        Международные новости компании в Viva Engage
                       </div>
                       <a
                         href="https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIyNDgzNzY1MjQ4MCJ9/all"
@@ -247,7 +264,31 @@
 
                 <div class="newspapper-modal__block">
                   <div class="modal__block_wrapper">
-                    <div class="modal__block_ico"></div>
+                    <div class="modal__block_ico pc-ico"></div>
+                    <div class="modal__block_info" style="align-items: center">
+                      <div class="modal__block_text">Онлайн-журнал:</div>
+                      <a
+                        href="https://hochland.sharepoint.com/sites/companynewsru1"
+                        target="_blank"
+                        class="modal__block_link"
+                        >Перейти</a
+                      >
+                    </div>
+                  </div>
+                  <div class="modal__block_wrapper">
+                    <div class="modal__block_ico _empty"></div>
+                    <div class="modal__block_info" style="align-items: center">
+                      <div class="modal__block_text">Корпоративный портал</div>
+                      <a
+                        href="https://hochland.sharepoint.com/sites/portal-ru "
+                        target="_blank"
+                        class="modal__block_link"
+                        >Перейти</a
+                      >
+                    </div>
+                  </div>
+                  <div class="modal__block_wrapper">
+                    <div class="modal__block_ico _empty"></div>
                     <div class="modal__block_info">
                       <div class="modal__block_text">
                         Больше информации о самой компании можно узнать в
@@ -269,7 +310,7 @@
                 коммуникаций (RU-CorpComm) с адресом
                 <a href="mailto:ru-corpcomm@hochland.ru"
                   >ru-corpcomm@hochland.ru</a
-                >. Не пропусти.
+                >. <br />Не пропусти.
               </p>
               <div class="modal-btn" @click="compliteStep(4)">Прочитано</div>
             </div>
@@ -285,9 +326,15 @@
               Не забудь поздравить коллег и партнёров
             </div>
             <div class="tabs-content">
-              <TimelineSlider />
+              <TimelineSlider @reachEnd="() => (timelineSliderViewed = true)" />
             </div>
-            <div class="modal-btn" @click="compliteStep(5)">Прочитано</div>
+            <button
+              class="modal-btn"
+              :disabled="!timelineSliderViewed"
+              @click="compliteStep(5)"
+            >
+              Прочитано
+            </button>
           </div>
         </div>
       </transition>
@@ -336,15 +383,16 @@ const store = useGameStore();
 const stepLoad = ref(false);
 const moduleStep = ref(null);
 const isInteractive = ref(false);
-
 const showQuiz = ref(false);
-
 const showSixModuleTimeSlider = ref(false);
 const showPhotoAlbumModal = ref(false);
 const showTestModal = ref(false);
 const showNewspaperModal = ref(false);
 const showTimelineSlider = ref(false);
-
+const albumViewed = ref(false);
+const timesliderViewed = ref(false);
+const showTestView = ref(false);
+const timelineSliderViewed = ref(false);
 const pdfFilePath = new URL(
   "@/assets/files/Kodeks_povedeniya_aprel_2022.pdf",
   import.meta.url
@@ -483,6 +531,9 @@ const testComplite = () => {
   if (moduleStep.value < 3) {
     moduleStep.value = 3;
     showTestModal.value = false;
+    setTimeout(() => {
+      showTestView.value = false;
+    }, 1000);
   }
 };
 
@@ -558,6 +609,61 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.test-load-btn {
+  text-decoration: none;
+  cursor: pointer;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: fromWidth(24);
+  color: #fff;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: fromWidth(32);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  display: flex;
+  padding: fromWidth(28) fromWidth(20);
+  border-radius: fromWidth(20);
+  border: fromWidth(4) solid #000;
+  background: #0abbef;
+  box-shadow: fromWidth(8) fromWidth(8) 0px 0px rgba(0, 0, 0, 0.25);
+
+  .ico {
+    width: fromWidth(22);
+    height: fromWidth(30);
+
+    svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.file-modal-btn-wrapper {
+  display: flex;
+  margin-bottom: fromWidth(48);
+  gap: fromWidth(24);
+}
+.tv-modal__image {
+  width: 100%;
+  margin-bottom: fromWidth(48);
+  img {
+    width: 100%;
+  }
+}
+
+.tv-modal__preview {
+  .file-modal__title {
+    margin-bottom: fromWidth(48);
+    &.small-marg {
+      margin-bottom: fromWidth(20);
+    }
+  }
+}
 .newspaper-modal__footer {
   font-size: fromWidth(24);
   font-weight: 600;
@@ -620,6 +726,12 @@ onMounted(() => {
   background-repeat: no-repeat;
   background-size: contain;
   flex-shrink: 0;
+  &.pc-ico {
+    background-image: url(@/assets/img/modules/module-6/pc-logo.svg);
+  }
+  &._empty {
+    background-image: none;
+  }
 }
 
 .modal__block_wrapper {

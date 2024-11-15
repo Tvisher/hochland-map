@@ -245,7 +245,7 @@ const questionsList = [
     options: [
       {
         id: 0,
-        title: "«Ориентироваться на процесс, а не на результат»",
+        title: "Ориентироваться на процесс, а не на результат",
         correctAnswer: true,
       },
       {

@@ -14,6 +14,7 @@
     }"
     :modules="[Navigation, Pagination, EffectFade]"
     :pagination="{ clickable: true }"
+    @reachEnd="() => emit('reachEnd')"
   >
     <swiper-slide class="slide-item">
       <div class="slide-item__inner">
@@ -305,6 +306,7 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, EffectFade } from "swiper/modules";
+const emit = defineEmits(["reachEnd"]);
 </script>
 <style lang="scss">
 .times-slide__body {
