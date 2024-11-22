@@ -2812,4 +2812,24 @@
   }
 }
 
+.sticker-modal__slider {
+  .swiper-button-disabled {
+    opacity: 0.5;
+    filter: grayscale(1);
+  }
+  .sticker-pagination {
+    display: flex;
+    gap: fromWidth(30);
+  }
+  .swiper-pagination-bullet {
+    width: fromWidth(18);
+    height: fromWidth(18);
+    margin: 0 !important;
+    background: #fff;
+    border: fromWidth(4) solid #000;
+    &.swiper-pagination-bullet-active {
+      background: #f4b923;
+    }
+  }
+}
 // @import "media.scss";

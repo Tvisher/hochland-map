@@ -14,25 +14,25 @@
           class="interactive-item"
           :class="[moduleStep == 1 ? 'pulse' : '']"
           data-item="1"
-          @click="openStep()"
+          @click="showGlassesModal = true"
         >
           <img src="@/assets/img/modules/module-8/object-1.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 2 ? 'pulse' : '']"
           data-item="2"
-          @click="openStep()"
+          @click="showRewardModal = true"
         >
           <img src="@/assets/img/modules/module-8/object-2.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 3 ? 'pulse' : '']"
           data-item="3"
-          @click="openStep()"
+          @click="showStickerModalOne = true"
         >
           <img src="@/assets/img/modules/module-8/object-3.svg" alt="" />
         </div>
@@ -111,7 +111,7 @@
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 12 ? 'pulse' : '']"
           data-item="12"
           @click="openStep()"
         >
@@ -120,7 +120,7 @@
 
         <div
           class="arrow-template"
-          v-for="step in [1, 2, 3, 4, 5]"
+          v-for="step in []"
           :class="[moduleStep == step ? 'show' : '']"
           :data-item="step"
         >
@@ -139,7 +139,7 @@
                     <a href="#">стикеры в Телеграме</a> — забирай их себе и
                     отправляй коллегам.
                   </div>
-                  <div class="modal-btn" @click="compliteStep()">
+                  <div class="modal-btn" @click="compliteStep(1)">
                     Получить стикеры
                   </div>
                 </div>
@@ -190,12 +190,337 @@
                       <a href="#">сайте премии</a>:
                     </p>
                   </div>
-                  <div class="modal-btn" @click="compliteStep()">Прочитано</div>
+                  <div class="modal-btn" @click="compliteStep(2)">
+                    Прочитано
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </transition>
+
+        <!-- sticker-modal - 1  -->
+        <transition name="fade" mode="out-in">
+          <div
+            class="sticker-modal"
+            data-modal="1"
+            v-show="showStickerModalOne"
+          >
+            <div class="sticker-modal__content">
+              <div class="sticker-modal__ico">
+                <img
+                  src="@/assets/img/modules/module-8/sticker-modal-ico-1.svg"
+                  alt=""
+                />
+              </div>
+              <div class="sticker-modal__inner">
+                <div class="sticker-modal__text">
+                  А ты знаешь, что сотрудник компании получает частичная
+                  компенсация питания?
+                </div>
+                <div class="modal-btn" @click="compliteStep(3)">Дальше</div>
+              </div>
+            </div>
+          </div>
+        </transition>
+        <!-- sticker-modal - 2  -->
+        <transition name="fade" mode="out-in">
+          <div
+            class="sticker-modal"
+            data-modal="2"
+            v-show="showStickerModalTwo"
+          >
+            <div class="sticker-modal__content">
+              <div class="sticker-modal__ico">
+                <img
+                  src="@/assets/img/modules/module-8/sticker-modal-ico-2.svg"
+                  alt=""
+                />
+              </div>
+              <div class="sticker-modal__inner">
+                <swiper
+                  class="sticker-modal__slider"
+                  :modules="[Navigation, EffectFade, Pagination]"
+                  :slides-per-view="1"
+                  effect="fade"
+                  :fadeEffect="{
+                    crossFade: true,
+                  }"
+                  :navigation="{
+                    prevEl: '.sticker-prev-btn',
+                    nextEl: '.sticker-next-btn',
+                  }"
+                  :pagination="{
+                    el: '.sticker-pagination',
+                    type: 'bullets',
+                  }"
+                >
+                  <swiper-slide class="sticker-slide">
+                    <div class="sticker-slide__head">
+                      <div class="sticker-slide__ico">
+                        <svg
+                          width="55"
+                          height="48"
+                          viewBox="0 0 55 48"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            x="1.5"
+                            y="1.5"
+                            width="52"
+                            height="45"
+                            rx="6.5"
+                            fill="#0ABBEF"
+                          />
+                          <rect
+                            x="1.5"
+                            y="1.5"
+                            width="52"
+                            height="45"
+                            rx="6.5"
+                            stroke="black"
+                            stroke-width="3"
+                          />
+                          <path d="M32.3333 13V16.1429Z" fill="white" />
+                          <path d="M32.3333 22.4286V25.5714Z" fill="white" />
+                          <path d="M32.3333 31.8571V35Z" fill="white" />
+                          <path
+                            d="M16.2222 13H38.7778C39.6324 13 40.4519 13.3311 41.0562 13.9205C41.6605 14.5099 42 15.3093 42 16.1429V20.8571C41.1454 20.8571 40.3258 21.1883 39.7215 21.7777C39.1173 22.3671 38.7778 23.1665 38.7778 24C38.7778 24.8335 39.1173 25.6329 39.7215 26.2223C40.3258 26.8117 41.1454 27.1429 42 27.1429V31.8571C42 32.6907 41.6605 33.4901 41.0562 34.0795C40.4519 34.6689 39.6324 35 38.7778 35H16.2222C15.3676 35 14.5481 34.6689 13.9438 34.0795C13.3395 33.4901 13 32.6907 13 31.8571V27.1429C13.8546 27.1429 14.6742 26.8117 15.2785 26.2223C15.8827 25.6329 16.2222 24.8335 16.2222 24C16.2222 23.1665 15.8827 22.3671 15.2785 21.7777C14.6742 21.1883 13.8546 20.8571 13 20.8571V16.1429C13 15.3093 13.3395 14.5099 13.9438 13.9205C14.5481 13.3311 15.3676 13 16.2222 13Z"
+                            fill="white"
+                          />
+                          <path
+                            d="M32.3333 13V16.1429M32.3333 22.4286V25.5714M32.3333 31.8571V35M16.2222 13H38.7778C39.6324 13 40.4519 13.3311 41.0562 13.9205C41.6605 14.5099 42 15.3093 42 16.1429V20.8571C41.1454 20.8571 40.3258 21.1883 39.7215 21.7777C39.1173 22.3671 38.7778 23.1665 38.7778 24C38.7778 24.8335 39.1173 25.6329 39.7215 26.2223C40.3258 26.8117 41.1454 27.1429 42 27.1429V31.8571C42 32.6907 41.6605 33.4901 41.0562 34.0795C40.4519 34.6689 39.6324 35 38.7778 35H16.2222C15.3676 35 14.5481 34.6689 13.9438 34.0795C13.3395 33.4901 13 32.6907 13 31.8571V27.1429C13.8546 27.1429 14.6742 26.8117 15.2785 26.2223C15.8827 25.6329 16.2222 24.8335 16.2222 24C16.2222 23.1665 15.8827 22.3671 15.2785 21.7777C14.6742 21.1883 13.8546 20.8571 13 20.8571V16.1429C13 15.3093 13.3395 14.5099 13.9438 13.9205C14.5481 13.3311 15.3676 13 16.2222 13Z"
+                            stroke="black"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <div class="sticker-slide__title">Оплата проезда</div>
+                    </div>
+                    <div class="sticker-slide__body">
+                      Компания оплачивает единый проездной билет на 30 дней или
+                      билет на количество поездок от 10 и более сотрудникам,
+                      имеющим постоянное рабочее место в московском офисе и
+                      отработавшим в ЛеФорте не менее 10 рабочих дней в течение
+                      месяца.
+                    </div>
+                    <div class="sticker-slide__footer"></div>
+                  </swiper-slide>
+
+                  <swiper-slide class="sticker-slide">
+                    <div class="sticker-slide__head">
+                      <div class="sticker-slide__ico">
+                        <svg
+                          width="55"
+                          height="48"
+                          viewBox="0 0 55 48"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            x="1.5"
+                            y="1.5"
+                            width="52"
+                            height="45"
+                            rx="6.5"
+                            fill="#76B82A"
+                          />
+                          <rect
+                            x="1.5"
+                            y="1.5"
+                            width="52"
+                            height="45"
+                            rx="6.5"
+                            stroke="black"
+                            stroke-width="3"
+                          />
+                          <path
+                            d="M14.3 31.8571C14.3 32.6907 14.6477 33.4901 15.2665 34.0795C15.8854 34.6689 16.7248 35 17.6 35C18.4752 35 19.3146 34.6689 19.9335 34.0795C20.5523 33.4901 20.9 32.6907 20.9 31.8571C20.9 31.0236 20.5523 30.2242 19.9335 29.6348C19.3146 29.0454 18.4752 28.7143 17.6 28.7143C16.7248 28.7143 15.8854 29.0454 15.2665 29.6348C14.6477 30.2242 14.3 31.0236 14.3 31.8571Z"
+                            fill="white"
+                          />
+                          <path
+                            d="M34.1 31.8571C34.1 32.6907 34.4477 33.4901 35.0665 34.0795C35.6854 34.6689 36.5248 35 37.4 35C38.2752 35 39.1146 34.6689 39.7335 34.0795C40.3523 33.4901 40.7 32.6907 40.7 31.8571C40.7 31.0236 40.3523 30.2242 39.7335 29.6348C39.1146 29.0454 38.2752 28.7143 37.4 28.7143C36.5248 28.7143 35.6854 29.0454 35.0665 29.6348C34.4477 30.2242 34.1 31.0236 34.1 31.8571Z"
+                            fill="white"
+                          />
+                          <path
+                            d="M14.3 31.8571H11V14.5714C11 14.1547 11.1738 13.755 11.4833 13.4603C11.7927 13.1656 12.2124 13 12.65 13H35.75C37.938 13 40.0365 14.1589 41.5836 16.2218C43.1308 18.2847 44 21.0826 44 24V31.8571H40.7M34.1 31.8571H20.9Z"
+                            fill="white"
+                          />
+                          <path d="M34.1 13L36.575 24H44" fill="white" />
+                          <path d="M11 20.8571H35.75Z" fill="white" />
+                          <path d="M19.25 13V20.8571Z" fill="white" />
+                          <path d="M27.5 13V20.8571Z" fill="white" />
+                          <path
+                            d="M14.3 31.8571C14.3 32.6907 14.6477 33.4901 15.2665 34.0795C15.8854 34.6689 16.7248 35 17.6 35C18.4752 35 19.3146 34.6689 19.9335 34.0795C20.5523 33.4901 20.9 32.6907 20.9 31.8571M14.3 31.8571C14.3 31.0236 14.6477 30.2242 15.2665 29.6348C15.8854 29.0454 16.7248 28.7143 17.6 28.7143C18.4752 28.7143 19.3146 29.0454 19.9335 29.6348C20.5523 30.2242 20.9 31.0236 20.9 31.8571M14.3 31.8571H11V14.5714C11 14.1547 11.1738 13.755 11.4833 13.4603C11.7927 13.1656 12.2124 13 12.65 13H35.75C37.938 13 40.0365 14.1589 41.5836 16.2218C43.1308 18.2847 44 21.0826 44 24M20.9 31.8571H34.1M34.1 31.8571C34.1 32.6907 34.4477 33.4901 35.0665 34.0795C35.6854 34.6689 36.5248 35 37.4 35C38.2752 35 39.1146 34.6689 39.7335 34.0795C40.3523 33.4901 40.7 32.6907 40.7 31.8571M34.1 31.8571C34.1 31.0236 34.4477 30.2242 35.0665 29.6348C35.6854 29.0454 36.5248 28.7143 37.4 28.7143C38.2752 28.7143 39.1146 29.0454 39.7335 29.6348C40.3523 30.2242 40.7 31.0236 40.7 31.8571M40.7 31.8571H44V24M44 24H36.575L34.1 13M11 20.8571H35.75M19.25 13V20.8571M27.5 13V20.8571"
+                            stroke="black"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <div class="sticker-slide__title">Автобус</div>
+                    </div>
+                    <div class="sticker-slide__body">
+                      Если ты работаешь в РАОС, то на завод тебя отвезет
+                      корпоративный автобус.
+                      <a href="#">
+                        Просто выбери удобный для себя маршрут и изучи
+                        расписание. корпоративный автобус.
+                      </a>
+                    </div>
+                    <div class="sticker-slide__footer"></div>
+                  </swiper-slide>
+
+                  <swiper-slide class="sticker-slide">
+                    <div class="sticker-slide__head">
+                      <div class="sticker-slide__ico">
+                        <svg
+                          width="55"
+                          height="48"
+                          viewBox="0 0 55 48"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            x="1.5"
+                            y="1.5"
+                            width="52"
+                            height="45"
+                            rx="6.5"
+                            fill="#F4B923"
+                          />
+                          <rect
+                            x="1.5"
+                            y="1.5"
+                            width="52"
+                            height="45"
+                            rx="6.5"
+                            stroke="black"
+                            stroke-width="3"
+                          />
+                          <path
+                            d="M15.4444 31.6154C15.4444 32.513 15.8073 33.3739 16.4533 34.0087C17.0993 34.6434 17.9754 35 18.8889 35C19.8024 35 20.6785 34.6434 21.3245 34.0087C21.9704 33.3739 22.3333 32.513 22.3333 31.6154C22.3333 30.7177 21.9704 29.8568 21.3245 29.2221C20.6785 28.5874 19.8024 28.2308 18.8889 28.2308C17.9754 28.2308 17.0993 28.5874 16.4533 29.2221C15.8073 29.8568 15.4444 30.7177 15.4444 31.6154Z"
+                            fill="white"
+                          />
+                          <path
+                            d="M32.6667 31.6154C32.6667 32.513 33.0296 33.3739 33.6755 34.0087C34.3215 34.6434 35.1976 35 36.1111 35C37.0246 35 37.9007 34.6434 38.5467 34.0087C39.1927 33.3739 39.5556 32.513 39.5556 31.6154C39.5556 30.7177 39.1927 29.8568 38.5467 29.2221C37.9007 28.5874 37.0246 28.2308 36.1111 28.2308C35.1976 28.2308 34.3215 28.5874 33.6755 29.2221C33.0296 29.8568 32.6667 30.7177 32.6667 31.6154Z"
+                            fill="white"
+                          />
+                          <path
+                            d="M15.4444 31.6154H12V21.4615L15.4444 13H30.9444L37.8333 21.4615H39.5556C40.4691 21.4615 41.3452 21.8181 41.9911 22.4529C42.6371 23.0876 43 23.9485 43 24.8462V31.6154H39.5556M32.6667 31.6154H22.3333ZM12 21.4615H37.8333ZM27.5 21.4615V13Z"
+                            fill="white"
+                          />
+                          <path
+                            d="M15.4444 31.6154C15.4444 32.513 15.8073 33.3739 16.4533 34.0087C17.0993 34.6434 17.9754 35 18.8889 35C19.8024 35 20.6785 34.6434 21.3245 34.0087C21.9704 33.3739 22.3333 32.513 22.3333 31.6154M15.4444 31.6154C15.4444 30.7177 15.8073 29.8568 16.4533 29.2221C17.0993 28.5874 17.9754 28.2308 18.8889 28.2308C19.8024 28.2308 20.6785 28.5874 21.3245 29.2221C21.9704 29.8568 22.3333 30.7177 22.3333 31.6154M15.4444 31.6154H12V21.4615M22.3333 31.6154H32.6667M32.6667 31.6154C32.6667 32.513 33.0296 33.3739 33.6755 34.0087C34.3215 34.6434 35.1976 35 36.1111 35C37.0246 35 37.9007 34.6434 38.5467 34.0087C39.1927 33.3739 39.5556 32.513 39.5556 31.6154M32.6667 31.6154C32.6667 30.7177 33.0296 29.8568 33.6755 29.2221C34.3215 28.5874 35.1976 28.2308 36.1111 28.2308C37.0246 28.2308 37.9007 28.5874 38.5467 29.2221C39.1927 29.8568 39.5556 30.7177 39.5556 31.6154M39.5556 31.6154H43V24.8462C43 23.9485 42.6371 23.0876 41.9911 22.4529C41.3452 21.8181 40.4691 21.4615 39.5556 21.4615H37.8333M12 21.4615L15.4444 13H30.9444L37.8333 21.4615M12 21.4615H37.8333M27.5 21.4615V13"
+                            stroke="black"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                      <div class="sticker-slide__title">Оплата проезда</div>
+                    </div>
+                    <div class="sticker-slide__body">
+                      У тебя есть корпоративный автомобиль, но ты не знаешь, к
+                      кому обратиться с вопросами по его использованию? Свяжись
+                      с менеджером по транспорту.
+                    </div>
+                    <div class="sticker-slide__footer"></div>
+                  </swiper-slide>
+
+                  <template v-slot:container-end>
+                    <div class="sticker-end">
+                      <div class="sticker-pagination"></div>
+                      <div class="nav-buttons">
+                        <div class="sticker-prev-btn">
+                          <svg
+                            width="60"
+                            height="60"
+                            viewBox="0 0 60 60"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M30.3725 59.0779C46.0703 59.0779 58.7958 46.1716 58.7958 30.2509C58.7958 14.3301 46.0703 1.42383 30.3725 1.42383C14.6748 1.42383 1.94922 14.3301 1.94922 30.2509C1.94922 46.1716 14.6748 59.0779 30.3725 59.0779Z"
+                              fill="#23C2F1"
+                            />
+                            <path
+                              d="M51.5694 10.8692C54.0584 13.7193 56.146 16.9766 57.5912 20.4782C59.0365 24.0612 59.9197 27.8885 60 31.8787C60 35.8689 59.2774 39.8591 57.6715 43.5235C56.0657 47.188 53.5767 50.4453 50.6059 53.0511C47.5548 55.6569 44.0219 57.5299 40.3285 58.6699C36.6351 59.81 32.7811 60.2172 28.9271 59.8914C21.2993 59.4028 13.9125 56.1455 8.45266 50.5267C5.72274 47.758 3.47457 44.4193 2.02932 40.6734C0.584063 36.9275 -0.138564 32.9373 0.0220199 28.8657C0.182604 20.8039 3.79574 12.7421 9.73733 7.3676C12.7081 4.68034 16.241 2.5631 20.0147 1.34162C23.7884 0.120131 27.803 -0.287031 31.7373 0.201562C35.5913 0.690156 39.365 1.99307 42.657 3.78458C46.0292 5.65753 49 8.01906 51.4891 10.8692H51.5694ZM51.2482 11.1949C48.7591 8.42622 45.6278 6.22755 42.2555 4.8432C38.8833 3.45885 35.1898 2.88883 31.657 2.97026C28.1241 3.05169 24.5913 3.86602 21.3796 5.16893C18.168 6.47185 15.1972 8.34479 12.6278 10.7063C10.0585 13.0679 8.0512 15.918 6.44536 19.0124C4.91982 22.1883 4.03661 25.6084 3.71544 29.11C3.23369 36.1132 5.48186 43.4421 9.9782 49.0609C12.2264 51.8296 15.1169 54.2726 18.4088 55.9012C21.6205 57.5299 25.3139 58.5071 28.9271 58.5885C32.5402 58.6699 36.2336 57.9371 39.5256 56.5527C42.8176 55.0869 45.7884 53.0511 48.2774 50.5267C53.2555 45.5593 56.5474 38.9633 57.4307 31.7159C57.8321 28.1328 57.6715 24.387 56.5474 20.8039C55.5037 17.2209 53.6569 13.8822 51.1679 11.1135L51.2482 11.1949Z"
+                              fill="black"
+                            />
+                            <path
+                              d="M37.0902 39.9163L35.8887 38.5553L37.0902 39.9163C35.2175 41.5696 32.2723 41.5696 30.3996 39.9163L22.7754 33.1853C20.7571 31.4034 20.7571 28.3989 22.7754 26.617L30.3996 19.886C32.2723 18.2327 35.2175 18.2327 37.0902 19.886L35.7666 21.3853L37.0902 19.886C39.1085 21.6679 39.1085 24.6724 37.0902 26.4543L33.186 29.9011L37.0902 33.348C39.1085 35.1299 39.1085 38.1344 37.0902 39.9163Z"
+                              fill="white"
+                              stroke="black"
+                              stroke-width="4"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </div>
+                        <div class="sticker-next-btn">
+                          <svg
+                            width="60"
+                            height="60"
+                            viewBox="0 0 60 60"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M30.3725 59.0779C46.0703 59.0779 58.7958 46.1716 58.7958 30.2509C58.7958 14.3301 46.0703 1.42383 30.3725 1.42383C14.6748 1.42383 1.94922 14.3301 1.94922 30.2509C1.94922 46.1716 14.6748 59.0779 30.3725 59.0779Z"
+                              fill="#23C2F1"
+                            />
+                            <path
+                              d="M51.5694 10.8692C54.0584 13.7193 56.146 16.9766 57.5912 20.4782C59.0365 24.0612 59.9197 27.8885 60 31.8787C60 35.8689 59.2774 39.8591 57.6715 43.5235C56.0657 47.188 53.5767 50.4453 50.6059 53.0511C47.5548 55.6569 44.0219 57.5299 40.3285 58.6699C36.6351 59.81 32.7811 60.2172 28.9271 59.8914C21.2993 59.4028 13.9125 56.1455 8.45266 50.5267C5.72274 47.758 3.47457 44.4193 2.02932 40.6734C0.584063 36.9275 -0.138564 32.9373 0.0220199 28.8657C0.182604 20.8039 3.79574 12.7421 9.73733 7.3676C12.7081 4.68034 16.241 2.5631 20.0147 1.34162C23.7884 0.120131 27.803 -0.287031 31.7373 0.201562C35.5913 0.690156 39.365 1.99307 42.657 3.78458C46.0292 5.65753 49 8.01906 51.4891 10.8692H51.5694ZM51.2482 11.1949C48.7591 8.42622 45.6278 6.22755 42.2555 4.8432C38.8833 3.45885 35.1898 2.88883 31.657 2.97026C28.1241 3.05169 24.5913 3.86602 21.3796 5.16893C18.168 6.47185 15.1972 8.34479 12.6278 10.7063C10.0585 13.0679 8.0512 15.918 6.44536 19.0124C4.91982 22.1883 4.03661 25.6084 3.71544 29.11C3.23369 36.1132 5.48186 43.4421 9.9782 49.0609C12.2264 51.8296 15.1169 54.2726 18.4088 55.9012C21.6205 57.5299 25.3139 58.5071 28.9271 58.5885C32.5402 58.6699 36.2336 57.9371 39.5256 56.5527C42.8176 55.0869 45.7884 53.0511 48.2774 50.5267C53.2555 45.5593 56.5474 38.9633 57.4307 31.7159C57.8321 28.1328 57.6715 24.387 56.5474 20.8039C55.5037 17.2209 53.6569 13.8822 51.1679 11.1135L51.2482 11.1949Z"
+                              fill="black"
+                            />
+                            <path
+                              d="M22.775 39.9163L23.9765 38.5553L22.775 39.9163C24.6477 41.5696 27.5929 41.5696 29.4657 39.9163L37.0898 33.1853C39.1081 31.4034 39.1081 28.3989 37.0898 26.617L29.4657 19.886C27.5929 18.2327 24.6477 18.2327 22.775 19.886L24.0987 21.3853L22.775 19.886C20.7567 21.6679 20.7567 24.6724 22.775 26.4543L26.6793 29.9011L22.775 33.348C20.7567 35.1299 20.7567 38.1344 22.775 39.9163Z"
+                              fill="white"
+                              stroke="black"
+                              stroke-width="4"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                </swiper>
+                <div class="sticker-modal__right">
+                  <div class="sticker-modal__card">
+                    <div class="sticker-modal__card-inner">
+                      <div class="card-inner__name">Андрей Гонтарь</div>
+                      <div class="card-inner__descr">
+                        старший бренд менеджер
+                      </div>
+                      <div class="card-inner__line"></div>
+                      <a href="tel:+79161011461" class="card-inner__link"
+                        >+7 (916) 1011461</a
+                      >
+                      <a href="tel:+749577702061151" class="card-inner__link"
+                        >+7 (495) 7770206-1151</a
+                      >
+                      <a
+                        href="mailto:andrey.gontar@hochland.ru"
+                        class="card-inner__link"
+                        >andrey.gontar@hochland.ru</a
+                      >
+                    </div>
+                  </div>
+                  <div class="modal-btn" @click="compliteStep(3)">Дальше</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+
         <!-- QuizModal -->
         <transition name="fade" mode="out-in">
           <QuizModal
@@ -226,6 +551,8 @@
 </template>
 
 <script setup>
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation, Pagination, EffectFade } from "swiper/modules";
 import QuizModal from "@/components/QuizModal.vue";
 import { ref, onMounted, computed } from "vue";
 
@@ -240,6 +567,8 @@ const moduleStep = ref(null);
 const isInteractive = ref(false);
 const showGlassesModal = ref(false);
 const showRewardModal = ref(false);
+const showStickerModalOne = ref(false);
+const showStickerModalTwo = ref(1);
 const showQuiz = ref(false);
 
 const questionsList = [
@@ -330,14 +659,27 @@ const openStep = (step) => {
   if (step == 2 && currentStep <= 2) {
     moduleStep.value = 2;
   }
-  console.log(step);
 };
 
 const compliteStep = (step) => {
-  if (step == 18) {
-    showATMModal.value = false;
-    if (moduleStep.value < 19) {
-      moduleStep.value = 19;
+  if (step == 1) {
+    showGlassesModal.value = false;
+    if (moduleStep.value < 2) {
+      moduleStep.value = 2;
+    }
+  }
+
+  if (step == 2) {
+    showRewardModal.value = false;
+    if (moduleStep.value < 3) {
+      moduleStep.value = 3;
+    }
+  }
+
+  if (step == 3) {
+    showStickerModalOne.value = false;
+    if (moduleStep.value < 4) {
+      moduleStep.value = 4;
     }
   }
 };
@@ -360,6 +702,226 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.sticker-modal__card {
+  padding: fromWidth(32);
+  margin-bottom: fromWidth(40);
+  border-radius: fromWidth(32);
+  background: #b2d2dc;
+  height: fit-content;
+}
+
+.card-inner__name {
+  color: #000;
+  font-family: "Open Sans";
+  font-size: fromWidth(32);
+  font-weight: 700;
+  line-height: normal;
+}
+
+.card-inner__descr {
+  color: #565656;
+  font-family: "Open Sans";
+  font-size: fromWidth(24);
+  font-weight: 600;
+  line-height: normal;
+}
+.card-inner__line {
+  margin: fromWidth(24) 0;
+  width: 100%;
+  height: fromWidth(2);
+  background-color: #ddd;
+}
+
+.card-inner__link {
+  display: block;
+  color: #000;
+  font-family: "Open Sans";
+  font-size: fromWidth(24);
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: fromWidth(6);
+  text-decoration: none;
+}
+.sticker-modal__card-inner {
+  padding: fromWidth(32);
+  padding-top: fromWidth(20);
+  padding-right: fromWidth(120);
+  border-radius: fromWidth(20);
+  border: fromWidth(4) solid #000;
+  background: #fff;
+  box-shadow: fromWidth(8) fromWidth(8) 0px 0px rgba(0, 0, 0, 0.25);
+}
+.sticker-end {
+  z-index: 4;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px fromWidth(40);
+  padding-top: fromWidth(16);
+  padding-bottom: fromWidth(24);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &::before {
+    position: absolute;
+    left: fromWidth(40);
+    top: 0;
+    width: calc(100% - fromWidth(80));
+    content: "";
+    height: 2px;
+    background-color: #ddd;
+  }
+  .nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: fromWidth(24);
+    div {
+      cursor: pointer;
+    }
+  }
+  .swiper-pagination-bullet {
+    width: fromWidth(18);
+    height: fromWidth(18);
+  }
+}
+
+.sticker-slide__footer {
+  height: fromWidth(100);
+}
+
+.sticker-modal__right {
+  position: relative;
+  padding-left: fromWidth(44);
+  border-left: fromWidth(2) solid #ddd;
+}
+.sticker-modal__slider {
+  height: fit-content;
+  width: fromWidth(750);
+  margin: 0;
+  border-radius: fromWidth(20);
+  border: fromWidth(4) solid #000;
+}
+.sticker-slide__ico {
+  width: fromWidth(55);
+  height: fromWidth(48);
+  svg {
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+.sticker-slide__body {
+  padding: fromWidth(32) fromWidth(40);
+  padding-bottom: fromWidth(48);
+  color: #000;
+  font-family: "Open Sans";
+  font-size: fromWidth(23);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%;
+  a {
+    text-decoration: none;
+    color: #0abbef;
+  }
+}
+
+.sticker-slide__head {
+  background: linear-gradient(90deg, #f0e7f1 0%, #e2f2fa 100%);
+  padding: fromWidth(24) fromWidth(32);
+  color: #000;
+  font-family: "Open Sans";
+  font-size: fromWidth(24);
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  gap: fromWidth(24);
+}
+.sticker-modal__content {
+  padding: fromWidth(40);
+  padding-right: fromWidth(135);
+  display: flex;
+  align-items: flex-start;
+  gap: fromWidth(35);
+  height: 100%;
+  box-sizing: border-box;
+}
+.sticker-prev-btn,
+.sticker-next-btn {
+  width: fromWidth(60);
+  height: fromWidth(60);
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+.sticker-modal__ico {
+  width: fromWidth(130);
+  height: fromWidth(130);
+  flex-shrink: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.sticker-modal__inner {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sticker-modal__text {
+  color: #000;
+  font-size: fromWidth(24);
+  font-weight: 700;
+  line-height: 158.333%; /* 158.333% */
+  margin-bottom: fromWidth(40);
+}
+
+.sticker-modal {
+  z-index: 10;
+  font-family: "Open Sans";
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  left: 0;
+  top: 0;
+  .modal-btn {
+    width: 100%;
+    box-sizing: border-box;
+    padding: fromWidth(29);
+    background-position: center right fromWidth(130);
+  }
+  &[data-modal="1"] {
+    left: 23%;
+    top: 27%;
+    background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-1.svg);
+    width: fromWidth(880);
+    height: fromWidth(342);
+  }
+
+  &[data-modal="2"] {
+    left: 8%;
+    top: 26%;
+    background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-2.svg);
+    width: fromWidth(1662);
+    height: fromWidth(670);
+    .sticker-modal__content {
+      padding-right: fromWidth(40);
+      padding-top: fromWidth(111);
+    }
+    .sticker-modal__inner {
+      display: flex;
+      justify-content: space-between;
+      gap: fromWidth(44);
+    }
+  }
+}
 .step-wrapper__content {
   background-image: url(@/assets/img/modules/module-8/module-8-bg-0.svg);
   background-size: contain;
@@ -368,7 +930,6 @@ onMounted(() => {
 .arrow-template {
   pointer-events: none;
   position: absolute;
-
   width: 123px;
   height: 215px;
   opacity: 0;
