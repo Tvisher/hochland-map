@@ -14,7 +14,7 @@
           class="interactive-item"
           :class="[moduleStep == 1 ? 'pulse' : '']"
           data-item="1"
-          @click="showGlassesModal = true"
+          @click="openStep(1)"
         >
           <img src="@/assets/img/modules/module-8/object-1.svg" alt="" />
         </div>
@@ -23,7 +23,7 @@
           class="interactive-item"
           :class="[moduleStep == 2 ? 'pulse' : '']"
           data-item="2"
-          @click="showRewardModal = true"
+          @click="openStep(2)"
         >
           <img src="@/assets/img/modules/module-8/object-2.svg" alt="" />
         </div>
@@ -32,79 +32,79 @@
           class="interactive-item"
           :class="[moduleStep == 3 ? 'pulse' : '']"
           data-item="3"
-          @click="showStickerModalOne = true"
+          @click="openStep(3)"
         >
           <img src="@/assets/img/modules/module-8/object-3.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 4 ? 'pulse' : '']"
           data-item="4"
-          @click="openStep()"
+          @click="openStep(4)"
         >
           <img src="@/assets/img/modules/module-8/object-4.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 5 ? 'pulse' : '']"
           data-item="5"
-          @click="openStep()"
+          @click="openStep(5)"
         >
           <img src="@/assets/img/modules/module-8/object-5.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 6 ? 'pulse' : '']"
           data-item="6"
-          @click="openStep()"
+          @click="openStep(6)"
         >
           <img src="@/assets/img/modules/module-8/object-6.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 7 ? 'pulse' : '']"
           data-item="7"
-          @click="openStep()"
+          @click="openStep(7)"
         >
           <img src="@/assets/img/modules/module-8/object-7.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 8 ? 'pulse' : '']"
           data-item="8"
-          @click="openStep()"
+          @click="openStep(8)"
         >
           <img src="@/assets/img/modules/module-8/object-8.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 9 ? 'pulse' : '']"
           data-item="9"
-          @click="openStep()"
+          @click="openStep(9)"
         >
           <img src="@/assets/img/modules/module-8/object-9.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 10 ? 'pulse' : '']"
           data-item="10"
-          @click="openStep()"
+          @click="openStep(10)"
         >
           <img src="@/assets/img/modules/module-8/object-10.svg" alt="" />
         </div>
 
         <div
           class="interactive-item"
-          :class="[moduleStep == 1 ? 'pulse' : '']"
+          :class="[moduleStep == 11 ? 'pulse' : '']"
           data-item="11"
-          @click="openStep()"
+          @click="openStep(11)"
         >
           <img src="@/assets/img/modules/module-8/object-11.svg" alt="" />
         </div>
@@ -113,7 +113,7 @@
           class="interactive-item"
           :class="[moduleStep == 12 ? 'pulse' : '']"
           data-item="12"
-          @click="openStep()"
+          @click="showQuiz = true"
         >
           <img src="@/assets/img/modules/module-8/object-12.svg" alt="" />
         </div>
@@ -254,6 +254,7 @@
                     el: '.sticker-pagination',
                     type: 'bullets',
                   }"
+                  @reachEnd="() => (busSliderWiewed = true)"
                 >
                   <swiper-slide class="sticker-slide">
                     <div class="sticker-slide__head">
@@ -514,24 +515,240 @@
                       >
                     </div>
                   </div>
-                  <div class="modal-btn" @click="compliteStep(3)">Дальше</div>
+                  <button
+                    class="modal-btn"
+                    :disabled="!busSliderWiewed"
+                    @click="compliteStep(4)"
+                  >
+                    Дальше
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </transition>
+        <!-- sticker-modal - 3  -->
+        <transition name="fade" mode="out-in">
+          <div
+            class="sticker-modal"
+            data-modal="3"
+            v-show="showStickerModalThree"
+          >
+            <div class="sticker-modal__content">
+              <div class="sticker-modal__ico">
+                <img
+                  src="@/assets/img/modules/module-8/sticker-modal-ico-3.svg"
+                  alt=""
+                />
+              </div>
+              <div class="sticker-modal__inner">
+                <div class="sticker-modal__text">
+                  Чем дольше ты работаешь в компании, тем ближе возможность
+                  получить премию. Все, у кого стаж кратен пяти годам, получают
+                  единовременную премию. Поздравления юбиляров проходят на
+                  традиционных летних корпоративных праздниках.
+                </div>
+                <div class="modal-btn" @click="compliteStep(5)">Дальше</div>
+              </div>
+            </div>
+          </div>
+        </transition>
+        <!-- sticker-modal - 4  -->
+        <transition name="fade" mode="out-in">
+          <div
+            class="sticker-modal"
+            data-modal="4"
+            v-show="showStickerModalFour"
+          >
+            <div class="sticker-modal__content">
+              <div class="sticker-modal__ico">
+                <img
+                  src="@/assets/img/modules/module-8/sticker-modal-ico-4.svg"
+                  alt=""
+                />
+              </div>
+              <div class="sticker-modal__inner">
+                <div class="sticker-modal__text">
+                  А ещё за каждые пять лет стажа ты получаешь один
+                  дополнительный день отпуска. Планирование отпусков проходит в
+                  декабре.
+                </div>
+                <div class="modal-btn" @click="compliteStep(6)">Дальше</div>
+              </div>
+            </div>
+          </div>
+        </transition>
+        <!-- sticker-modal - 5  -->
+        <transition name="fade" mode="out-in">
+          <div
+            class="sticker-modal"
+            data-modal="5"
+            v-show="showStickerModalFive"
+          >
+            <div class="sticker-modal__content">
+              <div class="sticker-modal__ico">
+                <img
+                  src="@/assets/img/modules/module-8/sticker-modal-ico-5.svg"
+                  alt=""
+                />
+              </div>
+              <div class="sticker-modal__inner">
+                <div class="sticker-modal__text">
+                  Если ты заболел и ушёл на больничный, компания готова помочь.
+                  <br />
+                  Доплата осуществляется в зависимости от стажа:
+                  <ul>
+                    <li>от 3 месяцев до 1 года — 50% от оклада</li>
+                    <li>от 1 года — 75% оклада</li>
+                  </ul>
+                </div>
+                <div class="modal-btn" @click="compliteStep(7)">Дальше</div>
+              </div>
+            </div>
+          </div>
+        </transition>
+        <!-- sticker-modal - 6  -->
+        <transition name="fade" mode="out-in">
+          <div
+            class="sticker-modal"
+            data-modal="6"
+            v-show="showStickerModalSix"
+          >
+            <div class="sticker-modal__content">
+              <div class="sticker-modal__ico">
+                <img
+                  src="@/assets/img/modules/module-8/sticker-modal-ico-6.svg"
+                  alt=""
+                />
+              </div>
+              <div class="sticker-modal__inner">
+                <div class="sticker-modal__text">
+                  Если вдруг ты оказался в сложной жизненной ситуации, компания
+                  готова оказать тебе материальную поддержку. Для этого обратись
+                  к специалисту по компенсациям и льготам Юлии Гонтаренко.
+                </div>
+                <div class="person-block">
+                  <div class="person-block__left">
+                    <div class="person-block__name">Юлия Гонтаренко</div>
+                    <div class="person-block__descr">
+                      старший бренд менеджер
+                    </div>
+                  </div>
+                  <div class="person-block__right">
+                    <a href="tel:+7 (916) 1011461" class="person-block__link"
+                      >+7 (916) 1011461</a
+                    >
+                    <a
+                      href="tel:+7 (495) 7770206-1151"
+                      class="person-block__link"
+                      >+7 (495) 7770206-1151</a
+                    >
+                    <a
+                      href="mailto:andrey.gontar@hochland.ru"
+                      class="person-block__link"
+                      >andrey.gontar@hochland.ru</a
+                    >
+                  </div>
+                </div>
+                <div class="modal-btn" @click="compliteStep(8)">Дальше</div>
+              </div>
+            </div>
+          </div>
+        </transition>
 
+        <!-- sticker-modal - 7  -->
+        <transition name="fade" mode="out-in">
+          <div
+            class="sticker-modal"
+            data-modal="7"
+            v-show="showStickerModalSeven"
+          >
+            <div class="sticker-modal__content">
+              <div class="sticker-modal__ico">
+                <img
+                  src="@/assets/img/modules/module-8/sticker-modal-ico-7.svg"
+                  alt=""
+                />
+              </div>
+              <div class="sticker-modal__inner">
+                <div class="sticker-modal__text">
+                  Как ты уже понял, в компании много льгот, компенсаций и
+                  премий. Подробнее о них ты можешь узнать из специального
+                  положения
+                </div>
+                <a href="#" target="_blank" class="modal-btn pdf-btn"
+                  >Скачать PDF</a
+                >
+                <div class="line"></div>
+                <div class="modal-btn" @click="compliteStep(9)">Дальше</div>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- sticker-modal - 8  -->
+        <transition name="fade" mode="out-in">
+          <div
+            class="sticker-modal"
+            data-modal="8"
+            v-show="showStickerModalEight"
+          >
+            <div class="sticker-modal__content">
+              <div class="sticker-modal__ico">
+                <img
+                  src="@/assets/img/modules/module-8/sticker-modal-ico-8.svg"
+                  alt=""
+                />
+              </div>
+              <div class="sticker-modal__inner">
+                <div class="sticker-modal__text">
+                  У тебя есть дети до 14 лет? Если да, то к Новому году подарок
+                  от компании получишь не только ты, но и твой ребенок. А ещё в
+                  компании проходят детские экскурсии на производство — анонсы
+                  мероприятий можно найти в новостных лентах.
+                </div>
+                <div class="modal-btn" @click="compliteStep(10)">Дальше</div>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <!-- sticker-modal - 9  -->
+        <transition name="fade" mode="out-in">
+          <div
+            class="sticker-modal"
+            data-modal="9"
+            v-show="showStickerModalNine"
+          >
+            <div class="sticker-modal__content">
+              <div class="sticker-modal__ico">
+                <img
+                  src="@/assets/img/modules/module-8/sticker-modal-ico-9.svg"
+                  alt=""
+                />
+              </div>
+              <div class="sticker-modal__inner">
+                <div class="sticker-modal__text">
+                  Один раз в месяц тебе будут выдавать набор сыров из пяти
+                  единиц продукции. Работая в компании, ты первым будешь
+                  пробовать все новинки.
+                </div>
+                <div class="modal-btn" @click="compliteStep(11)">Дальше</div>
+              </div>
+            </div>
+          </div>
+        </transition>
         <!-- QuizModal -->
         <transition name="fade" mode="out-in">
           <QuizModal
             v-if="showQuiz"
             @modalClose="showQuiz = false"
             :questionsList="questionsList"
-            :step="7"
+            :step="8"
           >
             <div class="result__image">
               <img
-                src="@/assets/img/modules/module-7/modal-result.png"
+                src="@/assets/img/modules/module-8/modal-result.png"
                 alt=""
                 rel="preload"
               />
@@ -568,32 +785,39 @@ const isInteractive = ref(false);
 const showGlassesModal = ref(false);
 const showRewardModal = ref(false);
 const showStickerModalOne = ref(false);
-const showStickerModalTwo = ref(1);
+const showStickerModalTwo = ref(false);
+const showStickerModalThree = ref(false);
+const showStickerModalFour = ref(false);
+const showStickerModalFive = ref(false);
+const showStickerModalSix = ref(false);
+const showStickerModalSeven = ref(false);
+const showStickerModalEight = ref(false);
+const showStickerModalNine = ref(false);
 const showQuiz = ref(false);
-
+const busSliderWiewed = ref(false);
 const questionsList = [
   {
     id: 0,
-    title: "Какие бонусы будут после прохождения испытательного периода? ",
+    title: "За что начисляют дополнительный отпускной день? ",
     options: [
       {
         id: 0,
-        title: "Увеличенный рабочий день",
+        title: "За примерное поведение.",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Дополнительный выходной",
-        correctAnswer: false,
-      },
-      {
-        id: 2,
-        title: "ДМС и пенсионный счет",
+        title: "За каждые пять лет стажа.",
         correctAnswer: true,
       },
       {
+        id: 2,
+        title: "За лучшее выступление на корпоративе.",
+        correctAnswer: false,
+      },
+      {
         id: 3,
-        title: "Личный наставник",
+        title: "За соблюдение этикета.",
         correctAnswer: false,
       },
     ],
@@ -601,53 +825,27 @@ const questionsList = [
 
   {
     id: 1,
-    title: "Какого числа будет приходить зарплата?",
+    title:
+      "Сколько единиц продукции ты будешь получать каждый месяц в наборе сыров? ",
     options: [
       {
         id: 0,
-        title: "5-го и 15-го",
+        title: "3",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "10-го и 25-го",
-        correctAnswer: true,
-      },
-      {
-        id: 2,
-        title: "12-го и 27-го",
-        correctAnswer: false,
-      },
-      {
-        id: 3,
-        title: "5-го и 29-го",
-        correctAnswer: false,
-      },
-    ],
-  },
-
-  {
-    id: 2,
-    title: "Когда можно пойти в отпуск?",
-    options: [
-      {
-        id: 0,
-        title: "Через полгода",
-        correctAnswer: true,
-      },
-      {
-        id: 1,
-        title: "Через девять месяцев",
+        title: "4",
         correctAnswer: false,
       },
       {
         id: 2,
-        title: "Через год",
-        correctAnswer: false,
+        title: "5",
+        correctAnswer: true,
       },
       {
         id: 3,
-        title: "Какой ещё отпуск?",
+        title: "6",
         correctAnswer: false,
       },
     ],
@@ -656,36 +854,100 @@ const questionsList = [
 
 const openStep = (step) => {
   const currentStep = moduleStep.value;
-  if (step == 2 && currentStep <= 2) {
-    moduleStep.value = 2;
+  if (step == 1 && currentStep >= 1) {
+    showGlassesModal.value = true;
+  }
+
+  if (step == 2 && currentStep >= 2) {
+    showRewardModal.value = true;
+  }
+
+  if (step == 3 && currentStep >= 3) {
+    showStickerModalOne.value = true;
+  }
+
+  if (step == 4 && currentStep >= 4) {
+    showStickerModalTwo.value = true;
+  }
+
+  if (step == 5 && currentStep >= 5) {
+    showStickerModalThree.value = true;
+  }
+
+  if (step == 6 && currentStep >= 6) {
+    showStickerModalFour.value = true;
+  }
+
+  if (step == 7 && currentStep >= 7) {
+    showStickerModalFive.value = true;
+  }
+
+  if (step == 8 && currentStep >= 8) {
+    showStickerModalSix.value = true;
+  }
+  if (step == 9 && currentStep >= 9) {
+    showStickerModalSeven.value = true;
+  }
+  if (step == 10 && currentStep >= 10) {
+    showStickerModalEight.value = true;
+  }
+
+  if (step == 11 && currentStep >= 11) {
+    showStickerModalNine.value = true;
   }
 };
 
 const compliteStep = (step) => {
   if (step == 1) {
     showGlassesModal.value = false;
-    if (moduleStep.value < 2) {
-      moduleStep.value = 2;
-    }
   }
 
   if (step == 2) {
     showRewardModal.value = false;
-    if (moduleStep.value < 3) {
-      moduleStep.value = 3;
-    }
   }
 
   if (step == 3) {
     showStickerModalOne.value = false;
-    if (moduleStep.value < 4) {
-      moduleStep.value = 4;
-    }
+  }
+
+  if (step == 4) {
+    showStickerModalTwo.value = false;
+  }
+  if (step == 5) {
+    showStickerModalThree.value = false;
+  }
+
+  if (step == 6) {
+    showStickerModalFour.value = false;
+  }
+
+  if (step == 7) {
+    showStickerModalFive.value = false;
+  }
+
+  if (step == 8) {
+    showStickerModalSix.value = false;
+  }
+
+  if (step == 9) {
+    showStickerModalSeven.value = false;
+  }
+
+  if (step == 10) {
+    showStickerModalEight.value = false;
+  }
+
+  if (step == 11) {
+    showStickerModalNine.value = false;
+  }
+
+  if (moduleStep.value < step + 1) {
+    moduleStep.value = step + 1;
   }
 };
 
 const compliteModule = () => {
-  store.openNewStep(6);
+  store.openNewStep(9);
   router.push("/");
 };
 
@@ -702,6 +964,47 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.person-block {
+  margin-bottom: fromWidth(35);
+  padding: fromWidth(24);
+  padding-right: fromWidth(35);
+  padding-left: fromWidth(30);
+  display: flex;
+  gap: fromWidth(24);
+  border-radius: fromWidth(20);
+  border: fromWidth(4) solid #000;
+  background: #fff;
+  box-shadow: fromWidth(8) fromWidth(8) 0px 0px rgba(0, 0, 0, 0.25);
+}
+.person-block__name {
+  color: #000;
+  font-family: "Open Sans";
+  font-size: fromWidth(20);
+  font-weight: 700;
+  line-height: normal;
+}
+.person-block__descr {
+  color: #565656;
+  font-family: "Open Sans";
+  font-size: fromWidth(14);
+  font-weight: 600;
+  line-height: normal;
+}
+.person-block__right {
+  border-left: fromWidth(2) solid #ddd;
+  padding-left: fromWidth(24);
+  display: flex;
+  flex-direction: column;
+  gap: fromWidth(6);
+}
+.person-block__link {
+  color: #000;
+  font-family: "Open Sans";
+  font-size: fromWidth(16);
+  font-weight: 700;
+  line-height: normal;
+  text-decoration: none;
+}
 .sticker-modal__card {
   padding: fromWidth(32);
   margin-bottom: fromWidth(40);
@@ -872,6 +1175,16 @@ onMounted(() => {
 .sticker-modal__inner {
   width: 100%;
   box-sizing: border-box;
+  ul {
+    padding-left: fromWidth(25);
+  }
+  li {
+    &::marker {
+      color: #0abbef;
+      font-size: fromWidth(24);
+      line-height: 100%;
+    }
+  }
 }
 
 .sticker-modal__text {
@@ -921,10 +1234,96 @@ onMounted(() => {
       gap: fromWidth(44);
     }
   }
+  &[data-modal="3"] {
+    left: 21%;
+    top: 39%;
+    background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-3.svg);
+    width: fromWidth(880);
+    height: fromWidth(495);
+  }
+
+  &[data-modal="4"] {
+    left: 5%;
+    top: 55%;
+    background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-4.svg);
+    width: fromWidth(880);
+    height: fromWidth(380);
+  }
+
+  &[data-modal="5"] {
+    left: 9%;
+    top: 41%;
+    background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-5.svg);
+    width: fromWidth(880);
+    height: fromWidth(494);
+  }
+
+  &[data-modal="6"] {
+    left: 6%;
+    top: 26%;
+    background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-6.svg);
+    width: fromWidth(880);
+    height: fromWidth(618);
+    .sticker-modal__text {
+      margin-bottom: fromWidth(35);
+    }
+  }
+
+  &[data-modal="7"] {
+    left: 14%;
+    top: 26%;
+    background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-7.svg);
+    width: fromWidth(880);
+    height: fromWidth(560);
+    .sticker-modal__text {
+      margin-bottom: fromWidth(30);
+    }
+  }
+
+  &[data-modal="8"] {
+    left: 8%;
+    top: 10%;
+    background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-8.svg);
+    width: fromWidth(880);
+    height: fromWidth(494);
+  }
+
+  &[data-modal="9"] {
+    left: 8%;
+    top: 10%;
+    background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-9.svg);
+    width: fromWidth(880);
+    height: fromWidth(380);
+  }
 }
 .step-wrapper__content {
   background-image: url(@/assets/img/modules/module-8/module-8-bg-0.svg);
   background-size: contain;
+}
+
+.pdf-btn {
+  width: 70% !important;
+  display: block;
+  text-decoration: none;
+  text-align: left;
+  margin-bottom: fromWidth(48);
+  background-color: #0abbef;
+  color: #fff;
+
+  padding-left: fromWidth(48) !important;
+  background-position: center right fromWidth(48) !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M18 2.57143C19.3109 2.57143 20.3736 3.55823 20.3736 4.77551V12.6789L22.2557 10.9313C23.1826 10.0705 24.6855 10.0705 25.6125 10.9313C26.5394 11.792 26.5394 13.1876 25.6125 14.0483L19.6784 19.5585C18.7514 20.4193 17.2486 20.4193 16.3216 19.5585L10.3875 14.0483C9.46057 13.1876 9.46057 11.792 10.3875 10.9313C11.3145 10.0705 12.8174 10.0705 13.7443 10.9313L15.6264 12.6789V4.77551C15.6264 3.55823 16.6891 2.57143 18 2.57143ZM4.94506 22.4082C6.25597 22.4082 7.31868 23.395 7.31868 24.6122V29.0204H28.6813V24.6122C28.6813 23.395 29.744 22.4082 31.0549 22.4082C32.3659 22.4082 33.4286 23.395 33.4286 24.6122V29.0204C33.4286 30.1895 32.9284 31.3108 32.0381 32.1375C31.1479 32.9641 29.9404 33.4286 28.6813 33.4286H7.31868C6.05963 33.4286 4.85215 32.9641 3.96187 32.1375C3.07158 31.3108 2.57143 30.1895 2.57143 29.0204V24.6122C2.57143 23.395 3.63414 22.4082 4.94506 22.4082Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M18 0C20.5483 0 22.9451 1.96193 22.9451 4.77551V7.81018C24.4867 7.50793 26.1488 7.92019 27.3622 9.04695C29.3848 10.925 29.3848 14.0546 27.3622 15.9326L21.4281 21.4428C19.5146 23.2197 16.4854 23.2197 14.5719 21.4428L8.6378 15.9326C6.61524 14.0546 6.61524 10.925 8.63779 9.04695L10.3875 10.9313C9.46057 11.792 9.46057 13.1876 10.3875 14.0483L16.3216 19.5585C17.2486 20.4193 18.7514 20.4193 19.6784 19.5585L25.6125 14.0483C26.5394 13.1876 26.5394 11.792 25.6125 10.9313C24.8912 10.2615 23.8211 10.1129 22.9451 10.4855C22.6953 10.5917 22.4613 10.7403 22.2557 10.9313L20.3736 12.6789V4.77551C20.3736 3.55823 19.3109 2.57143 18 2.57143C16.6891 2.57143 15.6264 3.55823 15.6264 4.77551V12.6789L13.7443 10.9313C13.5387 10.7403 13.3047 10.5917 13.0549 10.4855C12.1789 10.1129 11.1088 10.2615 10.3875 10.9313L8.63779 9.04695C9.85123 7.92019 11.5133 7.50793 13.0549 7.81018V4.77551C13.0549 1.96193 15.4517 0 18 0ZM4.94506 19.8367C7.49335 19.8367 9.89011 21.7987 9.89011 24.6122V26.449H26.1099V24.6122C26.1099 21.7987 28.5066 19.8367 31.0549 19.8367C33.6032 19.8367 36 21.7987 36 24.6122V29.0204C36 30.9356 35.1789 32.7301 33.7879 34.0218C32.4032 35.3075 30.5634 36 28.6813 36H7.31868C5.4366 36 3.59678 35.3075 2.21214 34.0218C0.821062 32.7301 0 30.9356 0 29.0204V24.6122C0 21.7987 2.39676 19.8367 4.94506 19.8367ZM7.31868 24.6122C7.31868 23.395 6.25597 22.4082 4.94506 22.4082C3.63414 22.4082 2.57143 23.395 2.57143 24.6122V29.0204C2.57143 30.1895 3.07158 31.3108 3.96187 32.1375C4.85215 32.9641 6.05963 33.4286 7.31868 33.4286H28.6813C29.9404 33.4286 31.1479 32.9641 32.0381 32.1375C32.9284 31.3108 33.4286 30.1895 33.4286 29.0204V24.6122C33.4286 23.395 32.3659 22.4082 31.0549 22.4082C29.744 22.4082 28.6813 23.395 28.6813 24.6122V29.0204H7.31868V24.6122Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M18 0C20.5483 0 22.9451 1.96193 22.9451 4.77551V7.81018C24.4867 7.50793 26.1488 7.92019 27.3622 9.04695C29.3848 10.925 29.3848 14.0546 27.3622 15.9326L21.4281 21.4428C19.5146 23.2197 16.4854 23.2197 14.5719 21.4428L8.6378 15.9326C6.61524 14.0546 6.61524 10.925 8.63779 9.04695L10.3875 10.9313C9.46057 11.792 9.46057 13.1876 10.3875 14.0483L16.3216 19.5585C17.2486 20.4193 18.7514 20.4193 19.6784 19.5585L25.6125 14.0483C26.5394 13.1876 26.5394 11.792 25.6125 10.9313C24.8912 10.2615 23.8211 10.1129 22.9451 10.4855C22.6953 10.5917 22.4613 10.7403 22.2557 10.9313L20.3736 12.6789V4.77551C20.3736 3.55823 19.3109 2.57143 18 2.57143C16.6891 2.57143 15.6264 3.55823 15.6264 4.77551V12.6789L13.7443 10.9313C13.5387 10.7403 13.3047 10.5917 13.0549 10.4855C12.1789 10.1129 11.1088 10.2615 10.3875 10.9313L8.63779 9.04695C9.85123 7.92019 11.5133 7.50793 13.0549 7.81018V4.77551C13.0549 1.96193 15.4517 0 18 0ZM4.94506 19.8367C7.49335 19.8367 9.89011 21.7987 9.89011 24.6122V26.449H26.1099V24.6122C26.1099 21.7987 28.5066 19.8367 31.0549 19.8367C33.6032 19.8367 36 21.7987 36 24.6122V29.0204C36 30.9356 35.1789 32.7301 33.7879 34.0218C32.4032 35.3075 30.5634 36 28.6813 36H7.31868C5.4366 36 3.59678 35.3075 2.21214 34.0218C0.821062 32.7301 0 30.9356 0 29.0204V24.6122C0 21.7987 2.39676 19.8367 4.94506 19.8367ZM7.31868 24.6122C7.31868 23.395 6.25597 22.4082 4.94506 22.4082C3.63414 22.4082 2.57143 23.395 2.57143 24.6122V29.0204C2.57143 30.1895 3.07158 31.3108 3.96187 32.1375C4.85215 32.9641 6.05963 33.4286 7.31868 33.4286H28.6813C29.9404 33.4286 31.1479 32.9641 32.0381 32.1375C32.9284 31.3108 33.4286 30.1895 33.4286 29.0204V24.6122C33.4286 23.395 32.3659 22.4082 31.0549 22.4082C29.744 22.4082 28.6813 23.395 28.6813 24.6122V29.0204H7.31868V24.6122Z' fill='black'/%3e%3c/svg%3e ");
+}
+.line {
+  height: 3px;
+  background-color: #ddd;
+  width: 100%;
+  margin-bottom: fromWidth(40);
+}
+
+.modal-btn {
+  padding-top: fromWidth(25) !important;
+  padding-bottom: fromWidth(25) !important;
 }
 
 .arrow-template {
