@@ -65,7 +65,7 @@
         </div>
         <div
           class="arrow-template"
-          v-for="step in []"
+          v-for="step in [1, 5, 6, 7, 8, 9]"
           :class="[moduleStep == step ? 'show' : '']"
           :data-item="step"
         >
@@ -652,7 +652,7 @@
           >
             <div class="result__image">
               <img
-                src="@/assets/img/modules/module-5/modal-result.png"
+                src="@/assets/img/modules/module-9/modal-result.png"
                 alt=""
                 rel="preload"
               />
@@ -697,89 +697,84 @@ const showPhoneModal = ref(false);
 const questionsList = [
   {
     id: 0,
-    title:
-      "Как называется сборник правил поведения для сотрудников и деловых партнеров Hochland?",
+    title: "Сколько лабораторий на заводе по производству плавленого сыра?",
     options: [
       {
         id: 0,
-        title: "Сборник поведенческих принципов",
+        title: "1",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Кодекс поведения",
+        title: "2",
         correctAnswer: true,
       },
       {
         id: 2,
-        title: "Корпоративный глоссарий",
+        title: "3",
         correctAnswer: false,
       },
       {
         id: 3,
-        title: "Домовой устав",
+        title: "4",
         correctAnswer: false,
       },
     ],
   },
   {
     id: 1,
-    title: "Что означает в MS Teams иконка белого «кирпича» на красном фоне?",
+    title: "Какие виды обучения существуют в Hochland? ",
     options: [
       {
         id: 0,
-        title: "Сотрудник ушел на обед",
-        correctAnswer: false,
+        title: "Обязательное, дополнительное, внутреннее",
+        correctAnswer: true,
       },
       {
         id: 1,
-        title: "Сотрудник в отпуске",
+        title: "Принудительное, второстепенное, опциональное",
         correctAnswer: false,
       },
 
       {
         id: 2,
-        title: "Сотрудник больше не работает в компании",
+        title: "Обязательное и необязательное",
         correctAnswer: false,
       },
 
       {
         id: 3,
-        title:
-          "Сотрудник в данный момент демонстрирует свой экран на онлайн-встрече",
-        correctAnswer: true,
+        title: "Внешнее и внутреннее",
+        correctAnswer: false,
       },
     ],
   },
   {
     id: 2,
     title:
-      "Может ли сотрудник делать заявление от лица компании без согласования генерального директора",
+      "Что ты будешь делать, если заметил нарушения правил охраны труда и техники безопасности? ",
     options: [
       {
         id: 0,
-        title:
-          "Да, сотрудник может делиться любой информацией о компании и делать заявления",
+        title: "Сделаю вид, что не заметил этого",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Да, только если журналист обещает анонимность",
+        title: "Попробую самостоятельно решить вопрос",
         correctAnswer: false,
       },
 
       {
         id: 2,
-        title:
-          "Нет, только после согласования с непосредственным руководителем",
-        correctAnswer: false,
+        title: "Напишу в Tell Us",
+        correctAnswer: true,
       },
 
       {
         id: 3,
-        title:
-          "Нет. Без письменного согласования генерального директора запрещено делать любые заявления от лица компании",
-        correctAnswer: true,
+        title: "Расскажу об этом всем коллегам",
+        correctAnswer: false,
       },
     ],
   },
@@ -1143,14 +1138,63 @@ onMounted(() => {
     }
   }
 
-  &[data-item="4"] {
-    right: 59%;
+  &[data-item="1"] {
+    right: 36%;
     width: 6%;
     height: 20%;
-    bottom: 7%;
+    bottom: 76%;
     z-index: 4;
-    transform: rotate(259deg);
+    transform: rotate(21deg) scaleX(-1);
   }
+
+  &[data-item="5"] {
+    right: 69%;
+    width: 6%;
+    height: 20%;
+    bottom: 63%;
+    z-index: 4;
+    transform: rotate(48deg) scaleX(-1);
+  }
+
+  &[data-item="6"] {
+    right: 90%;
+    width: 6%;
+    height: 20%;
+    bottom: 54%;
+    z-index: 4;
+    transform: rotate(341deg);
+  }
+
+  &[data-item="7"] {
+    right: 25%;
+    width: 6%;
+    height: 20%;
+    top: 10%;
+    z-index: 4;
+    transform: rotate(10deg) scaleX(-1);
+  }
+
+  &[data-item="8"] {
+    right: 63%;
+    width: 6%;
+    height: 20%;
+    bottom: 36%;
+    z-index: 4;
+    transform: rotate(267deg);
+  }
+
+  &[data-item="9"] {
+    right: 20%;
+    width: 6%;
+    height: 20%;
+    bottom: 71%;
+    z-index: 4;
+    transform: rotate(283deg);
+  }
+}
+
+.slide-item__inner {
+  min-height: inherit !important;
 }
 
 .interactive-item {
