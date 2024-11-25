@@ -14,6 +14,7 @@ import FiveStep from "@/components/steps/FiveStep.vue";
 import SixStep from "@/components/steps/SixStep.vue";
 import SevenStep from "@/components/steps/SevenStep.vue";
 import EighthStep from "@/components/steps/EighthStep.vue";
+import NineStep from "@/components/steps/NineStep.vue";
 
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
@@ -56,6 +57,10 @@ const currentStep = computed(() => {
 
     case 8:
       return EighthStep;
+      break;
+
+    case 9:
+      return NineStep;
       break;
 
     default:

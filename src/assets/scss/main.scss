@@ -1657,6 +1657,12 @@
       background-image: url("../img/modules/module-8/quiz-ico.svg");
     }
   }
+
+  &[data-step="9"] {
+    .modal-content {
+      background-image: url("../img/modules/module-9/quiz-ico.svg");
+    }
+  }
 }
 
 .quiz-modal__counter {
