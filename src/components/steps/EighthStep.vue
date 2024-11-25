@@ -117,15 +117,18 @@
         >
           <img src="@/assets/img/modules/module-8/object-12.svg" alt="" />
         </div>
-
         <div
           class="arrow-template"
-          v-for="step in []"
-          :class="[moduleStep == step ? 'show' : '']"
+          v-for="step in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
+          :class="[
+            moduleStep == step ? 'show' : '',
+            !showArrow && moduleStep == step ? 'easy-hide' : '',
+          ]"
           :data-item="step"
         >
           <div class="arrow-template_img"></div>
         </div>
+
         <transition name="fade" mode="out-in">
           <div class="modal-template glasses-modal" v-show="showGlassesModal">
             <div class="modal-content">
@@ -136,12 +139,15 @@
                     приветственный пакет. Ты уже забрал свой?
                     <br /><br />
                     А бонусом к этому пакету есть
-                    <a href="#">стикеры в Телеграме</a> — забирай их себе и
-                    отправляй коллегам.
+                    <a
+                      href="https://t.me/addstickers/Hochland_rus"
+                      target="_blank"
+                      >стикеры в Телеграме</a
+                    >
+                    — забирай их себе и отправляй коллегам.
                   </div>
-                  <div class="modal-btn" @click="compliteStep(1)">
-                    Получить стикеры
-                  </div>
+
+                  <div class="modal-btn" @click="compliteStep(1)">Далее</div>
                 </div>
               </div>
             </div>
@@ -187,7 +193,11 @@
                       style="font-weight: 600"
                     >
                       Больше информации ты можешь найти на
-                      <a href="#">сайте премии</a>:
+                      <a
+                        href="https://hochland.sharepoint.com/sites/thebestemployeeoftheyear/SitePages/EventPlanHome.aspx"
+                        target="_blank"
+                        >сайте премии</a
+                      >:
                     </p>
                   </div>
                   <div class="modal-btn" @click="compliteStep(2)">
@@ -368,7 +378,10 @@
                     <div class="sticker-slide__body">
                       Если ты работаешь в РАОС, то на завод тебя отвезет
                       корпоративный автобус.
-                      <a href="#">
+                      <a
+                        target="_blank"
+                        href="https://hochland.sharepoint.com/sites/portal-ru/SiteAssets/Forms/AllItems.aspx?id=%2Fsites%2Fportal-ru%2FSiteAssets%2FSitePages%2Fportal-ru%2F%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D1%8B%20%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8%20%D0%B8%20%D0%BF%D1%80%D0%BE%D1%82%D1%8F%D0%B6%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C.pdf&parent=%2Fsites%2Fportal-ru%2FSiteAssets%2FSitePages%2Fportal-ru"
+                      >
                         Просто выбери удобный для себя маршрут и изучи
                         расписание. корпоративный автобус.
                       </a>
@@ -676,7 +689,7 @@
                   премий. Подробнее о них ты можешь узнать из специального
                   положения
                 </div>
-                <a href="#" target="_blank" class="modal-btn pdf-btn"
+                <a :href="pdfFilePath" target="_blank" class="modal-btn pdf-btn"
                   >Скачать PDF</a
                 >
                 <div class="line"></div>
@@ -778,7 +791,10 @@ const router = useRouter();
 
 import { useGameStore } from "@/stores/GameStore.js";
 const store = useGameStore();
-
+const pdfFilePath = new URL(
+  "@/assets/files/Положение_о_премировании,_льготах_и_компенсациях_редакция_8_с_01.pdf",
+  import.meta.url
+);
 const stepLoad = ref(false);
 const moduleStep = ref(null);
 const isInteractive = ref(false);
@@ -795,6 +811,8 @@ const showStickerModalEight = ref(false);
 const showStickerModalNine = ref(false);
 const showQuiz = ref(false);
 const busSliderWiewed = ref(false);
+const showArrow = ref(true);
+
 const questionsList = [
   {
     id: 0,
@@ -854,6 +872,7 @@ const questionsList = [
 
 const openStep = (step) => {
   const currentStep = moduleStep.value;
+  showArrow.value = false;
   if (step == 1 && currentStep >= 1) {
     showGlassesModal.value = true;
   }
@@ -898,6 +917,7 @@ const openStep = (step) => {
 };
 
 const compliteStep = (step) => {
+  showArrow.value = true;
   if (step == 1) {
     showGlassesModal.value = false;
   }
@@ -1289,8 +1309,8 @@ onMounted(() => {
   }
 
   &[data-modal="9"] {
-    left: 8%;
-    top: 10%;
+    left: 17%;
+    top: 54%;
     background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-9.svg);
     width: fromWidth(880);
     height: fromWidth(380);
@@ -1352,15 +1372,118 @@ onMounted(() => {
       animation: heartBeat 4s ease-in-out infinite 1s;
     }
   }
+  &.easy-hide {
+    opacity: 0;
+    visibility: hidden;
+  }
 
-  //   &[data-item="1"] {
-  //     left: 13%;
-  //     width: 6%;
-  //     height: 20%;
-  //     top: 15%;
-  //     z-index: 4;
-  //     transform: rotate(310deg);
-  //   }
+  &[data-item="1"] {
+    left: 7%;
+    width: 6%;
+    height: 20%;
+    top: 48%;
+    z-index: 4;
+    transform: rotate(31deg) scaleX(-1);
+  }
+
+  &[data-item="2"] {
+    left: 26%;
+    width: 6%;
+    height: 20%;
+    top: 12%;
+    z-index: 4;
+    transform: rotate(306deg);
+  }
+
+  &[data-item="3"] {
+    left: 77%;
+    width: 6%;
+    height: 20%;
+    top: 10%;
+    z-index: 4;
+    transform: rotate(45deg) scaleX(-1);
+  }
+
+  &[data-item="4"] {
+    left: 71%;
+    width: 6%;
+    height: 20%;
+    top: -4%;
+    z-index: 4;
+    transform: rotate(45deg) scaleX(-1);
+  }
+
+  &[data-item="5"] {
+    left: 77%;
+    width: 6%;
+    height: 20%;
+    top: 32%;
+    z-index: 4;
+    transform: rotate(82deg) scaleX(-1);
+  }
+
+  &[data-item="6"] {
+    left: 44%;
+    width: 6%;
+    height: 20%;
+    top: 42%;
+    z-index: 4;
+    transform: rotate(292deg);
+  }
+
+  &[data-item="7"] {
+    left: 63%;
+    width: 6%;
+    height: 20%;
+    top: 21%;
+    z-index: 4;
+    transform: rotate(34deg) scaleX(-1);
+  }
+
+  &[data-item="8"] {
+    left: 43%;
+    width: 6%;
+    height: 20%;
+    top: 25%;
+    z-index: 4;
+    transform: rotate(268deg);
+  }
+
+  &[data-item="9"] {
+    left: 54%;
+    width: 6%;
+    height: 20%;
+    top: 15%;
+    z-index: 4;
+    transform: rotate(294deg);
+  }
+
+  &[data-item="10"] {
+    left: 46%;
+    width: 6%;
+    height: 20%;
+    top: 5%;
+    z-index: 4;
+    transform: rotate(270deg);
+  }
+
+  &[data-item="11"] {
+    left: 75%;
+    width: 6%;
+    height: 20%;
+    top: 47%;
+    z-index: 4;
+    transform: rotate(78deg) scaleX(-1);
+  }
+
+  &[data-item="12"] {
+    left: 19%;
+    width: 6%;
+    height: 20%;
+    top: 57%;
+    z-index: 4;
+    transform: rotate(305deg);
+  }
 }
 .interactive-item {
   cursor: pointer;
