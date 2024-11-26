@@ -147,7 +147,7 @@
                     poster="@/assets/img/poster-1.jpg"
                   >
                     <source
-                      src="@/assets/files/video-ex.mp4"
+                      src="@/assets/files/chees-make.mp4"
                       type="video/mp4"
                     />
                   </video>
@@ -843,6 +843,9 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.video-block {
+  height: fromWidth(470);
+}
 .phone-modal {
   .modal-btn {
     margin-top: fromWidth(64);
