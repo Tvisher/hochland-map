@@ -119,7 +119,7 @@
                       nextEl: '.slider-next-btn',
                     }"
                     :modules="[Navigation, Pagination, EffectFade]"
-                    :pagination="{ clickable: true }"
+                    :pagination="{ clickable: false }"
                     @reachEnd="() => (sliderModalWiewed = true)"
                   >
                     <swiper-slide class="slide-item">
@@ -328,7 +328,7 @@
                       nextEl: '.slider-next-btn',
                     }"
                     :modules="[Navigation, Pagination, EffectFade, Controller]"
-                    :pagination="{ clickable: true }"
+                    :pagination="{ clickable: false }"
                     @reachEnd="() => (sanitazerModalWiewed = true)"
                   >
                     <swiper-slide class="slide-item">
@@ -919,20 +919,20 @@ const showQuiz = ref(false);
 const showTrashModal = ref(false);
 const showDesctopModal = ref(false);
 const sliderModalWiewed = ref(false);
-const showSanitazerModal = ref(1);
+const showSanitazerModal = ref(false);
 const sanitazerModalWiewed = ref(false);
 const setControlledSwiper = (swiper) => {
   controlledSwiper.value = swiper;
 };
 
 const toggleOpen = ref({
+  0: true,
   1: false,
   2: false,
   3: false,
   4: false,
   5: false,
   6: false,
-  7: false,
 });
 
 watch(
@@ -1036,6 +1036,10 @@ const openStep = (step) => {
 
   if (step == 2 && currentStep >= 2) {
     showDesctopModal.value = true;
+  }
+
+  if (step == 3 && currentStep >= 3) {
+    showSanitazerModal.value = true;
   }
   console.log(step);
 };
