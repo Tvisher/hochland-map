@@ -9,6 +9,12 @@
           <img src="@/assets/img/modules/module-9/bg-segment.svg" alt="" />
         </div>
         <transition name="fade" mode="out-in">
+          <div class="bg-segment" data-person v-if="moduleStep < 5">
+            <img src="@/assets/img/modules/module-9/preson.svg" alt="" />
+          </div>
+        </transition>
+
+        <transition name="fade" mode="out-in">
           <div
             class="interactive-item"
             :class="[moduleStep == 1 ? 'pulse' : '']"
@@ -847,6 +853,14 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+[data-person] {
+  right: inherit !important;
+  top: inherit !important;
+  left: 2.4%;
+  width: 23% !important;
+  bottom: 0;
+  height: 76% !important;
+}
 .video-block {
   height: fromWidth(470);
 }
@@ -1090,7 +1104,7 @@ onMounted(() => {
   }
 
   &[data-modal-dialog="2"] {
-    left: 3%;
+    left: 18%;
     top: 39%;
     width: fromWidth(660);
     height: fromWidth(581);
