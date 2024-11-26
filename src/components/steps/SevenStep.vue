@@ -32,7 +32,7 @@
           :class="[moduleStep == 19 ? 'pulse' : '']"
           data-item="2"
           v-if="moduleStep >= 18"
-          @click="showPhotoAlbumModal = true"
+          @click="openStep(19)"
         >
           <img src="@/assets/img/modules/module-7/object-2.svg" alt="" />
         </div>
@@ -42,7 +42,7 @@
           :class="[moduleStep == 18 ? 'pulse' : '']"
           data-item="3"
           v-if="moduleStep >= 18"
-          @click="showATMModal = true"
+          @click="openStep(18)"
         >
           <img src="@/assets/img/modules/module-7/object-3.svg" alt="" />
         </div>
@@ -52,7 +52,7 @@
           :class="[moduleStep == 21 ? 'pulse' : '']"
           data-item="5"
           v-if="moduleStep >= 18"
-          @click="showQuiz = true"
+          @click="openStep(21)"
         >
           <img src="@/assets/img/modules/module-7/object-5.svg" alt="" />
         </div>
@@ -684,7 +684,16 @@ const openStep = (step) => {
   if (step == 2 && currentStep <= 2) {
     moduleStep.value = 2;
   }
-  console.log(step);
+  if (step == 18 && currentStep >= 18) {
+    showATMModal.value = true;
+  }
+  if (step == 19 && currentStep >= 19) {
+    showPhotoAlbumModal.value = true;
+  }
+
+  if (step == 21 && currentStep >= 21) {
+    showQuiz.value = true;
+  }
 };
 
 const compliteStep = (step) => {
@@ -905,7 +914,7 @@ onMounted(() => {
     height: 8.5%;
     top: 55.5%;
     z-index: 5;
-    pointer-events: none;
+    // pointer-events: none;
     &.pulse {
       pointer-events: initial;
     }

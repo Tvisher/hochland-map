@@ -1663,6 +1663,12 @@
       background-image: url("../img/modules/module-9/quiz-ico.svg");
     }
   }
+
+  &[data-step="10"] {
+    .modal-content {
+      background-image: url("../img/modules/module-10/quiz-ico.svg");
+    }
+  }
 }
 
 .quiz-modal__counter {

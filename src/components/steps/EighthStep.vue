@@ -113,7 +113,7 @@
           class="interactive-item"
           :class="[moduleStep == 12 ? 'pulse' : '']"
           data-item="12"
-          @click="showQuiz = true"
+          @click="openStep(12)"
         >
           <img src="@/assets/img/modules/module-8/object-12.svg" alt="" />
         </div>
@@ -913,6 +913,9 @@ const openStep = (step) => {
 
   if (step == 11 && currentStep >= 11) {
     showStickerModalNine.value = true;
+  }
+  if (step == 12 && currentStep >= 12) {
+    showQuiz.value = true;
   }
 };
 

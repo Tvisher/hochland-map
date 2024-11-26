@@ -59,7 +59,7 @@
           class="interactive-item"
           :class="[moduleStep == 9 ? 'pulse' : '']"
           data-item="6"
-          @click="showQuiz = true"
+          @click="openStep(9)"
         >
           <img src="@/assets/img/modules/module-9/object-6.svg" alt="" />
         </div>
@@ -801,6 +801,10 @@ const openStep = (step) => {
 
   if (step == 8 && currentStep >= 8) {
     showPhoneModal.value = true;
+  }
+
+  if (step == 9 && currentStep >= 9) {
+    showQuiz.value = true;
   }
 };
 

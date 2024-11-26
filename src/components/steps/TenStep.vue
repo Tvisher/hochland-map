@@ -43,6 +43,15 @@
           <img src="@/assets/img/modules/module-10/object-4.svg" alt="" />
         </div>
 
+        <div
+          class="arrow-template"
+          v-for="step in [1, 2, 3, 4]"
+          :class="[moduleStep == step ? 'show' : '']"
+          :data-item="step"
+        >
+          <div class="arrow-template_img"></div>
+        </div>
+
         <transition name="fade" mode="in-out">
           <div
             class="modal-template slider-modal trash-modal"
@@ -184,7 +193,9 @@
                           Все сотрудники обязаны знать основы информационной
                           безопасности. Для этого необходимо пройти специальное
                           обучение
-                          <a href="#">на платформе SoSafe.</a>
+                          <a href="https://elearning.sosafe.de/"
+                            >на платформе SoSafe.</a
+                          >
                           <br /><br />
                           Интерактивные персонажи научат, как правильно вести
                           себя в интернете и выявлять угрозы.
@@ -876,11 +887,11 @@
             v-if="showQuiz"
             @modalClose="showQuiz = false"
             :questionsList="questionsList"
-            :step="7"
+            :step="10"
           >
             <div class="result__image">
               <img
-                src="@/assets/img/modules/module-7/modal-result.png"
+                src="@/assets/img/modules/module-10/modal-result.png"
                 alt=""
                 rel="preload"
               />
@@ -940,7 +951,7 @@ watch(
   () => {
     setTimeout(() => {
       controlledSwiper.value.update();
-    }, 100);
+    }, 50);
   },
   { deep: true }
 );
@@ -948,26 +959,26 @@ watch(
 const questionsList = [
   {
     id: 0,
-    title: "Какие бонусы будут после прохождения испытательного периода? ",
+    title: "Что нужно делать со своим рабочим местом?",
     options: [
       {
         id: 0,
-        title: "Увеличенный рабочий день",
+        title: "Все что душе угодно",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "Дополнительный выходной",
+        title: "Переставлять его в удобное место ",
         correctAnswer: false,
       },
       {
         id: 2,
-        title: "ДМС и пенсионный счет",
+        title: "Держать его в чистоте",
         correctAnswer: true,
       },
       {
         id: 3,
-        title: "Личный наставник",
+        title: "Использовать его как хранилище вещей",
         correctAnswer: false,
       },
     ],
@@ -975,26 +986,26 @@ const questionsList = [
 
   {
     id: 1,
-    title: "Какого числа будет приходить зарплата?",
+    title: "Где можно изучить материалы об информационной безопасности?",
     options: [
       {
         id: 0,
-        title: "5-го и 15-го",
+        title: "В любой городской библиотеке ",
         correctAnswer: false,
       },
       {
         id: 1,
-        title: "10-го и 25-го",
+        title: "На образовательной платформе SoSafe",
         correctAnswer: true,
       },
       {
         id: 2,
-        title: "12-го и 27-го",
+        title: "В листовках на проходной ",
         correctAnswer: false,
       },
       {
         id: 3,
-        title: "5-го и 29-го",
+        title: "На стенде с объявлениями",
         correctAnswer: false,
       },
     ],
@@ -1002,27 +1013,55 @@ const questionsList = [
 
   {
     id: 2,
-    title: "Когда можно пойти в отпуск?",
+    title:
+      "Как называется вид интернет-мошенничества, при котором злоумышленники присылают пользователям по электронной почте ссылки в письмах? ",
     options: [
       {
         id: 0,
-        title: "Через полгода",
+        title: "Фишинг",
         correctAnswer: true,
       },
       {
         id: 1,
-        title: "Через девять месяцев",
+        title: "Акулинг",
         correctAnswer: false,
       },
       {
         id: 2,
-        title: "Через год",
+        title: "Рыбинг",
         correctAnswer: false,
       },
       {
         id: 3,
-        title: "Какой ещё отпуск?",
+        title: "Карасинг",
         correctAnswer: false,
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    title: "Можно ли использовать личную флешку на корпоративном компьютере?",
+    options: [
+      {
+        id: 0,
+        title: "Да, только для рабочих документов",
+        correctAnswer: false,
+      },
+      {
+        id: 1,
+        title: "Да, только если не скачиваешь на нее корпоративные данные",
+        correctAnswer: false,
+      },
+      {
+        id: 2,
+        title: "Да, только во внерабочее время ",
+        correctAnswer: false,
+      },
+      {
+        id: 3,
+        title: "Нет, нельзя",
+        correctAnswer: true,
       },
     ],
   },
@@ -1041,6 +1080,10 @@ const openStep = (step) => {
   if (step == 3 && currentStep >= 3) {
     showSanitazerModal.value = true;
   }
+
+  if (step == 4 && currentStep >= 4) {
+    showQuiz.value = true;
+  }
   console.log(step);
 };
 
@@ -1058,10 +1101,17 @@ const compliteStep = (step) => {
       moduleStep.value = 3;
     }
   }
+
+  if (step == 3) {
+    showSanitazerModal.value = false;
+    if (moduleStep.value < 4) {
+      moduleStep.value = 4;
+    }
+  }
 };
 
 const compliteModule = () => {
-  store.openNewStep(8);
+  // store.openNewStep(8);
   router.push("/");
 };
 
@@ -1268,12 +1318,39 @@ onMounted(() => {
   }
 
   &[data-item="1"] {
-    left: 13%;
+    left: 11%;
     width: 6%;
     height: 20%;
-    top: 15%;
+    top: 26%;
     z-index: 4;
-    transform: rotate(310deg);
+    transform: rotate(341deg);
+  }
+
+  &[data-item="2"] {
+    left: 42%;
+    width: 6%;
+    height: 20%;
+    top: 26%;
+    z-index: 4;
+    transform: rotate(348deg);
+  }
+
+  &[data-item="3"] {
+    left: 56%;
+    width: 6%;
+    height: 20%;
+    top: 7%;
+    z-index: 4;
+    transform: rotate(55deg) scaleX(-1);
+  }
+
+  &[data-item="4"] {
+    left: 62%;
+    width: 6%;
+    height: 20%;
+    top: 4%;
+    z-index: 4;
+    transform: rotate(275deg);
   }
 }
 .bg-segment {
