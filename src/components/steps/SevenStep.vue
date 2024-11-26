@@ -590,20 +590,10 @@ const typeOfBg = computed(() => {
   }
 });
 
-const pdfFilePath = new URL(
-  "@/assets/files/Kodeks_povedeniya_aprel_2022.pdf",
-  import.meta.url
-);
+const pdfFilePath = new URL("@/assets/files/pdf1-merged.pdf", import.meta.url);
 const albumImagesList = [
-  new URL("@/assets/img/modules/module-5/pdf/1.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/2.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/3.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/4.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/5.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/6.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/7.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/8.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/9.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-7/pdf/1.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-7/pdf/2.jpg", import.meta.url),
 ];
 
 const questionsList = [
