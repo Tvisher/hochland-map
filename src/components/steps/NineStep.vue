@@ -605,7 +605,12 @@
                     А ты знаешь, что в компании действует система, позволяющая
                     сообщать о возможных нарушениях корпоративной этики? Для
                     этого есть специальная
-                    <a href="#" target="_blank"> система оповещения Tell Us</a>
+                    <a
+                      href="https://www.bkms-system.com/bkwebanon/report/clientInfo?cin=Zwr5Sx&c=-1&language=rus"
+                      target="_blank"
+                    >
+                      система оповещения Tell Us</a
+                    >
                   </h1>
                   <h3>Темы, по которым ты можешь обратиться туда:</h3>
                   <ul>
