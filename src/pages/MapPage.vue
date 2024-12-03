@@ -77,6 +77,30 @@
         </router-link>
       </div>
     </div>
+    <transition name="fade" mode="out-in">
+      <div class="hello-modal" v-if="showHelloModal">
+        <div class="hello-modal-content">
+          <div class="hello-modal__images"></div>
+          <div class="hello-modal__inner">
+            <div class="hello-modal__title">Путешествие к сыроварне</div>
+            <div class="hello-modal__text">
+              <span class="hello-modal__subtitle">Приветствую, коллега!</span
+              ><br />
+              Меня зовут Виктор. Недавно я устроился работать в компанию
+              Hochland, и мне предстоит впервые отправиться на сыроварню.
+              <br /><br />
+              Путешествие неблизкое — нужно поехать в другой город. По дороге я
+              планирую несколько остановок — хочу успеть не только познакомиться
+              с заводом и коллегами, но и изучить окрестности. А ещё я люблю
+              общаться с новыми людьми и надеюсь на новые знакомства в пути.
+              <br /><br />
+              Составишь мне компанию?
+            </div>
+            <div class="hello-modal__btn" @click="startGame">Поехали</div>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -85,8 +109,8 @@ import { ref, onMounted, computed } from "vue";
 import { storeToRefs } from "pinia";
 import { useGameStore } from "@/stores/GameStore.js";
 const store = useGameStore();
-const { gameData } = storeToRefs(store);
-
+const { gameData, userIsFirstVisit } = storeToRefs(store);
+const showHelloModal = ref(false);
 const images = ref([]);
 const modalData = ref({
   showModal: false,
@@ -188,6 +212,10 @@ const closeModal = (e) => {
     setTimeout(() => (modalData.value.selectedStep = ""), 200);
   }
 };
+const startGame = () => {
+  userIsFirstVisit.value = false;
+  showHelloModal.value = false;
+};
 
 onMounted(() => {
   loadImages();
@@ -196,12 +224,104 @@ onMounted(() => {
   bgImage.onload = () => {
     setTimeout(() => {
       mapPageLoad.value = true;
+      if (userIsFirstVisit.value) {
+        showHelloModal.value = true;
+      }
     }, 800);
   };
 });
 </script>
 
 <style lang="scss">
+.hello-modal {
+  z-index: 999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(34, 34, 34, 0.5);
+  backdrop-filter: blur(7.5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hello-modal__images {
+  background-image: url(../assets/img/map-hello-modal-bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  width: fromWidth(280);
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: fromWidth(20) 0 0 fromWidth(20);
+  &::before {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 120%;
+    height: 90%;
+    content: "";
+    background-image: url(../assets/img/map-hello-modal-man.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom right;
+  }
+}
+.hello-modal__btn {
+  width: 100%;
+  color: #000;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: fromWidth(16);
+  font-weight: 700;
+  padding: fromWidth(19);
+  border-radius: fromWidth(6);
+  border: fromWidth(2) solid #000;
+  background: #fff;
+  margin-top: fromWidth(32);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.hello-modal-content {
+  display: flex;
+  align-items: stretch;
+  max-width: fromWidth(800);
+  width: 100%;
+  border-radius: fromWidth(20);
+  border: fromWidth(3) solid #000;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.hello-modal__inner {
+  padding: fromWidth(48);
+  padding-top: fromWidth(32);
+}
+.hello-modal__title {
+  font-family: "Coralwaves";
+  color: #000;
+  font-size: fromWidth(56);
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: fromWidth(32);
+}
+.hello-modal__text {
+  color: #000;
+  font-family: "Open Sans";
+  font-size: fromWidth(16);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+.hello-modal__subtitle {
+  display: block;
+  font-size: fromWidth(18);
+  font-weight: 600;
+}
 .map-step-modal {
   opacity: 0;
   visibility: hidden;

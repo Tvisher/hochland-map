@@ -6,12 +6,14 @@ export const useGameStore = defineStore("GameStore", () => {
     const gameData = ref({
         openSteps: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     })
+    const userIsFirstVisit = ref(true);
 
 
     const openNewStep = (step) => {
         gameData.value.openSteps.push(step);
     }
     return {
+        userIsFirstVisit,
         gameData,
         openNewStep
     }

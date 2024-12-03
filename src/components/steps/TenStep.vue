@@ -111,9 +111,7 @@
             <div class="modal-content">
               <div class="tabs-modal__inner">
                 <div class="tabs-content">
-                  <h1>
-                    На столе немного не прибрано. Давай уберем всё лишнее?
-                  </h1>
+                  <h1>Что ты знаешь об информационной безопасности?</h1>
                   <swiper
                     class="slider-el"
                     :slides-per-view="1"
@@ -133,7 +131,7 @@
                   >
                     <swiper-slide class="slide-item">
                       <div class="times-slide__body">
-                        <div class="desctop-modal__head">
+                        <!-- <div class="desctop-modal__head">
                           <div class="desctop-modal__head-ico">
                             <svg
                               width="55"
@@ -180,7 +178,7 @@
                           <div class="desctop-modal__head-title">
                             Что ты знаешь об информационной безопасности?
                           </div>
-                        </div>
+                        </div> -->
                         <div class="desctop-modal__content">
                           Информационная безопасность — это комплекс мер по
                           защите от утечки или взлома программ, компьютерных
@@ -257,7 +255,7 @@
                             </svg>
                           </div>
                           <div class="desctop-modal__head-title">
-                            Что ты знаешь об информационной безопасности?
+                            А еще на SoSafe есть и другие возможности:
                           </div>
                         </div>
                         <div class="desctop-modal__content">
@@ -949,9 +947,11 @@ const toggleOpen = ref({
 watch(
   () => toggleOpen,
   () => {
+    console.log("!!!");
+
     setTimeout(() => {
       controlledSwiper.value.update();
-    }, 50);
+    }, 100);
   },
   { deep: true }
 );
@@ -1128,6 +1128,15 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.desctop-modal__head-ico {
+  width: fromWidth(55);
+  height: fromWidth(48);
+  svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
 .toggle-block {
   border-radius: fromWidth(20);
   border: fromWidth(3) solid #000;
@@ -1172,6 +1181,11 @@ onMounted(() => {
   width: fromWidth(50);
   height: fromWidth(50);
   flex-shrink: 0;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 .toggle-block__arrow {
   transform: scaleY(-1);
