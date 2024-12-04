@@ -899,7 +899,7 @@
               на все вопросы!
             </div>
             <div class="result__btn" @click="compliteModule">
-              Перейти на следующий этап
+              Закрыть модуль
             </div>
           </QuizModal>
         </transition>
@@ -918,8 +918,10 @@ import QuizModal from "@/components/QuizModal.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 import { useGameStore } from "@/stores/GameStore.js";
-const store = useGameStore();
+import { storeToRefs } from "pinia";
 
+const store = useGameStore();
+const { userCompliteGame } = storeToRefs(store);
 const controlledSwiper = ref(null);
 const stepLoad = ref(false);
 const moduleStep = ref(null);
@@ -1112,6 +1114,7 @@ const compliteStep = (step) => {
 
 const compliteModule = () => {
   // store.openNewStep(8);
+  userCompliteGame.value = true;
   router.push("/");
 };
 

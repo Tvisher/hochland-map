@@ -21,7 +21,11 @@
         <div class="menu-btn__text">Узнать больше</div>
       </a>
 
-      <a href="javascript:void(0)" class="menu-btn">
+      <a
+        href="javascript:void(0)"
+        class="menu-btn"
+        @click="showFormModal = true"
+      >
         <div class="menu-btn__ball">
           <div class="menu-btn__image">
             <img src="@/assets/img/message.svg" alt="" />
@@ -39,7 +43,9 @@
         gameData.openSteps.includes(index + 1) ? 'open' : '',
         `step-${index + 1}`,
         modalData.selectedStep == index + 1 ? 'modal-open' : '',
-        index == gameData.openSteps.length - 1 ? 'last-bounce' : '',
+        index == gameData.openSteps.length - 1 && !showHelloModal
+          ? 'last-bounce'
+          : '',
       ]"
     >
       <img
@@ -101,6 +107,52 @@
         </div>
       </div>
     </transition>
+
+    <transition name="fade" mode="out-in">
+      <div class="hello-modal end-modal" v-if="showEndModal">
+        <div class="hello-modal-content">
+          <div class="man-modal__close" @click="showEndModal = false"></div>
+          <div class="hello-modal__images"></div>
+          <div class="hello-modal__inner">
+            <div class="hello-modal__title">Дорогой друг!</div>
+            <div class="hello-modal__text">
+              Твое путешествие подошло к концу. Все знания, полученные в
+              процессе, тебе пригодятся в работе. При необходимости ты можешь
+              вернуться к любому модулю и пересмотреть его. <br /><br />
+              А если у тебя остались вопросы, — загляни в
+              <a href="#">«Базу знаний»</a> — там собрана дополнительная
+              информация, которая может тебе пригодится.<br /><br />
+              И не бойся задавать вопросы коллегам — они всегда подскажут и
+              поддержат тебя. <br /><br />
+              Добро пожаловать в Hochland!
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+    <transition name="fade" mode="out-in">
+      <div class="form-modal" v-if="showFormModal">
+        <div class="form-modal__content">
+          <div class="form-modal__close" @click="closeMessageModal"></div>
+          <div class="form-modal__image"></div>
+          <form class="form-modal__form" @submit="submitMessage">
+            <div class="form-modal__title">Задайте свой вопрос</div>
+            <textarea
+              class="form-modal__field"
+              placeholder="Текст сообщения"
+              v-model.trim="formMessage"
+            ></textarea>
+            <button class="form-modal__btn" type="submit">Отправить</button>
+            <div class="form-modal__result" v-if="messageSent">
+              <div class="form-modal__title">Ваш вопрос отправлен!</div>
+              <div class="form-modal__btn" @click="closeMessageModal">
+                Закрыть
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -111,6 +163,10 @@ import { useGameStore } from "@/stores/GameStore.js";
 const store = useGameStore();
 const { gameData, userIsFirstVisit } = storeToRefs(store);
 const showHelloModal = ref(false);
+const showEndModal = ref(false);
+const showFormModal = ref(false);
+const formMessage = ref("");
+const messageSent = ref(false);
 const images = ref([]);
 const modalData = ref({
   showModal: false,
@@ -217,6 +273,18 @@ const startGame = () => {
   showHelloModal.value = false;
 };
 
+const submitMessage = (e) => {
+  e.preventDefault();
+  if (formMessage.value.length > 0) {
+    messageSent.value = true;
+  }
+};
+const closeMessageModal = () => {
+  showFormModal.value = false;
+  setTimeout(() => {
+    messageSent.value = false;
+  }, 400);
+};
 onMounted(() => {
   loadImages();
   const bgImage = new Image();
@@ -224,6 +292,9 @@ onMounted(() => {
   bgImage.onload = () => {
     setTimeout(() => {
       mapPageLoad.value = true;
+      if (store.userCompliteGame) {
+        showEndModal.value = true;
+      }
       if (userIsFirstVisit.value) {
         showHelloModal.value = true;
       }
@@ -233,7 +304,8 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.hello-modal {
+.hello-modal,
+.form-modal {
   z-index: 999;
   position: fixed;
   left: 0;
@@ -316,6 +388,10 @@ onMounted(() => {
   font-style: normal;
   font-weight: 400;
   line-height: 140%;
+  a {
+    color: #00c5ff;
+    text-decoration: none;
+  }
 }
 .hello-modal__subtitle {
   display: block;
@@ -493,5 +569,116 @@ onMounted(() => {
     width: 11vw;
     height: 12vw;
   }
+}
+
+.end-modal {
+  .hello-modal-content {
+    position: relative;
+  }
+  .man-modal__close {
+    width: fromWidth(50);
+    height: fromWidth(50);
+  }
+  .hello-modal__images {
+    background-image: url("@/assets/img/map-end-modal-bg.svg");
+    &::before {
+      background-image: url("@/assets/img/map-end-modal-man.svg");
+      left: -20%;
+      bottom: 0;
+      width: 88%;
+      height: 79%;
+      right: inherit;
+    }
+  }
+}
+.form-modal__close {
+  position: absolute;
+  width: fromWidth(24);
+  height: fromWidth(24);
+  top: fromWidth(10);
+  right: fromWidth(10);
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='25' height='25' viewBox='0 0 25 25' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M18.1006 6.5498L6.10059 18.5498M6.10059 6.5498L18.1006 18.5498' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e ");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+  z-index: 2;
+}
+.form-modal__content {
+  max-width: fromWidth(560);
+  width: 100%;
+  border-radius: fromWidth(10);
+  border: fromWidth(2) solid #000;
+  display: flex;
+  background-color: #fff;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+.form-modal__image {
+  width: fromWidth(200);
+  flex-shrink: 0;
+}
+.form-modal__form {
+  display: flex;
+  flex-direction: column;
+  padding: fromWidth(30);
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+.form-modal__result {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: fromWidth(30);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.form-modal__title {
+  margin-bottom: fromWidth(20);
+  color: #000;
+  font-family: "Open Sans";
+  font-size: fromWidth(20);
+  font-weight: 700;
+}
+.form-modal__field {
+  border-radius: fromWidth(6);
+  border: fromWidth(2) solid #000;
+  background: #fff;
+  resize: vertical;
+  width: 100%;
+  min-height: fromWidth(200);
+  box-sizing: border-box;
+  margin-bottom: fromWidth(20);
+  padding: fromWidth(10) fromWidth(15);
+  font-family: "Open Sans";
+  font-size: fromWidth(16);
+}
+.form-modal__btn {
+  cursor: pointer;
+  color: #000;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: fromWidth(16);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  width: 100%;
+  padding: fromWidth(10);
+  border-radius: fromWidth(6);
+  border: fromWidth(2) solid #000;
+  background: #fff;
+}
+.form-modal__image {
+  background-image: url(../assets/img/message-modal-bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>
