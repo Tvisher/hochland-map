@@ -62,12 +62,14 @@
     >
       <div class="modal-template__content">
         <div class="modal-step">{{ modalData.selectedStep }}</div>
-        <div class="modal-img">
+        <div class="modal-img" :data-modal-step="modalData.selectedStep">
           <div class="modal-img__man"></div>
         </div>
-        <div class="modal-template__title">
-          {{ modalInfo ? modalInfo.title : "" }}
-        </div>
+        <div
+          class="modal-template__title"
+          v-if="modalInfo"
+          v-html="modalInfo.title"
+        ></div>
         <div class="modal-template__text">
           {{ modalInfo ? modalInfo.descr : "" }}
         </div>
@@ -136,7 +138,7 @@
           <div class="form-modal__close" @click="closeMessageModal"></div>
           <div class="form-modal__image"></div>
           <form class="form-modal__form" @submit="submitMessage">
-            <div class="form-modal__title">Задайте свой вопрос</div>
+            <div class="form-modal__title">Задай свой вопрос</div>
             <textarea
               class="form-modal__field"
               placeholder="Текст сообщения"
@@ -144,7 +146,7 @@
             ></textarea>
             <button class="form-modal__btn" type="submit">Отправить</button>
             <div class="form-modal__result" v-if="messageSent">
-              <div class="form-modal__title">Ваш вопрос отправлен!</div>
+              <div class="form-modal__title">Твой вопрос отправлен!</div>
               <div class="form-modal__btn" @click="closeMessageModal">
                 Закрыть
               </div>
@@ -192,7 +194,7 @@ const mapStepsText = [
       "Самое время познакомиться с соседями в автобусе. Ведь некоторые из них тоже едут к сыроварне и могут рассказать много интересного. Например, о заводах и руководстве компании. ",
   },
   {
-    title: "Успешное бронирование",
+    title: "Успешное <br> бронирование",
     descr:
       "Пора сделать остановку и осмотреть окрестности. Бери велосипед и прокатись по городу до ближайшего кафе. А заодно узнай, как забронировать парковочное или рабочее место в офисе.",
   },
@@ -680,5 +682,130 @@ onMounted(() => {
   background-image: url(../assets/img/message-modal-bg.svg);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.modal-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: compute(110);
+  border-radius: 10px 0px 0px 10px;
+  &::before {
+    overflow: hidden;
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    content: "";
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: cover;
+    border-radius: 10px 0px 0px 10px;
+  }
+
+  &[data-modal-step="1"] {
+    &::before {
+      background-image: url("@/assets/img/modal-steps-img/modal-1-bg.svg");
+    }
+    .modal-img__man {
+      background-image: url("@/assets/img/modal-steps-img/modal-1-man.svg");
+    }
+  }
+
+  &[data-modal-step="2"] {
+    &::before {
+      background-image: url("@/assets/img/modal-steps-img/modal-2-bg.svg");
+    }
+    .modal-img__man {
+      background-image: url("@/assets/img/modal-steps-img/modal-2-man.svg");
+    }
+  }
+
+  &[data-modal-step="3"] {
+    &::before {
+      background-image: url("@/assets/img/modal-steps-img/modal-3-bg.svg");
+    }
+    .modal-img__man {
+      background-image: url("@/assets/img/modal-steps-img/modal-3-man.svg");
+    }
+  }
+
+  &[data-modal-step="4"] {
+    &::before {
+      background-image: url("@/assets/img/modal-steps-img/modal-4-bg.svg");
+    }
+    .modal-img__man {
+      background-image: url("@/assets/img/modal-steps-img/modal-4-man.svg");
+    }
+  }
+
+  &[data-modal-step="5"] {
+    &::before {
+      background-image: url("@/assets/img/modal-steps-img/modal-5-bg.svg");
+    }
+    .modal-img__man {
+      background-image: url("@/assets/img/modal-steps-img/modal-5-man.svg");
+    }
+  }
+
+  &[data-modal-step="6"] {
+    &::before {
+      background-image: url("@/assets/img/modal-steps-img/modal-6-bg.svg");
+    }
+    .modal-img__man {
+      background-image: url("@/assets/img/modal-steps-img/modal-6-man.svg");
+    }
+  }
+
+  &[data-modal-step="7"] {
+    &::before {
+      background-image: url("@/assets/img/modal-steps-img/modal-7-bg.svg");
+    }
+    .modal-img__man {
+      background-image: url("@/assets/img/modal-steps-img/modal-7-man.svg");
+    }
+  }
+
+  &[data-modal-step="8"] {
+    &::before {
+      background-image: url("@/assets/img/modal-steps-img/modal-8-bg.svg");
+    }
+    .modal-img__man {
+      background-image: url("@/assets/img/modal-steps-img/modal-8-man.svg");
+    }
+  }
+  &[data-modal-step="9"] {
+    &::before {
+      background-image: url("@/assets/img/modal-steps-img/modal-9-bg.svg");
+    }
+    .modal-img__man {
+      background-image: url("@/assets/img/modal-steps-img/modal-9-man.svg");
+    }
+  }
+
+  &[data-modal-step="10"] {
+    &::before {
+      background-image: url("@/assets/img/modal-steps-img/modal-10-bg.svg");
+    }
+    .modal-img__man {
+      background-image: url("@/assets/img/modal-steps-img/modal-10-man.svg");
+    }
+  }
+}
+
+.modal-img__man {
+  width: 140%;
+  height: 91%;
+  position: absolute;
+  left: -22%;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: contain;
+  z-index: 3;
 }
 </style>
