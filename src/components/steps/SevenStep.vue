@@ -521,7 +521,7 @@
                     <AlbumSlider
                       :albumImagesList="albumImagesList"
                       :filePath="pdfFilePath"
-                      :albumName="'Кодекс поведения'"
+                      :albumName="''"
                     />
                   </div>
                   <div class="modal-btn" @click="compliteStep(19)">
@@ -651,32 +651,32 @@ const questionsList = [
     ],
   },
 
-  {
-    id: 2,
-    title: "Когда можно пойти в отпуск?",
-    options: [
-      {
-        id: 0,
-        title: "Через полгода",
-        correctAnswer: true,
-      },
-      {
-        id: 1,
-        title: "Через девять месяцев",
-        correctAnswer: false,
-      },
-      {
-        id: 2,
-        title: "Через год",
-        correctAnswer: false,
-      },
-      {
-        id: 3,
-        title: "Какой ещё отпуск?",
-        correctAnswer: false,
-      },
-    ],
-  },
+  // {
+  //   id: 2,
+  //   title: "Когда можно пойти в отпуск?",
+  //   options: [
+  //     {
+  //       id: 0,
+  //       title: "Через полгода",
+  //       correctAnswer: true,
+  //     },
+  //     {
+  //       id: 1,
+  //       title: "Через девять месяцев",
+  //       correctAnswer: false,
+  //     },
+  //     {
+  //       id: 2,
+  //       title: "Через год",
+  //       correctAnswer: false,
+  //     },
+  //     {
+  //       id: 3,
+  //       title: "Какой ещё отпуск?",
+  //       correctAnswer: false,
+  //     },
+  //   ],
+  // },
 ];
 
 const openStep = (step) => {

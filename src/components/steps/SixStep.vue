@@ -410,34 +410,34 @@ const albumImagesList = [
 ];
 
 const questionsList = [
+  // {
+  //   id: 0,
+  //   title: "Сколько дней дается на заполнение отчета после командировки?",
+  //   options: [
+  //     {
+  //       id: 0,
+  //       title: "2",
+  //       correctAnswer: false,
+  //     },
+  //     {
+  //       id: 1,
+  //       title: "5",
+  //       correctAnswer: false,
+  //     },
+  //     {
+  //       id: 2,
+  //       title: "7",
+  //       correctAnswer: true,
+  //     },
+  //     {
+  //       id: 3,
+  //       title: "10",
+  //       correctAnswer: false,
+  //     },
+  //   ],
+  // },
   {
     id: 0,
-    title: "Сколько дней дается на заполнение отчета после командировки?",
-    options: [
-      {
-        id: 0,
-        title: "2",
-        correctAnswer: false,
-      },
-      {
-        id: 1,
-        title: "5",
-        correctAnswer: false,
-      },
-      {
-        id: 2,
-        title: "7",
-        correctAnswer: true,
-      },
-      {
-        id: 3,
-        title: "10",
-        correctAnswer: false,
-      },
-    ],
-  },
-  {
-    id: 1,
     title: "Какая основа для работы в коллективе? ",
     options: [
       {
@@ -465,7 +465,7 @@ const questionsList = [
     ],
   },
   {
-    id: 2,
+    id: 1,
     title:
       "Какое из этих высказываний противоречит основным принципам управления персоналом и работы в коллективе?",
     options: [
@@ -496,9 +496,8 @@ const questionsList = [
       },
     ],
   },
-
   {
-    id: 3,
+    id: 2,
     title: "Где можно узнать все свежие новости о жизни компании? ",
     options: [
       {

@@ -333,14 +333,13 @@
                         <div class="border-block__coll">
                           Эллина Ковальская
                           <a
-                            href="mailto:reception.lefort@hochland.com"
+                            href="mailto:reception.lefort@hochland.ru"
                             target="_blank"
-                            >reception.lefort@hochland.com</a
+                            >reception.lefort@hochland.ru</a
                           ><br />
                           <a href="tel: +7 (985) 428-63-74" target="_blank">
                             +7 (985) 428-63-74</a
                           >
-                          (с 9:00 до 18:00)
                         </div>
                       </div>
                       <div class="border-block__line">
@@ -348,9 +347,9 @@
                         <div class="border-block__coll">
                           Ольга Глубокова
                           <a
-                            href="mailto:reception.raos@hochland.com"
+                            href="mailto:reception.raos@hochland.ru"
                             target="_blank"
-                            >reception.raos@hochland.com</a
+                            >reception.raos@hochland.ru</a
                           ><br />
                           <a href="tel:+7 (495) 777-09-05-1100" target="_blank"
                             >+7 (495) 777-09-05-1100</a
@@ -362,9 +361,9 @@
                         <div class="border-block__coll">
                           Екатерина Фесенко
                           <a
-                            href="mailto:ekaterina.fesenko@hochland.com"
+                            href="mailto:ekaterina.fesenko@hochland.ru"
                             target="_blank"
-                            >ekaterina.fesenko@hochland.com</a
+                            >ekaterina.fesenko@hochland.ru</a
                           ><br />
                           <a
                             href="tel:+

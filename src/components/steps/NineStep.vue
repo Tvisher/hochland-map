@@ -145,11 +145,15 @@
           <div class="modal-template video-modal" v-show="isShowVideoModal">
             <div class="modal-content">
               <div class="tabs-content__title">Как мы делаем плавленый сыр</div>
-              <div class="video-block">
+              <div
+                class="video-block"
+                :class="{ showControls: isShowVideoModalNextBtn }"
+              >
                 <vue-plyr @ended="() => (isShowVideoModalNextBtn = true)">
                   <video
                     crossorigin
                     playsinline
+                    controls
                     poster="@/assets/img/poster-1.jpg"
                   >
                     <source
@@ -833,6 +837,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.video-block.showControls :deep(.plyr__controls) {
+  display: flex;
+}
+
 [data-person] {
   right: inherit !important;
   top: inherit !important;
@@ -1037,6 +1045,7 @@ onMounted(() => {
 }
 .slider-modal {
   .modal-content {
+    position: relative;
     background-image: url(@/assets/img/modules/module-9/modal-ico-2.svg);
     background-position: top fromWidth(40) left fromWidth(40);
   }

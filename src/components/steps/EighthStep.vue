@@ -225,8 +225,8 @@
               </div>
               <div class="sticker-modal__inner">
                 <div class="sticker-modal__text">
-                  А ты знаешь, что сотрудник компании получает частичная
-                  компенсация питания?
+                  А ты знаешь, что сотрудник компании получает частичную
+                  компенсацию питания?
                 </div>
                 <div class="modal-btn" @click="compliteStep(3)">Дальше</div>
               </div>
@@ -235,11 +235,7 @@
         </transition>
         <!-- sticker-modal - 2  -->
         <transition name="fade" mode="out-in">
-          <div
-            class="sticker-modal"
-            data-modal="2"
-            v-show="showStickerModalTwo"
-          >
+          <div class="sticker-modal" data-modal="2" v-if="showStickerModalTwo">
             <div class="sticker-modal__content">
               <div class="sticker-modal__ico">
                 <img
@@ -313,10 +309,9 @@
                     </div>
                     <div class="sticker-slide__body">
                       Компания оплачивает единый проездной билет на 30 дней или
-                      билет на количество поездок от 10 и более сотрудникам,
-                      имеющим постоянное рабочее место в московском офисе и
-                      отработавшим в ЛеФорте не менее 10 рабочих дней в течение
-                      месяца.
+                      билет на 10 и более поездок сотрудникам, имеющим
+                      постоянное рабочее место в московском офисе и отработавшим
+                      в ЛеФорте не менее 10 рабочих дней в течение месяца.
                     </div>
                     <div class="sticker-slide__footer"></div>
                   </swiper-slide>
@@ -512,14 +507,14 @@
                     <div class="sticker-modal__card-inner">
                       <div class="card-inner__name">Андрей Гонтарь</div>
                       <div class="card-inner__descr">
-                        старший бренд менеджер
+                        менеджер по транспорту
                       </div>
                       <div class="card-inner__line"></div>
                       <a href="tel:+79161011461" class="card-inner__link"
                         >+7 (916) 1011461</a
                       >
                       <a href="tel:+749577702061151" class="card-inner__link"
-                        >+7 (495) 7770206-1151</a
+                        >+7 (495) 7770206/1151</a
                       >
                       <a
                         href="mailto:andrey.gontar@hochland.ru"
@@ -644,22 +639,19 @@
                   <div class="person-block__left">
                     <div class="person-block__name">Юлия Гонтаренко</div>
                     <div class="person-block__descr">
-                      старший бренд менеджер
+                      специалист по компенсациям и&nbsp;льготам
                     </div>
                   </div>
                   <div class="person-block__right">
-                    <a href="tel:+7 (916) 1011461" class="person-block__link"
-                      >+7 (916) 1011461</a
+                    <a
+                      href="tel:+7 (495) 7770205/1220"
+                      class="person-block__link"
+                      >+7 (495) 7770205/1220</a
                     >
                     <a
-                      href="tel:+7 (495) 7770206-1151"
+                      href="mailto:yulia.gontarenko@hochland.ru"
                       class="person-block__link"
-                      >+7 (495) 7770206-1151</a
-                    >
-                    <a
-                      href="mailto:andrey.gontar@hochland.ru"
-                      class="person-block__link"
-                      >andrey.gontar@hochland.ru</a
+                      >yulia.gontarenko@hochland.ru</a
                     >
                   </div>
                 </div>
@@ -872,50 +864,61 @@ const questionsList = [
 
 const openStep = (step) => {
   const currentStep = moduleStep.value;
-  showArrow.value = false;
   if (step == 1 && currentStep >= 1) {
     showGlassesModal.value = true;
+    showArrow.value = false;
   }
 
   if (step == 2 && currentStep >= 2) {
     showRewardModal.value = true;
+    showArrow.value = false;
   }
 
   if (step == 3 && currentStep >= 3) {
     showStickerModalOne.value = true;
+    showArrow.value = false;
   }
 
   if (step == 4 && currentStep >= 4) {
     showStickerModalTwo.value = true;
+    showArrow.value = false;
   }
 
   if (step == 5 && currentStep >= 5) {
     showStickerModalThree.value = true;
+    showArrow.value = false;
   }
 
   if (step == 6 && currentStep >= 6) {
     showStickerModalFour.value = true;
+    showArrow.value = false;
   }
 
   if (step == 7 && currentStep >= 7) {
     showStickerModalFive.value = true;
+    showArrow.value = false;
   }
 
   if (step == 8 && currentStep >= 8) {
     showStickerModalSix.value = true;
+    showArrow.value = false;
   }
   if (step == 9 && currentStep >= 9) {
     showStickerModalSeven.value = true;
+    showArrow.value = false;
   }
   if (step == 10 && currentStep >= 10) {
     showStickerModalEight.value = true;
+    showArrow.value = false;
   }
 
   if (step == 11 && currentStep >= 11) {
     showStickerModalNine.value = true;
+    showArrow.value = false;
   }
   if (step == 12 && currentStep >= 12) {
     showQuiz.value = true;
+    showArrow.value = false;
   }
 };
 
@@ -1289,6 +1292,9 @@ onMounted(() => {
     height: fromWidth(618);
     .sticker-modal__text {
       margin-bottom: fromWidth(35);
+    }
+    .sticker-modal__content {
+      padding-right: fromWidth(120);
     }
   }
 
