@@ -435,6 +435,7 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     filter: grayscale(100);
+    object-fit: contain;
     transition: filter 0.3s ease-in-out;
   }
 
