@@ -1113,7 +1113,7 @@ const compliteStep = (step) => {
 };
 
 const compliteModule = () => {
-  // store.openNewStep(8);
+  store.openNewStep(11);
   userCompliteGame.value = true;
   router.push("/");
 };

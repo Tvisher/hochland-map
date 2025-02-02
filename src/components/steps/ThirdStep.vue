@@ -45,7 +45,7 @@
         <transition name="fade" mode="in-out">
           <div class="modal-template slider-modal" v-show="showSliderModal">
             <div class="modal-content">
-              <div class="man-modal__close" @click="compliteStep(1)"></div>
+              <!-- <div class="man-modal__close" @click="compliteStep(1)"></div> -->
               <div class="tabs-modal__inner">
                 <div class="tabs-content">
                   <swiper
@@ -63,19 +63,25 @@
                       nextEl: '.slider-next-btn',
                     }"
                     :modules="[Navigation, Pagination, EffectFade]"
-                    :pagination="{ clickable: true }"
+                    :pagination="{ clickable: false }"
+                    :allowSlideNext="isShowVideoModalNextBtn"
                   >
                     <swiper-slide class="slide-item">
                       <span class="slide-item__title"
                         >Узнай о компании Hochland</span
                       >
                       <div class="slide-item__inner">
-                        <div class="video-block">
+                        <div
+                          class="video-block"
+                          :class="{ showControls: isShowVideoModalNextBtn }"
+                        >
                           <vue-plyr
                             @play="console.log('play')"
+                            @ended="() => (isShowVideoModalNextBtn = true)"
                             ref="sliderPlayer"
                           >
                             <video
+                              controls
                               crossorigin
                               playsinline
                               poster="@/assets/img/poster.jpg"
@@ -179,9 +185,26 @@
                     </swiper-slide>
                     <div class="nav-buttons">
                       <div class="slider-prev-btn">Назад</div>
-                      <div class="slider-next-btn">Дальше</div>
+                      <div
+                        class="slider-next-btn"
+                        :class="{
+                          'swiper-button-disabled-custom':
+                            !isShowVideoModalNextBtn,
+                        }"
+                      >
+                        Дальше
+                      </div>
                     </div>
                   </swiper>
+                  <div
+                    class="modal-btn slider-modal-end"
+                    :class="{
+                      'swiper-button-disabled-custom': !sliderWithBtnWiewed,
+                    }"
+                    @click="compliteStep(1)"
+                  >
+                    Просмотрено
+                  </div>
                 </div>
               </div>
             </div>
@@ -190,8 +213,7 @@
 
         <transition name="fade" mode="in-out">
           <div class="modal-template album-modal" v-if="showPhotoAlbumModal">
-            <div class="modal-content">
-              <!-- <div class="man-modal__close" @click="compliteStep(2)"></div> -->
+            <div class="modal-content" style="position: relative">
               <div class="tabs-modal__inner">
                 <div class="tabs-content__title">
                   А это наши руководители. Давай познакомимся с ними поближе.
@@ -202,11 +224,16 @@
                       :albumImagesList="albumImagesList"
                       :filePath="pdfFilePath"
                       :albumName="'Фотоальбом компании Hochland'"
+                      @reachEnd="albumViewed = true"
                     />
                   </div>
-                  <div class="modal-btn" @click="compliteStep(2)">
+                  <button
+                    :disabled="!albumViewed"
+                    class="modal-btn"
+                    @click="compliteStep(2)"
+                  >
                     Просмотрено
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -259,6 +286,9 @@ const store = useGameStore();
 const stepLoad = ref(false);
 const moduleStep = ref(null);
 const isInteractive = ref(false);
+const isShowVideoModalNextBtn = ref(false);
+const sliderWithBtnWiewed = ref(false);
+const albumViewed = ref(false);
 
 const showQuiz = ref(false);
 const showSliderModal = ref(false);
@@ -337,8 +367,11 @@ const questionsList = [
 const pausePlayer = () => {
   sliderPlayer.value.player.pause();
 };
-const onSlideChange = () => {
+const onSlideChange = (slider) => {
   pausePlayer();
+  if (slider.isEnd) {
+    sliderWithBtnWiewed.value = true;
+  }
 };
 
 const openStep = (step) => {
@@ -357,6 +390,7 @@ const openStep = (step) => {
 
 const compliteStep = (step) => {
   if (step == 1) {
+    if (!sliderWithBtnWiewed.value) return;
     showSliderModal.value = false;
     pausePlayer();
     if (moduleStep.value < 2) {
@@ -394,6 +428,20 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.video-block.showControls :deep(.plyr__controls) {
+  display: flex;
+}
+
+.swiper-button-disabled-custom {
+  opacity: 0.3;
+}
+.slider-modal-end {
+  margin-top: fromWidth(30);
+  margin-left: auto;
+  margin-right: fromWidth(10);
+  padding-top: fromWidth(25);
+  padding-bottom: fromWidth(25);
+}
 .step-wrapper__content {
   background-image: url(@/assets/img/modules/module-3/module-3-bg.svg);
 }

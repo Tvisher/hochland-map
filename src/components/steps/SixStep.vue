@@ -121,11 +121,7 @@
                   Сохрани их и обязательно применяй в работе.
                 </div>
                 <div class="file-modal-btn-wrapper">
-                  <a
-                    href="@/assets/files/7_принципов_лидерства.pdf"
-                    download
-                    class="file-modal__btn"
-                  >
+                  <a :href="pdfFileUrl" download class="file-modal__btn">
                     <span>Скачать PDF</span>
                     <div class="ico">
                       <svg
@@ -186,7 +182,7 @@
           class="modal-template slider-modal time-modal"
           v-show="showSixModuleTimeSlider"
         >
-          <div class="modal-content">
+          <div class="modal-content" style="position: relative">
             <div
               class="man-modal__close"
               @click="compliteStep(3)"
@@ -395,6 +391,10 @@ const showTestView = ref(false);
 const timelineSliderViewed = ref(false);
 const pdfFilePath = new URL(
   "@/assets/files/Kodeks_povedeniya_aprel_2022.pdf",
+  import.meta.url
+);
+const pdfFileUrl = new URL(
+  "@/assets/files/7_принципов_лидерства.pdf",
   import.meta.url
 );
 const albumImagesList = [

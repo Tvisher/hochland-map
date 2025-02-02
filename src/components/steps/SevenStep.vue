@@ -522,11 +522,16 @@
                       :albumImagesList="albumImagesList"
                       :filePath="pdfFilePath"
                       :albumName="''"
+                      @reachEnd="albumViewed = true"
                     />
                   </div>
-                  <div class="modal-btn" @click="compliteStep(19)">
+                  <button
+                    :disabled="!albumViewed"
+                    class="modal-btn"
+                    @click="compliteStep(19)"
+                  >
                     Просмотрено
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -577,7 +582,7 @@ const stepLoad = ref(false);
 const moduleStep = ref(null);
 const isInteractive = ref(false);
 const showATMModal = ref(false);
-
+const albumViewed = ref(false);
 const showQuiz = ref(false);
 const showPosterModal = ref(false);
 const showPhotoAlbumModal = ref(false);

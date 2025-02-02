@@ -61,7 +61,7 @@
 
         <transition name="fade" mode="out-in">
           <div class="modal-template file-modal" v-show="showFileModal">
-            <div class="modal-content">
+            <div class="modal-content" style="position: relative">
               <div class="man-modal__close" @click="compliteStep(1)"></div>
               <div class="file-modal__inner">
                 <div class="file-modal__title">
@@ -71,11 +71,7 @@
                   глобальном списке адресов. Ниже инструкция, как это сделать.
                   Скачивай и обращайся к ней в любой момент.
                 </div>
-                <a
-                  href="../assets/img/modules/module-2/modal-card-image.png"
-                  download
-                  class="file-modal__btn"
-                >
+                <a :href="secondModulePdfFile" download class="file-modal__btn">
                   <span>Скачать PDF</span>
                   <div class="ico">
                     <svg
@@ -292,6 +288,11 @@ const router = useRouter();
 
 import { useGameStore } from "@/stores/GameStore.js";
 const store = useGameStore();
+
+const secondModulePdfFile = new URL(
+  `../assets/files/instruction.pdf`,
+  import.meta.url
+);
 
 const stepLoad = ref(false);
 const moduleStep = ref(null);

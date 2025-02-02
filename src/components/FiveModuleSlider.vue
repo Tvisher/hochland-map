@@ -8,6 +8,7 @@
     :fadeEffect="{
       crossFade: true,
     }"
+    @slideChange="onSlideChange"
     :navigation="{
       prevEl: '.slider-prev-btn',
       nextEl: '.slider-next-btn',
@@ -365,7 +366,6 @@
         </div>
       </div>
     </swiper-slide>
-
     <swiper-slide class="slide-item rules-slide">
       <div class="slide-item__inner">
         <div class="rules-slide__title">
@@ -434,7 +434,6 @@
         </div>
       </div>
     </swiper-slide>
-
     <swiper-slide class="slide-item rules-slide">
       <div class="slide-item__inner">
         <div class="rules-slide__title">
@@ -479,7 +478,6 @@
         </div>
       </div>
     </swiper-slide>
-
     <div class="nav-buttons">
       <div class="slider-prev-btn">Назад</div>
       <div class="slider-next-btn">Дальше</div>
@@ -487,7 +485,14 @@
   </swiper>
 </template>
 <script setup>
+const emit = defineEmits(["sliderComplite"]);
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation, Pagination, EffectFade } from "swiper/modules";
+
+const onSlideChange = (slider) => {
+  if (slider.isEnd) {
+    emit("sliderComplite");
+  }
+};
 </script>
 <style lang="scss"></style>

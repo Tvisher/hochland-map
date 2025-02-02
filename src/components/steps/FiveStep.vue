@@ -440,7 +440,6 @@
             v-if="showPhotoAlbumModal"
           >
             <div class="modal-content">
-              <!-- <div class="man-modal__close" @click="compliteStep(2)"></div> -->
               <div class="tabs-modal__inner">
                 <div class="tabs-content">
                   <div class="album__wrapper">
@@ -448,11 +447,16 @@
                       :albumImagesList="albumImagesList"
                       :filePath="pdfFilePath"
                       :albumName="'Кодекс поведения'"
+                      @reachEnd="albumViewed = true"
                     />
                   </div>
-                  <div class="modal-btn" @click="compliteStep(4)">
+                  <button
+                    :disabled="!albumViewed"
+                    class="modal-btn"
+                    @click="compliteStep(4)"
+                  >
                     Просмотрено
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>
@@ -465,10 +469,22 @@
             v-show="showSliderModal"
           >
             <div class="modal-content">
-              <div class="man-modal__close" @click="compliteStep(5)"></div>
               <div class="tabs-modal__inner">
                 <div class="tabs-content">
-                  <FiveModuleSlider />
+                  <FiveModuleSlider
+                    @sliderComplite="fiveModuleSliderComplite = true"
+                  />
+
+                  <div
+                    class="modal-btn slider-modal-end"
+                    :class="{
+                      'swiper-button-disabled-custom':
+                        !fiveModuleSliderComplite,
+                    }"
+                    @click="compliteStep(5)"
+                  >
+                    Просмотрено
+                  </div>
                 </div>
               </div>
             </div>
@@ -518,10 +534,11 @@ const store = useGameStore();
 const stepLoad = ref(false);
 const moduleStep = ref(null);
 const isInteractive = ref(false);
-
+const fiveModuleSliderComplite = ref(false);
 const showQuiz = ref(false);
 const showSliderModal = ref(false);
 const showPhotoAlbumModal = ref(false);
+const albumViewed = ref(false);
 
 const pdfFilePath = new URL(
   "@/assets/files/Kodeks_povedeniya_aprel_2022.pdf",
@@ -653,6 +670,7 @@ const compliteStep = (step) => {
   }
 
   if (step == 5) {
+    if (!fiveModuleSliderComplite.value) return;
     showSliderModal.value = false;
     if (moduleStep.value < 6) {
       moduleStep.value = 6;
@@ -678,6 +696,16 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.swiper-button-disabled-custom {
+  opacity: 0.3;
+}
+.slider-modal-end {
+  margin-top: fromWidth(30);
+  margin-left: auto;
+  margin-right: fromWidth(10);
+  padding-top: fromWidth(25);
+  padding-bottom: fromWidth(25);
+}
 .man-modal {
   top: initial;
   bottom: 8%;

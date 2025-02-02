@@ -157,7 +157,7 @@
             v-if="isShowTabsModal"
             ref="tabsModal"
           >
-            <div class="modal-content">
+            <div class="modal-content" style="position: relative">
               <div class="tabs-modal__inner">
                 <div
                   class="mute-btn"
@@ -429,11 +429,15 @@
                 Несколько важных правил, которые тебе нужно знать перед поездкой
                 на сыроварню
               </div>
-              <div class="video-block">
+              <div
+                class="video-block"
+                :class="{ showControls: isShowVideoModalNextBtn }"
+              >
                 <vue-plyr @ended="() => (isShowVideoModalNextBtn = true)">
                   <video
                     crossorigin
                     playsinline
+                    controls
                     poster="@/assets/img/poster-1.jpg"
                   >
                     <source
@@ -694,6 +698,9 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.video-block.showControls :deep(.plyr__controls) {
+  display: flex;
+}
 .step-wrapper__content {
   background-image: url(@/assets/img/modules/module-1/module-1-bg.svg);
 }
