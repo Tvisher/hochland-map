@@ -290,7 +290,7 @@ import { useGameStore } from "@/stores/GameStore.js";
 const store = useGameStore();
 
 const secondModulePdfFile = new URL(
-  `../assets/files/instruction.pdf`,
+  "@/assets/files/instruction.pdf",
   import.meta.url
 );
 

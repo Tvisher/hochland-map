@@ -64,14 +64,14 @@
           <img src="@/assets/img/modules/module-8/object-6.svg" alt="" />
         </div>
 
-        <div
+        <!-- <div
           class="interactive-item"
           :class="[moduleStep == 7 ? 'pulse' : '']"
           data-item="7"
           @click="openStep(7)"
         >
           <img src="@/assets/img/modules/module-8/object-7.svg" alt="" />
-        </div>
+        </div> -->
 
         <div
           class="interactive-item"
@@ -119,7 +119,7 @@
         </div>
         <div
           class="arrow-template"
-          v-for="step in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
+          v-for="step in [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12]"
           :class="[
             moduleStep == step ? 'show' : '',
             !showArrow && moduleStep == step ? 'easy-hide' : '',
@@ -581,13 +581,13 @@
                   дополнительный день отпуска. Планирование отпусков проходит в
                   декабре.
                 </div>
-                <div class="modal-btn" @click="compliteStep(6)">Дальше</div>
+                <div class="modal-btn" @click="compliteStep(7)">Дальше</div>
               </div>
             </div>
           </div>
         </transition>
         <!-- sticker-modal - 5  -->
-        <transition name="fade" mode="out-in">
+        <!-- <transition name="fade" mode="out-in">
           <div
             class="sticker-modal"
             data-modal="5"
@@ -614,7 +614,7 @@
               </div>
             </div>
           </div>
-        </transition>
+        </transition> -->
         <!-- sticker-modal - 6  -->
         <transition name="fade" mode="out-in">
           <div
@@ -681,7 +681,11 @@
                   премий. Подробнее о них ты можешь узнать из специального
                   положения
                 </div>
-                <a :href="pdfFilePath" target="_blank" class="modal-btn pdf-btn"
+                <a
+                  :href="pdfFilePath"
+                  target="_blank"
+                  download=""
+                  class="modal-btn pdf-btn"
                   >Скачать PDF</a
                 >
                 <div class="line"></div>
@@ -708,9 +712,9 @@
               <div class="sticker-modal__inner">
                 <div class="sticker-modal__text">
                   У тебя есть дети до 14 лет? Если да, то к Новому году подарок
-                  от компании получишь не только ты, но и твой ребенок. А ещё в
-                  компании проходят детские экскурсии на производство — анонсы
-                  мероприятий можно найти в новостных лентах.
+                  получишь не только ты, но и твой ребенок. А ещё он может
+                  посетить с экскурсией завод в РАОСе - анонсы мероприятий ты
+                  найдешь в новостных лентах.
                 </div>
                 <div class="modal-btn" @click="compliteStep(10)">Дальше</div>
               </div>
@@ -948,7 +952,8 @@ const compliteStep = (step) => {
   }
 
   if (step == 7) {
-    showStickerModalFive.value = false;
+    // showStickerModalFive.value = false;
+    showStickerModalFour.value = false;
   }
 
   if (step == 8) {
@@ -1261,7 +1266,7 @@ onMounted(() => {
     }
   }
   &[data-modal="3"] {
-    left: 21%;
+    left: 15%;
     top: 39%;
     background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-3.svg);
     width: fromWidth(880);
@@ -1286,7 +1291,7 @@ onMounted(() => {
 
   &[data-modal="6"] {
     left: 6%;
-    top: 26%;
+    top: 29%;
     background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-6.svg);
     width: fromWidth(880);
     height: fromWidth(618);
@@ -1310,15 +1315,15 @@ onMounted(() => {
   }
 
   &[data-modal="8"] {
-    left: 8%;
-    top: 10%;
+    left: 7%;
+    top: 11%;
     background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-8.svg);
     width: fromWidth(880);
     height: fromWidth(494);
   }
 
   &[data-modal="9"] {
-    left: 17%;
+    left: 20%;
     top: 54%;
     background-image: url(@/assets/img/modules/module-8/sticker-modal-bg-9.svg);
     width: fromWidth(880);
@@ -1423,7 +1428,7 @@ onMounted(() => {
   }
 
   &[data-item="5"] {
-    left: 77%;
+    left: 72%;
     width: 6%;
     height: 20%;
     top: 32%;
@@ -1468,7 +1473,7 @@ onMounted(() => {
   }
 
   &[data-item="10"] {
-    left: 46%;
+    left: 43%;
     width: 6%;
     height: 20%;
     top: 5%;
@@ -1477,10 +1482,10 @@ onMounted(() => {
   }
 
   &[data-item="11"] {
-    left: 75%;
+    left: 78%;
     width: 6%;
     height: 20%;
-    top: 47%;
+    top: 46%;
     z-index: 4;
     transform: rotate(78deg) scaleX(-1);
   }
@@ -1528,7 +1533,7 @@ onMounted(() => {
 
   &[data-item="3"] {
     left: 69.5%;
-    top: 26.5%;
+    top: 30.5%;
     width: 7%;
     height: 13.4%;
   }
@@ -1541,7 +1546,7 @@ onMounted(() => {
   }
 
   &[data-item="5"] {
-    left: 67.5%;
+    left: 61.5%;
     top: 40%;
     width: 7%;
     height: 12.5%;
@@ -1563,7 +1568,7 @@ onMounted(() => {
 
   &[data-item="8"] {
     left: 52%;
-    top: 25.2%;
+    top: 30.2%;
     width: 7.5%;
     height: 15.5%;
   }
@@ -1576,15 +1581,15 @@ onMounted(() => {
   }
 
   &[data-item="10"] {
-    left: 55.5%;
-    top: 10%;
+    left: 53.5%;
+    top: 12%;
     width: 7%;
     height: 13%;
   }
 
   &[data-item="11"] {
-    left: 63.5%;
-    top: 55%;
+    left: 66.5%;
+    top: 54%;
     width: 9%;
     height: 12%;
   }

@@ -434,11 +434,11 @@
             v-show="showSliderModal"
           >
             <div class="modal-content">
-              <div
+              <!-- <div
                 class="man-modal__close"
                 v-if="sliderModalWiewed"
                 @click="compliteStep(6)"
-              ></div>
+              ></div> -->
               <div class="tabs-modal__inner">
                 <div class="tabs-content">
                   <swiper
@@ -467,9 +467,9 @@
                           <div class="rules-slide__body">
                             <h5>В Hochland реализуются три вида обучения:</h5>
                             <ul>
-                              <li>обязательное;</li>
-                              <li>дополнительное;</li>
-                              <li>внутреннее;</li>
+                              <li>обязательное</li>
+                              <li>дополнительное</li>
+                              <li>внутреннее</li>
                             </ul>
                           </div>
                         </div>
@@ -577,6 +577,15 @@
                       <div class="slider-next-btn">Дальше</div>
                     </div>
                   </swiper>
+                  <div
+                    class="modal-btn slider-modal-end"
+                    :class="{
+                      'swiper-button-disabled-custom': !sliderModalWiewed,
+                    }"
+                    @click="compliteStep(6)"
+                  >
+                    Просмотрено
+                  </div>
                 </div>
               </div>
             </div>
@@ -690,32 +699,32 @@ const isShowDescModal = ref(false);
 const isShowVideoModalNextBtn = ref(false);
 const showPhoneModal = ref(false);
 const questionsList = [
-  {
-    id: 0,
-    title: "Сколько лабораторий на заводе по производству плавленого сыра?",
-    options: [
-      {
-        id: 0,
-        title: "1",
-        correctAnswer: false,
-      },
-      {
-        id: 1,
-        title: "2",
-        correctAnswer: true,
-      },
-      {
-        id: 2,
-        title: "3",
-        correctAnswer: false,
-      },
-      {
-        id: 3,
-        title: "4",
-        correctAnswer: false,
-      },
-    ],
-  },
+  // {
+  //   id: 0,
+  //   title: "Сколько лабораторий на заводе по производству плавленого сыра?",
+  //   options: [
+  //     {
+  //       id: 0,
+  //       title: "1",
+  //       correctAnswer: false,
+  //     },
+  //     {
+  //       id: 1,
+  //       title: "2",
+  //       correctAnswer: true,
+  //     },
+  //     {
+  //       id: 2,
+  //       title: "3",
+  //       correctAnswer: false,
+  //     },
+  //     {
+  //       id: 3,
+  //       title: "4",
+  //       correctAnswer: false,
+  //     },
+  //   ],
+  // },
   {
     id: 1,
     title: "Какие виды обучения существуют в Hochland? ",
@@ -804,6 +813,7 @@ const compliteStep = (step) => {
   }
 
   if (step == 6) {
+    if (!sliderModalWiewed.value) return;
     showSliderModal.value = false;
   }
 
@@ -837,6 +847,16 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.slider-modal-end {
+  margin-top: fromWidth(30);
+  margin-left: auto;
+  margin-right: fromWidth(10);
+  padding-top: fromWidth(25);
+  padding-bottom: fromWidth(25);
+}
+.swiper-button-disabled-custom {
+  opacity: 0.3;
+}
 .video-block.showControls :deep(.plyr__controls) {
   display: flex;
 }

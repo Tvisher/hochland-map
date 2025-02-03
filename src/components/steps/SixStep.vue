@@ -73,7 +73,7 @@
 
       <transition name="fade" mode="in-out">
         <div
-          class="modal-template album-modal menu-modal"
+          class="modal-template album-modal menu-modal avansovyj_otchyot"
           v-if="showPhotoAlbumModal"
         >
           <div class="modal-content">
@@ -83,7 +83,7 @@
                   <AlbumSlider
                     :albumImagesList="albumImagesList"
                     :filePath="pdfFilePath"
-                    :albumName="'Кодекс поведения'"
+                    :albumName="'Авансовый отчёт'"
                     @reachEnd="albumViewed = true"
                   />
                 </div>
@@ -105,12 +105,12 @@
           <div class="modal-content">
             <div class="file-modal__inner" v-if="!showTestView">
               <div class="tv-modal__preview">
-                <div class="tv-modal__image">
+                <!-- <div class="tv-modal__image">
                   <img
                     src="@/assets/img/modules/module-6/tv-modal-preview.svg"
                     alt=""
                   />
-                </div>
+                </div> -->
                 <div class="file-modal__title small-marg">
                   Пока администратор проверяет анкету, у тебя есть время изучить
                   семь принципов лидерства в компании и закрепить знания
@@ -183,14 +183,18 @@
           v-show="showSixModuleTimeSlider"
         >
           <div class="modal-content" style="position: relative">
-            <div
-              class="man-modal__close"
-              @click="compliteStep(3)"
-              v-if="timesliderViewed"
-            ></div>
             <div class="tabs-modal__inner">
               <div class="tabs-content">
                 <SixModuleTimeSlider @reachEnd="timesliderViewed = true" />
+                <div
+                  class="modal-btn slider-modal-end"
+                  :class="{
+                    'swiper-button-disabled-custom': !timesliderViewed,
+                  }"
+                  @click="compliteStep(3)"
+                >
+                  Просмотрено
+                </div>
               </div>
             </div>
           </div>
@@ -214,11 +218,12 @@
                     <div class="modal__block_ico"></div>
                     <div class="modal__block_info">
                       <div class="modal__block_text">
-                        Если ты работаешь в Московском офисе, то присоединяйся к
-                        этой группе в Viva
+                        Корпоративная социальная сеть в Viva Engage — группа
+                        «Новости Hochland в России»: добавиться туда может
+                        каждый сотрудник
                       </div>
                       <a
-                        href="https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI4MTI4NjA1Mzg4OCJ9/all"
+                        href="https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI2NzQ0MTQxODI0MCJ9/all"
                         target="_blank"
                         class="modal__block_link"
                         >Перейти</a
@@ -229,12 +234,11 @@
                     <div class="modal__block_ico _empty"></div>
                     <div class="modal__block_info">
                       <div class="modal__block_text">
-                        Корпоративная социальная сеть в Viva Engage — группа
-                        «Новости Hochland в России»: добавиться туда может
-                        каждый сотрудник
+                        Если ты работаешь в Московском офисе, то присоединяйся к
+                        этой группе в Viva
                       </div>
                       <a
-                        href="https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI2NzQ0MTQxODI0MCJ9/all"
+                        href="https://engage.cloud.microsoft/main/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiI4MTI4NjA1Mzg4OCJ9/all"
                         target="_blank"
                         class="modal__block_link"
                         >Перейти</a
@@ -390,7 +394,7 @@ const timesliderViewed = ref(false);
 const showTestView = ref(false);
 const timelineSliderViewed = ref(false);
 const pdfFilePath = new URL(
-  "@/assets/files/Kodeks_povedeniya_aprel_2022.pdf",
+  "@/assets/files/avansovyj_otchyot.pdf",
   import.meta.url
 );
 const pdfFileUrl = new URL(
@@ -398,15 +402,12 @@ const pdfFileUrl = new URL(
   import.meta.url
 );
 const albumImagesList = [
-  new URL("@/assets/img/modules/module-5/pdf/1.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/2.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/3.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/4.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/5.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/6.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/7.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/8.jpg", import.meta.url),
-  new URL("@/assets/img/modules/module-5/pdf/9.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-6/pdf/1.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-6/pdf/2.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-6/pdf/3.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-6/pdf/4.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-6/pdf/5.jpg", import.meta.url),
+  new URL("@/assets/img/modules/module-6/pdf/6.jpg", import.meta.url),
 ];
 
 const questionsList = [
@@ -572,6 +573,7 @@ const compliteStep = (step) => {
   }
 
   if (step == 3) {
+    if (!timesliderViewed.value) return;
     showSixModuleTimeSlider.value = false;
     if (moduleStep.value < 4) {
       moduleStep.value = 4;
@@ -608,6 +610,16 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.slider-modal-end {
+  margin-top: fromWidth(30);
+  margin-left: auto;
+  margin-right: fromWidth(10);
+  padding-top: fromWidth(25);
+  padding-bottom: fromWidth(25);
+}
+.swiper-button-disabled-custom {
+  opacity: 0.3;
+}
 .test-load-btn {
   text-decoration: none;
   cursor: pointer;

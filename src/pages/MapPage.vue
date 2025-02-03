@@ -8,7 +8,7 @@
       <img src="@/assets/img/logo.svg" alt="" />
     </div>
     <div class="user-btn">
-      <span>Дарья Т.</span>
+      <span>{{ userName }}</span>
       <a href="#" class="user-btn__exit"></a>
     </div>
     <div class="menu-btns">
@@ -175,6 +175,7 @@ const modalData = ref({
   selectedStep: "",
 });
 const mapPageLoad = ref(false);
+const userName = document.querySelector("#app").getAttribute("data-user-name");
 
 const mapStepsText = [
   {
